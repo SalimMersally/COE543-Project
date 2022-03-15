@@ -1,3 +1,4 @@
+from itertools import count
 import xml.etree.ElementTree as ET
 
 
@@ -45,4 +46,15 @@ def nodeCounter (root):
     
     return counter
 
- 
+    
+def costInsert(rootB, rootA):
+    if(isSubTree(rootB,rootA)):
+        return 1
+    else:
+        return nodeCounter(rootB)
+    
+def costDelete(rootA, rootB):
+    if(isSubTree(rootA,rootB)):
+        return 1
+    else: 
+        return nodeCounter(rootA)

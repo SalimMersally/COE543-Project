@@ -24,6 +24,12 @@ print(nodeCounter(rootA))
 print(nodeCounter(rootB))
 print(nodeCounter(rootC))
 
+print(costDelete(rootA, rootB))
+print(costDelete(rootA[0], rootB[1]))
+
+print(costInsert(rootA, rootB))
+print(costInsert(rootA[0], rootB[1]))
+
 # root = Tk()
 # while True:
 #     root.mainloop()
