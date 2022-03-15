@@ -32,3 +32,17 @@ def isSubTree(root1, root2):
             return True
 
     return False
+
+def nodeCounter (root): 
+    counter = 0
+    
+    if(root is None):
+        return counter
+    
+    counter += 1 
+    for child in root: 
+        counter += nodeCounter(child)
+    
+    return counter
+
+ 
