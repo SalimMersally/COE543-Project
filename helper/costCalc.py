@@ -58,3 +58,9 @@ def costDelete(rootA, rootB):
         return 1
     else: 
         return nodeCounter(rootA)
+    
+def costUpd(elA, elB): 
+    if(elA.tag == elB.tag):
+        return 0
+    else:
+        return 1
