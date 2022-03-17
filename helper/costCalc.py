@@ -34,33 +34,36 @@ def isSubTree(root1, root2):
 
     return False
 
-def nodeCounter (root): 
+
+def nodeCounter(root):
     counter = 0
-    
-    if(root is None):
+
+    if root is None:
         return counter
-    
-    counter += 1 
-    for child in root: 
+
+    counter += 1
+    for child in root:
         counter += nodeCounter(child)
-    
+
     return counter
 
-    
-def costInsert(rootB, rootA):
-    if(isSubTree(rootB,rootA)):
+
+def costInsert(subTreeB, A):
+    if isSubTree(subTreeB, A):
         return 1
     else:
-        return nodeCounter(rootB)
-    
-def costDelete(rootA, rootB):
-    if(isSubTree(rootA,rootB)):
+        return nodeCounter(subTreeB)
+
+
+def costDelete(subTreeA, B):
+    if isSubTree(subTreeA, B):
         return 1
-    else: 
-        return nodeCounter(rootA)
-    
-def costUpd(elA, elB): 
-    if(elA.tag == elB.tag):
+    else:
+        return nodeCounter(subTreeA)
+
+
+def costUpd(elA, elB):
+    if elA.tag == elB.tag:
         return 0
     else:
         return 1
