@@ -40,19 +40,11 @@ dict = {}
 print(NJ(rootA, rootB, "A", "B", dict))
 pprint(dict)
 
-print(np.flip(getEditScript(dict, rootA, rootB, "A", "B")))
+ES = getEditScript(dict, rootA, rootB, "A", "B")
+print(reverseArray(ES))
 
-# len(rootA)
-# print(NJ(rootA, rootB))
-
-# test = [
-#     ("Del", "A-0"),
-#     ("Upd", "A-0", "B-0"),
-#     ("Ins", "A-0", "B-0-0", 0),
-#     ("Ins", "A", "B-1", 1),
-# ]
-# treePatch(rootA, rootB, test)
-# ET.ElementTree(rootA).write("a.xml")
+treePatch(rootA, rootB, reverseArray(ES))
+ET.ElementTree(rootA).write("a.xml")
 
 # root = Tk()
 # while True:

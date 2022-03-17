@@ -34,10 +34,10 @@ def getEditScript(matricesDic, A, B, nameA, nameB):
         subTreeB = findSubTree(B, subTreeBName)
 
         if matrix[row][col] == (matrix[row - 1][col] + costDelete(subTreeA, B)):
-            editScript.append("Del")
+            editScript.append(("Del", subTreeAName))
             row = row - 1
         elif matrix[row][col] == matrix[row][col - 1] + costInsert(subTreeB, A):
-            editScript.append("Ins")
+            editScript.append(("Ins", nameA, subTreeBName, col - 1))
             col = col - 1
         else:
             editScript += getEditScript(matricesDic, A, B, subTreeAName, subTreeBName)
@@ -46,17 +46,28 @@ def getEditScript(matricesDic, A, B, nameA, nameB):
     # end of first while loop
 
     while row > 0:
-        editScript.append("Del")
+        subTreeAName = nameA + "-" + str(row - 1)
+        editScript.append(("Del", subTreeAName))
         row = row - 1
     # end of the second loop
 
     while col > 0:
-        editScript.append("Ins")
+        subTreeBName = nameB + "-" + str(col - 1)
+        editScript.append(("Ins", nameA, subTreeBName, col - 1))
         col = col - 1
     # end of the third loop
 
     if row == 0 and col == 0:
         if matrix[row][col] == 1:
-            editScript.append("Upd")
+            editScript.append(("Upd", nameA, nameB))
 
     return editScript
+
+
+def reverseArray(array):
+    result = []
+    i = len(array) - 1
+    while i >= 0:
+        result.append(array[i])
+        i -= 1
+    return result
