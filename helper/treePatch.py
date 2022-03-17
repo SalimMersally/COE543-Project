@@ -21,7 +21,6 @@ def findSubTreeChange(root, subTreeName, dictChanges):
     if len(subTreeName) > 1:
         indices = subTreeName[2 : len(subTreeName)].split("-")
         for i in range(0, len(indices)):
-            print(parentsName)
             if i != 0:
                 parentsName += "-" + indices[i - 1]
             if not parentsName in dictChanges:
@@ -52,7 +51,6 @@ def deleteSubTree(A, subTreeAName, dictChanges):
 
     subTreeA = findSubTreeChange(A, subTreeAName, dictChanges)
 
-    print(parentName)
     parent.remove(subTreeA)
 
     if not parentName in dictChanges:
@@ -69,7 +67,6 @@ def updateTag(A, B, subTreeAName, subTreeBName, dictChanges):
 
 def patch(A, B, editScript, dictChanges):
     for op in editScript:
-        print(dictChanges)
         if op[0] == "Del":
             deleteSubTree(A, op[1], dictChanges)
         if op[0] == "Upd":
