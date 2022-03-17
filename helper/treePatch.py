@@ -35,11 +35,21 @@ def insertSubTree(A, B, rootAName, subTreeBName, position):
 def deleteSubTree(A, subTreeAName):
     subTreeA = findSubTree(A, subTreeAName)
     parent = findSubTreeParent(A, subTreeAName)
+
     parent.remove(subTreeA)
 
 
 def updateTag(A, B, subTreeAName, subTreeBName):
     subTreeA = findSubTree(A, subTreeAName)
     subTreeB = findSubTree(B, subTreeBName)
-    print(subTreeA.tag, subTreeB.tag)
     subTreeA.tag = subTreeB.tag
+
+
+def treePatch(A, B, editScript):
+    for op in editScript:
+        if op[0] == "Del":
+            deleteSubTree(A, op[1])
+        if op[0] == "Upd":
+            updateTag(A, B, op[1], op[2])
+        if op[0] == "Ins":
+            insertSubTree(A, B, op[1], op[2], op[3])

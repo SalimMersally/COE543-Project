@@ -1,3 +1,4 @@
+from logging import root
 from tkinter import *
 from helper.costCalc import *
 from helper.N_J import *
@@ -34,14 +35,14 @@ print(getEditScript(dict1,rootA,rootB,"A","B"))
 # len(rootA)
 # print(NJ(rootA, rootB))
 
-# insertSubTree(rootA, rootB, "A-0-1", "B", 0)
-# ET.ElementTree(rootA).write("a.xml")
-
-# deleteSubTree(rootA, "A-0-1-0")
-# ET.ElementTree(rootA).write("b.xml")
-
-# updateTag(rootA, rootB, "A-0-1", "B-0")
-# ET.ElementTree(rootA).write("c.xml")
+test = [
+    ("Del", "A-0"),
+    ("Upd", "A-0", "B-0"),
+    ("Ins", "A-0", "B-0-0", 0),
+    ("Ins", "A", "B-1", 1),
+]
+treePatch(rootA, rootB, test)
+ET.ElementTree(rootA).write("a.xml")
 
 # root = Tk()
 # while True:
