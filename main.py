@@ -5,7 +5,7 @@ from helper.N_J import *
 from helper.treePatch import *
 from helper.editScript import *
 import numpy as np
-
+from pprint import pprint
 
 dict1 = {
     "AB": [[0, 4, 5], [1, 4, 4], [2, 3, 4]],
@@ -33,8 +33,14 @@ rootB = treeB.getroot()
 treeC = ET.parse(xmlFile3)  # xml to tree
 rootC = treeC.getroot()
 
-ES = getEditScript(dict1, rootA, rootB, "A", "B")
-print(np.flip(ES))
+# ES = getEditScript(dict1, rootA, rootB, "A", "B")
+# print(np.flip(ES))
+
+dict = {}
+print(NJ(rootA, rootB, "A", "B", dict))
+pprint(dict)
+
+print(np.flip(getEditScript(dict, rootA, rootB, "A", "B")))
 
 # len(rootA)
 # print(NJ(rootA, rootB))

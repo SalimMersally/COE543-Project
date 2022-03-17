@@ -19,11 +19,9 @@ dict1 = {
 
 def getEditScript(matricesDic, A, B, nameA, nameB):
 
-    keyDic = nameA + nameB
+    keyDic = nameA + "/" + nameB
     editScript = []
     matrix = matricesDic.get(keyDic)
-
-    print(np.array(matrix))
 
     row = len(matrix) - 1
     col = len(matrix[0]) - 1
@@ -32,13 +30,8 @@ def getEditScript(matricesDic, A, B, nameA, nameB):
         subTreeAName = nameA + "-" + str(row - 1)
         subTreeBName = nameB + "-" + str(col - 1)
 
-        print(subTreeAName, subTreeBName)
-
         subTreeA = findSubTree(A, subTreeAName)
         subTreeB = findSubTree(B, subTreeBName)
-
-        print(subTreeA)
-        print(subTreeB)
 
         if matrix[row][col] == (matrix[row - 1][col] + costDelete(subTreeA, B)):
             editScript.append("Del")
