@@ -24,7 +24,7 @@ def WF(A,B):
             )
             
     
-    return Dist[M][N]
+    return Dist
 
 
 def costUpdWord(A,B):
@@ -43,3 +43,40 @@ A="hello there are you hungry"
 B="Hello here are you not very hungry"
 
 print(WF(A,B))
+
+
+def getEditScriptWF(matrix, A, B):
+    
+    tokenA = A.split()
+    tokenB = B.split()
+    
+    row = len(matrix) - 1
+    col = len(matrix[0]) - 1
+    editScript = []
+    
+    while row > 0 and col > 0: 
+        if matrix[row][col] == (matrix[row - 1][col] + costDelWord()):
+            editScript.append(("Del", tokenA[row-1]))
+            row = row - 1
+        elif matrix[row][col] == matrix[row][col - 1] + costInsWord():
+            editScript.append(("Ins", tokenB[col-1]))
+            col = col - 1
+        elif costUpdWord(tokenA[row-1],tokenB[col-1])!= 0:
+            editScript.append(("Upd", tokenA[row-1],tokenB[col-1] ))  
+            row = row - 1
+            col = col - 1
+        else:
+            row = row - 1
+            col = col - 1
+            
+    while row > 0:
+        editScript.append(("Del", tokenA[row-1]))
+        row = row - 1 
+        
+    while col > 0:
+        editScript.append(("Ins", tokenB[col-1]))
+        col = col-1
+        
+    return editScript
+    
+print(getEditScriptWF(WF(A,B),A,B))
