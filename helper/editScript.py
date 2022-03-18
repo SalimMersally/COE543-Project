@@ -88,5 +88,30 @@ def EStoXML(ES):
             tag.set('subTreeAName', ele[1]) 
             
     tree = ElementTree(top)
-    tree.write('output.xml')    
+    tree.write('ES.xml')  
+    return "XMl file created" 
+    
+def XMLtoES(xmlFile):
+    tree = ET.parse(xmlFile)
+    root = tree.getroot()
+    
+    ES = []
+    for child in root: 
+        tuple = ()
+        tuple += (child.tag,)
+        if child.tag == 'Upd':
+            tuple += (child.get('nameA'),)
+            tuple +=(child.get('nameB'),)   
+        if child.tag == 'Del':
+            tuple+=(child.get('subTreeAName'),)
+        if child.tag == 'Ins':
+            tuple+=(child.get('nameA'),)
+            tuple+=(child.get('subTreeBName'),)
+            tuple+=(int(child.get('col-1')),)
+            
+        ES.append(tuple)
+        
+    print(ES)
+    return ES
+            
     

@@ -36,6 +36,10 @@ print(NJ2)
 
 EStoXML(ES)
 
+xml= 'ES.xml'
+
+print(XMLtoES(xml))
+
 # root = Tk()
 # while True:
 #     root.mainloop()
