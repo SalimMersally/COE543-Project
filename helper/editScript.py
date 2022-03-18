@@ -78,15 +78,15 @@ def EStoXML(ES):
     for ele in ES: 
         tag = SubElement(top,ele[0])
         if ele[0] == 'Upd':
-            tag.__setattr__('nameA: ',ele[1])
-            tag.__setattr__('nameB: ',ele[2])
+            tag.set('nameA',ele[1])
+            tag.set('nameB',ele[2])
         if ele[0] == 'Ins':
-            tag.__setattr__('nameA: ', ele[1])
-            tag.__setattr__('subTreeBName: ', ele[2])   
-            tag.__setattr__('col-1: ', ele[3])   
+            tag.set('nameA', ele[1])
+            tag.set('subTreeBName', ele[2])   
+            tag.set('col-1', str(ele[3]))   
         if ele[0] == 'Del':
-            tag.__setattr__('subTreeAName: ', ele[1]) 
+            tag.set('subTreeAName', ele[1]) 
             
-    tree = ET.ElementTree("top")
-    tree.write("ES.xml")        
+    tree = ElementTree(top)
+    tree.write('output.xml')    
     

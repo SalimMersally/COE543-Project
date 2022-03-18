@@ -34,6 +34,8 @@ dict = {}
 NJ2 = NJ(rootA, rootB, "A", "B", dict)
 print(NJ2)
 
+EStoXML(ES)
+
 # root = Tk()
 # while True:
 #     root.mainloop()
