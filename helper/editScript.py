@@ -1,6 +1,7 @@
 from helper.costCalc import *
 from helper.treePatch import *
 import numpy as np
+from xml.etree.ElementTree import *
 
 dict1 = {
     "AB": [[0, 4, 5], [1, 4, 4], [2, 3, 4]],
@@ -71,3 +72,21 @@ def reverseArray(array):
         result.append(array[i])
         i -= 1
     return result
+
+def EStoXML(ES):
+    top = Element('EditScript')
+    for ele in ES: 
+        tag = SubElement(top,ele[0])
+        if ele[0] == 'Upd':
+            tag.__setattr__('nameA: ',ele[1])
+            tag.__setattr__('nameB: ',ele[2])
+        if ele[0] == 'Ins':
+            tag.__setattr__('nameA: ', ele[1])
+            tag.__setattr__('subTreeBName: ', ele[2])   
+            tag.__setattr__('col-1: ', ele[3])   
+        if ele[0] == 'Del':
+            tag.__setattr__('subTreeAName: ', ele[1]) 
+            
+    tree = ET.ElementTree("top")
+    tree.write("ES.xml")        
+    
