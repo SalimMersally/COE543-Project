@@ -40,7 +40,7 @@ def insertSubTree(A, B, rootAName, subTreeBName, position, dictChanges):
         root.insert(position, copySubTree)
         dictChanges[rootAName] = 1
     else:
-        root.insert(position + dictChanges[rootAName] + 1, copySubTree)
+        root.insert(position, copySubTree)
         dictChanges[rootAName] += 1
 
 
@@ -48,7 +48,6 @@ def deleteSubTree(A, subTreeAName, dictChanges):
     array = subTreeAName.split("-")
     parentName = "-".join(array[0 : len(array) - 1])
     parent = findSubTreeChange(A, parentName, dictChanges)
-
     subTreeA = findSubTreeChange(A, subTreeAName, dictChanges)
 
     parent.remove(subTreeA)

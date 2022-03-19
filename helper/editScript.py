@@ -73,45 +73,45 @@ def reverseArray(array):
         i -= 1
     return result
 
+
 def EStoXML(ES):
-    top = Element('EditScript')
-    for ele in ES: 
-        tag = SubElement(top,ele[0])
-        if ele[0] == 'Upd':
-            tag.set('nameA',ele[1])
-            tag.set('nameB',ele[2])
-        if ele[0] == 'Ins':
-            tag.set('nameA', ele[1])
-            tag.set('subTreeBName', ele[2])   
-            tag.set('col-1', str(ele[3]))   
-        if ele[0] == 'Del':
-            tag.set('subTreeAName', ele[1]) 
-            
+    top = Element("EditScript")
+    for ele in ES:
+        tag = SubElement(top, ele[0])
+        if ele[0] == "Upd":
+            tag.set("nameA", ele[1])
+            tag.set("nameB", ele[2])
+        if ele[0] == "Ins":
+            tag.set("nameA", ele[1])
+            tag.set("subTreeBName", ele[2])
+            tag.set("col-1", str(ele[3]))
+        if ele[0] == "Del":
+            tag.set("subTreeAName", ele[1])
+
     tree = ElementTree(top)
-    tree.write('ES.xml')  
-    return "XMl file created" 
-    
+    tree.write("ES.xml")
+    return "XMl file created"
+
+
 def XMLtoES(xmlFile):
     tree = ET.parse(xmlFile)
     root = tree.getroot()
-    
+
     ES = []
-    for child in root: 
+    for child in root:
         tuple = ()
         tuple += (child.tag,)
-        if child.tag == 'Upd':
-            tuple += (child.get('nameA'),)
-            tuple +=(child.get('nameB'),)   
-        if child.tag == 'Del':
-            tuple+=(child.get('subTreeAName'),)
-        if child.tag == 'Ins':
-            tuple+=(child.get('nameA'),)
-            tuple+=(child.get('subTreeBName'),)
-            tuple+=(int(child.get('col-1')),)
-            
+        if child.tag == "Upd":
+            tuple += (child.get("nameA"),)
+            tuple += (child.get("nameB"),)
+        if child.tag == "Del":
+            tuple += (child.get("subTreeAName"),)
+        if child.tag == "Ins":
+            tuple += (child.get("nameA"),)
+            tuple += (child.get("subTreeBName"),)
+            tuple += (int(child.get("col-1")),)
+
         ES.append(tuple)
-        
+
     print(ES)
     return ES
-            
-    

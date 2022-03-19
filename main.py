@@ -7,7 +7,8 @@ from pprint import pprint
 
 xmlFile = "sample/onlyTag/Sample1/SampleDoc1.xml"
 xmlFile2 = "sample/onlyTag/Sample1/SampleDoc2.xml"
-
+# xmlFile = "sample/onlyTag/Huge/employee1.xml"
+# xmlFile2 = "sample/onlyTag/Huge/employee2.xml"
 
 treeA = ET.parse(xmlFile)  # xml to tree
 rootA = treeA.getroot()
@@ -16,7 +17,7 @@ rootB = treeB.getroot()
 
 dict = {}
 NJ1 = NJ(rootA, rootB, "A", "B", dict)
-pprint(dict)
+# pprint(dict)
 print(NJ1)
 
 ES = getEditScript(dict, rootA, rootB, "A", "B")
@@ -29,11 +30,7 @@ dict = {}
 NJ2 = NJ(rootA, rootB, "A", "B", dict)
 print(NJ2)
 
-EStoXML(ES)
-
-xml = "ES.xml"
-
-print(XMLtoES(xml))
+EStoXML(reverseArray(ES))
 
 # root = Tk()
 # while True:
