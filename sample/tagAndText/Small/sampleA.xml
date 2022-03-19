@@ -1,13 +1,13 @@
 <a>
     <t>Title of Tree A</t>
     <aus>
-        <au>John Doe</au>
-        <au>John Doe</au>
-        <au>John Doe</au>
+        <au>John Doe and John Doe</au>
+        <au>John</au>
+        <au>John will smith</au>
     </aus>
     <S>
         <to>
-            <f>1 2 3 4 5 6</f>
+            <f>1 2 3 4 5 6 7 8 9</f>
         </to>
     </S>
 </a>

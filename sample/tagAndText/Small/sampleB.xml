@@ -1,12 +1,13 @@
 <a>
-    <t />
-    <aus></aus>
-    <au>Mark Doe</au>
-    <au>John Doe</au>
-    <au>Mark Doe</au>
-    <av>
+    <t>Title of Tree B</t>
+    <aus>
+        <au>Mark Doe</au>
+        <au>John John</au>
+        <au>John Doe</au>
+    </aus>
+    <S>
         <to>
             <f>1 2 3 4 6</f>
         </to>
-    </av>
+    </S>
 </a>

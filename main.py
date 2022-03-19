@@ -38,8 +38,8 @@ dict = {}
 NJ1 = NJ_TagAndText(rootA, rootB, "A", "B", dict)
 pprint(dict)
 print(NJ1)
-# ES = getTreeEditScript_Tag(dict, rootA, rootB, "A", "B")
-# print(reverseArray(ES))
+ES = getTreeEditScript_TagAndText(dict, rootA, rootB, "A", "B")
+pprint(reverseArray(ES))
 # dictChanges = {}
 # treePatch_Tag(rootA, rootB, reverseArray(ES), dictChanges)
 # ET.ElementTree(rootA).write("a.xml")

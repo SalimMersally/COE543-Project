@@ -62,7 +62,7 @@ def treePatch_Tag(A, B, editScript, dictChanges):
     for op in editScript:
         if op[0] == "Del":
             deleteSubTree_Tag(A, op[1], dictChanges)
-        if op[0] == "Upd":
+        if op[0] == "UpdTag":
             updateNode_Tag(A, B, op[1], op[2], dictChanges)
         if op[0] == "Ins":
             insertSubTree_Tag(A, B, op[1], op[2], op[3], dictChanges)

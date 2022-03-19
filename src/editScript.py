@@ -1,5 +1,6 @@
+from distutils.errors import DistutilsClassError
 from src.costCalc import *
-from xml.etree.ElementTree import *
+from src.arrayEditDistance import getEditScriptWF
 
 
 def reverseArray(array):
@@ -57,9 +58,76 @@ def getTreeEditScript_Tag(matricesDic, A, B, nameA, nameB):
         editScript.append(("Ins", nameA, subTreeBName, col - 1))
         col = col - 1
 
-    if row == 0 and col == 0:
-        if matrix[row][col] == 1:
-            editScript.append(("Upd", nameA, nameB))
+    if matrix[row][col] == 1:
+        editScript.append(("UpdTag", nameA, nameB))
+
+    return editScript
+
+
+# After getting the edit matrices using NJ algorithm, the matrices
+# are stored in a dictionary with their name as key
+# using them will get the edit script by tranversing them back
+# Note that the result should be flipped
+# this method take into considaration only tags
+
+
+def getTreeEditScript_TagAndText(matricesDic, A, B, nameA, nameB):
+
+    keyDic = nameA + "/" + nameB
+    editScript = []
+    matrix = matricesDic.get(keyDic)
+
+    row = len(matrix) - 1
+    col = len(matrix[0]) - 1
+
+    while row > 0 and col > 0:
+        subTreeAName = nameA + "-" + str(row - 1)
+        subTreeBName = nameB + "-" + str(col - 1)
+
+        subTreeA = findSubTree(A, subTreeAName)
+        subTreeB = findSubTree(B, subTreeBName)
+
+        if matrix[row][col] == (
+            matrix[row - 1][col] + costDelete_TagAndText(subTreeA, B)
+        ):
+            editScript.append(("Del", subTreeAName))
+            row = row - 1
+        elif matrix[row][col] == matrix[row][col - 1] + costInsert_TagAndText(
+            subTreeB, A
+        ):
+            editScript.append(("Ins", nameA, subTreeBName, col - 1))
+            col = col - 1
+        else:
+            editScript += getTreeEditScript_TagAndText(
+                matricesDic, A, B, subTreeAName, subTreeBName
+            )
+            row = row - 1
+            col = col - 1
+
+    while row > 0:
+        subTreeAName = nameA + "-" + str(row - 1)
+        editScript.append(("Del", subTreeAName))
+        row = row - 1
+
+    while col > 0:
+        subTreeBName = nameB + "-" + str(col - 1)
+        editScript.append(("Ins", nameA, subTreeBName, col - 1))
+        col = col - 1
+
+    rootA = findSubTree(A, nameA)
+    rootB = findSubTree(B, nameB)
+
+    if rootA.tag != rootB.tag:
+        editScript.append(("UpdTag", nameA, nameB))
+
+    dicKey = nameA + "/" + nameB + "/text"
+    if dicKey in matricesDic:
+        textA = rootA.text.split()
+        textB = rootB.text.split()
+        textMatrix = matricesDic[dicKey]
+        if textMatrix[len(textA)][len(textB)] != 0:
+            ESText = getEditScriptWF(textMatrix, rootA.text, rootB.text)
+            editScript.append(("UpdText", nameA, nameB, reverseArray(ESText)))
 
     return editScript
 
