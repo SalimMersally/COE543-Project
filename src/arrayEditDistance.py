@@ -60,7 +60,7 @@ def costDelWord():
 A = "hello there are you hungry dude"
 B = "Hello here are you not very hungry"
 
-print(WF(A, B))
+# print(WF(A, B))
 
 
 def getEditScriptWF(matrix, A, B):
@@ -98,4 +98,4 @@ def getEditScriptWF(matrix, A, B):
     return editScript
 
 
-print(reverseArray(getEditScriptWF(WF(A, B), A, B)))
+# print(reverseArray(getEditScriptWF(WF(A, B), A, B)))

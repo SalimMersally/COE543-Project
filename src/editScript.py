@@ -31,8 +31,8 @@ def getTreeEditScript_Tag(matricesDic, A, B, nameA, nameB):
         subTreeAName = nameA + "-" + str(row - 1)
         subTreeBName = nameB + "-" + str(col - 1)
 
-        subTreeA = findSubTree_Tag(A, subTreeAName)
-        subTreeB = findSubTree_Tag(B, subTreeBName)
+        subTreeA = findSubTree(A, subTreeAName)
+        subTreeB = findSubTree(B, subTreeBName)
 
         if matrix[row][col] == (matrix[row - 1][col] + costDelete_Tag(subTreeA, B)):
             editScript.append(("Del", subTreeAName))
