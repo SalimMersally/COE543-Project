@@ -2,19 +2,13 @@ from textwrap import indent
 import xml.etree.ElementTree as ET
 from copy import deepcopy
 
-
-def findSubTree(root, subTreeName):
-    subTreeRoot = root
-
-    if len(subTreeName) > 1:
-        indices = subTreeName[2 : len(subTreeName)].split("-")
-        for index in indices:
-            subTreeRoot = subTreeRoot[int(index)]
-
-    return subTreeRoot
+# the following methods are used to patch a tree into another one
+# using the edit script taking into considartion only tags
+# note that a dictionary should be given as argument to the patch funtion so
+# values of change are stored in recursive calls
 
 
-def findSubTreeChange(root, subTreeName, dictChanges):
+def findSubTreeChange_Tag(root, subTreeName, dictChanges):
     subTreeRoot = root
     parentsName = subTreeName[0]
 
@@ -31,9 +25,9 @@ def findSubTreeChange(root, subTreeName, dictChanges):
     return subTreeRoot
 
 
-def insertSubTree(A, B, rootAName, subTreeBName, position, dictChanges):
-    root = findSubTreeChange(A, rootAName, dictChanges)
-    subTree = findSubTreeChange(B, subTreeBName, dictChanges)
+def insertSubTree_Tag(A, B, rootAName, subTreeBName, position, dictChanges):
+    root = findSubTreeChange_Tag(A, rootAName, dictChanges)
+    subTree = findSubTreeChange_Tag(B, subTreeBName, dictChanges)
     copySubTree = deepcopy(subTree)
 
     if not rootAName in dictChanges:
@@ -44,11 +38,11 @@ def insertSubTree(A, B, rootAName, subTreeBName, position, dictChanges):
         dictChanges[rootAName] += 1
 
 
-def deleteSubTree(A, subTreeAName, dictChanges):
+def deleteSubTree_Tag(A, subTreeAName, dictChanges):
     array = subTreeAName.split("-")
     parentName = "-".join(array[0 : len(array) - 1])
-    parent = findSubTreeChange(A, parentName, dictChanges)
-    subTreeA = findSubTreeChange(A, subTreeAName, dictChanges)
+    parent = findSubTreeChange_Tag(A, parentName, dictChanges)
+    subTreeA = findSubTreeChange_Tag(A, subTreeAName, dictChanges)
 
     parent.remove(subTreeA)
 
@@ -58,22 +52,17 @@ def deleteSubTree(A, subTreeAName, dictChanges):
         dictChanges[parentName] -= 1
 
 
-def updateTag(A, B, subTreeAName, subTreeBName, dictChanges):
-    subTreeA = findSubTreeChange(A, subTreeAName, dictChanges)
-    subTreeB = findSubTreeChange(B, subTreeBName, dictChanges)
+def updateNode_Tag(A, B, subTreeAName, subTreeBName, dictChanges):
+    subTreeA = findSubTreeChange_Tag(A, subTreeAName, dictChanges)
+    subTreeB = findSubTreeChange_Tag(B, subTreeBName, dictChanges)
     subTreeA.tag = subTreeB.tag
 
 
-def patch(A, B, editScript, dictChanges):
+def treePatch_Tag(A, B, editScript, dictChanges):
     for op in editScript:
         if op[0] == "Del":
-            deleteSubTree(A, op[1], dictChanges)
+            deleteSubTree_Tag(A, op[1], dictChanges)
         if op[0] == "Upd":
-            updateTag(A, B, op[1], op[2], dictChanges)
+            updateNode_Tag(A, B, op[1], op[2], dictChanges)
         if op[0] == "Ins":
-            insertSubTree(A, B, op[1], op[2], op[3], dictChanges)
-
-
-def treePatch(A, B, editScript):
-    dictChanges = {}
-    patch(A, B, editScript, dictChanges)
+            insertSubTree_Tag(A, B, op[1], op[2], op[3], dictChanges)
