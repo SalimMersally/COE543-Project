@@ -1,52 +1,53 @@
 <OrdinaryIssuePage>
-  <volume />
-  <number />
-  <month />
-  <year />
+
+  <volume>31</volume>
+  <number>4</number>
+  <month>December</month>
+  <year>2002</year>
   <notes>
     <note>
       <toNote>
-        <title />
+        <title>Chair's Message</title>
       </toNote>
       <otherSources>
         <toSource>
-          <format />
+          <format>PDF</format>
         </toSource>
       </otherSources>
     </note>
 
     <note>
       <toNote>
-        <title />
+        <title>Editor's Notes</title>
       </toNote>
       <otherSources>
         <toSource>
-          <format />
+          <format>PDF</format>
         </toSource>
         <toSource>
-          <format />
-        </toSource>
-      </otherSources>
-    </note>
-
-    <note>
-      <toNote>
-        <title />
-      </toNote>
-      <otherSources>
-        <toSource>
-          <format />
+          <format>Postscript</format>
         </toSource>
       </otherSources>
     </note>
 
     <note>
       <toNote>
-        <title />
+        <title>Rights of TODS Readers, Authors and Reviewers</title>
       </toNote>
       <otherSources>
         <toSource>
-          <format />
+          <format>PDF</format>
+        </toSource>
+      </otherSources>
+    </note>
+
+    <note>
+      <toNote>
+        <title>SIGMOD Officers, Committees and </title>
+      </toNote>
+      <otherSources>
+        <toSource>
+          <format>PDF</format>
         </toSource>
       </otherSources>
     </note>
@@ -54,17 +55,17 @@
   </notes>
   <sections>
     <section>
-      <sectionName />
+      <sectionName>Special Section on Semantic Web and Data Management</sectionName>
       <articles>
         <article>
-          <title />
+          <title>Guest Editor's Introduction</title>
           <authors>
-            <author />
-            <author />
+            <author>R. Meersman</author>
+            <author>A. Sheth</author>
           </authors>
           <availableSources>
             <toAvailableSource>
-              <format />
+              <format>PDF</format>
             </toAvailableSource>
           </availableSources>
         </article>
@@ -72,141 +73,140 @@
         <article>
           <title />
           <authors>
-            <author />
-            <author />
-            <author />
+            <author>P. Spyns</author>
+            <author>R. Meersman</author>
+            <author>M. Jarrar</author>
           </authors>
           <availableSources>
             <toAvailableSource>
-              <format />
+              <dataRep>PDF</dataRep>
             </toAvailableSource>
           </availableSources>
         </article>
 
         <article>
-          <title />
+          <title>Methodology for Development and Employment of Ontology Based Knowledge Management Applications</title>
           <authors>
-            <author />
-            <author />
-            <author />
+            <author>T. Sure</author>
+            <author>R. Studer</author>
           </authors>
           <availableSources>
             <toAvailableSource>
-              <format />
+              <format>PDF</format>
             </toAvailableSource>
           </availableSources>
         </article>
 
         <article>
-          <title />
+          <title>A Conceptual Architecture for Semantic Web Enabled Web Services</title>
           <authors>
-            <author />
-            <author />
-            <author />
+            <author>C. Bussler</author>
+            <author>D. Fensel</author>
+            <author>A. Maedche</author>
+          </authors>
+          <Sources>
+            <toAvailableSource>
+              <format>PDF</format>
+            </toAvailableSource>
+          </Sources>
+        </article>
+
+        <article>
+          <title>Agents, Turst, and Information Access on the Semantic Web</title>
+          <authors>
+            <author>T. Finin</author>
+            <author>A. Joshi</author>
           </authors>
           <availableSources>
             <toAvailableSource>
-              <format />
+              <format>PDF</format>
             </toAvailableSource>
           </availableSources>
         </article>
 
         <article>
-          <title />
+          <title>Conceptual Model of Web Service Reputation</title>
           <authors>
-            <author />
-            <author />
+            <author>E.M. Maximilien</author>
+            <author>M. Singh</author>
           </authors>
           <availableSources>
             <toAvailableSource>
-              <format />
+              <format>PDF</format>
             </toAvailableSource>
           </availableSources>
         </article>
 
         <article>
-          <title />
+          <title>The p Operator: Discovering and Ranking Associations on the Semantic Web</title>
           <authors>
-            <author />
-            <author />
+            <author>K. Anyanwu</author>
+            <author>A. Sheth</author>
           </authors>
           <availableSources>
             <toAvailableSource>
-              <format />
+              <format>PDF</format>
             </toAvailableSource>
           </availableSources>
         </article>
 
         <article>
-          <title />
+          <title>A Framework for Semantic Gossiping</title>
           <authors>
-            <author />
-            <author />
+            <author>K. Aberer</author>
+            <author>P. Cudre-Mauroux</author>
+            <author>M. Hauswirth</author>
           </authors>
           <availableSources>
             <toAvailableSource>
-              <format />
+              <format>PDF</format>
             </toAvailableSource>
           </availableSources>
         </article>
 
         <article>
-          <title />
+          <title>Emergent Semantics and the Multimedia Semantic Web</title>
           <authors>
-            <author />
-            <author />
-            <author />
+            <author>W.I. Grosky</author>
+            <author>D.V. Sreenath</author>
+            <author>F. Fotouhi</author>
           </authors>
           <availableSources>
             <toAvailableSource>
-              <format />
+              <format>PDF</format>
             </toAvailableSource>
           </availableSources>
         </article>
 
         <article>
-          <title />
+          <title>Querying Multiple Bioinformatics Data Sources: Can Semantic Web Research Help?</title>
           <authors>
-            <author />
-            <author />
-            <author />
+            <author>David Buttler</author>
+            <author>Matthew Coleman1</author>
+            <author>Terence Critchlow1</author>
+            <author>Renato Fileto</author>
+            <author>Wei Han</author>
+            <author>Ling Liu</author>
+            <author>Calton Pu</author>
+            <author>Daniel Rocco</author>
+            <author>Li Xiong</author>
           </authors>
           <availableSources>
             <toAvailableSource>
-              <format />
+              <format>PDF</format>
             </toAvailableSource>
           </availableSources>
         </article>
 
         <article>
-          <title />
+          <title>The Grid: An Application of the Semantic Web</title>
           <authors>
-            <author />
-            <author />
-            <author />
-            <author />
-            <author />
-            <author />
-            <author />
-            <author />
-            <author />
+            <author>C. Goble</author>
+            <author>D. De Rouce</author>
           </authors>
           <availableSources>
             <toAvailableSource>
-              <format />
-            </toAvailableSource>
-          </availableSources>
-        </article>
-
-        <article>
-          <title />
-          <authors>
-            <author />
-            <author />
-          </authors>
-          <availableSources>
-            <toAvailableSource>
-              <format />
+              <format>PDF</format>
             </toAvailableSource>
           </availableSources>
         </article>
@@ -215,40 +215,40 @@
     </section>
 
     <section>
-      <sectionName />
+      <sectionName>Book Reviews</sectionName>
       <articles>
         <article>
-          <title />
+          <title>Introduction</title>
           <authors>
-            <author />
+            <author>Karl Aberer</author>
           </authors>
           <availableSources>
             <toAvailableSource>
-              <format />
+              <format>PDF</format>
             </toAvailableSource>
           </availableSources>
         </article>
 
         <article>
-          <title />
+          <title>Ontologies: A Silver Bullet for Knowledge Management and Electronic Commerce - by Dieter Fensel</title>
           <authors>
-            <author />
+            <author>Reviewer: Antonio Badia</author>
           </authors>
           <availableSources>
             <toAvailableSource>
-              <format />
+              <format>PDF</format>
             </toAvailableSource>
           </availableSources>
         </article>
 
         <article>
-          <title />
+          <title>Small Worlds: the Dynamics of Networks between Order and Randomness - by Duncan J. Watts</title>
           <authors>
-            <author />
+            <author>Reviewer: Jie Wu</author>
           </authors>
           <availableSources>
             <toAvailableSource>
-              <format />
+              <format>PDF</format>
             </toAvailableSource>
           </availableSources>
         </article>
@@ -257,16 +257,16 @@
     </section>
 
     <section>
-      <sectionName />
+      <sectionName>Distinguished Database Profiles</sectionName>
       <articles>
         <article>
-          <title />
+          <title>Interview with David Maier</title>
           <authors>
-            <author />
+            <author>Marianne Winslett</author>
           </authors>
           <availableSources>
             <toAvailableSource>
-              <format />
+              <format>PDF</format>
             </toAvailableSource>
           </availableSources>
         </article>
@@ -275,19 +275,19 @@
     </section>
 
     <section>
-      <sectionName />
+      <sectionName>Database Principles</sectionName>
       <articles>
         <article>
-          <title />
+          <title>Parameterized Complexity for the Database Theorist</title>
           <authors>
-            <author />
+            <author>Martin Grohe</author>
           </authors>
           <availableSources>
             <toAvailableSource>
-              <format />
+              <format>PDF</format>
             </toAvailableSource>
             <toAvailableSource>
-              <format />
+              <format>Postscript</format>
             </toAvailableSource>
           </availableSources>
         </article>
@@ -296,17 +296,18 @@
     </section>
 
     <section>
-      <sectionName />
+      <sectionName>Influential Papers</sectionName>
       <articles>
         <article>
-          <title />
+          <title>Reminiscences on Influential Papers</title>
           <authors>
-            <author />
-            <author />
+            <author>A. Aho</author>
+            <author>A. Ailamaki</author>
           </authors>
           <availableSources>
             <toAvailableSource>
-              <format />
+              <format>PDF</format>
+              <format>JSON</format>
             </toAvailableSource>
           </availableSources>
         </article>
@@ -315,49 +316,33 @@
     </section>
 
     <section>
-      <sectionName />
+      <sectionName>Reports</sectionName>
       <articles>
         <article>
-          <title />
+          <title>Amicalola Report: Database and Information System Research Challenges and Opportunities in Semantic Web and Enterprises</title>
           <authors>
-            <author />
-            <author />
+            <author>A. Sheth</author>
+            <author>R. Meersman</author>
           </authors>
           <availableSources>
             <toAvailableSource>
               <format />
+              <format>PDF</format>
             </toAvailableSource>
           </availableSources>
         </article>
 
         <article>
-          <title />
+          <title>Report on the EDBT'02 Panel on Scientific Data Integration</title>
           <authors>
-            <author />
-            <author />
-            <author />
+            <author>O. Boucelma</author>
+            <author>S. Castano</author>
+            <author>C. Goble</author>
+            <author>J. Connor</author>
           </authors>
           <availableSources>
             <toAvailableSource>
-              <format />
-            </toAvailableSource>
-          </availableSources>
-        </article>
-
-      </articles>
-    </section>
-
-    <section>
-      <sectionName />
-      <articles>
-        <article>
-          <title />
-          <authors>
-            <author />
-          </authors>
-          <availableSources>
-            <toAvailableSource>
-              <format />
+              <format>PDF</format>
             </toAvailableSource>
           </availableSources>
         </article>
@@ -366,16 +351,34 @@
     </section>
 
     <section>
-      <sectionName />
+      <sectionName>Standards</sectionName>
       <articles>
         <article>
-          <title />
+          <title>An Early Look at XQuery</title>
           <authors>
-            <author />
+            <author>Jim Melton and Andrew Eisenberg</author>
           </authors>
           <availableSources>
             <toAvailableSource>
-              <format />
+              <format>PDF</format>
+            </toAvailableSource>
+          </availableSources>
+        </article>
+
+      </articles>
+    </section>
+
+    <section>
+      <sectionName>Research Centers</sectionName>
+      <articles>
+        <article>
+          <title>Research in Information Managment at Dublin City University</title>
+          <authors>
+            <author>Mark Roantree and Alan F. Smeaton</author>
+          </authors>
+          <availableSources>
+            <toAvailableSource>
+              <format>PDF</format>
             </toAvailableSource>
           </availableSources>
         </article>

@@ -1,23 +1,18 @@
-from logging import root
 from tkinter import *
 from helper.costCalc import *
 from helper.N_J import *
 from helper.treePatch import *
 from helper.editScript import *
-import numpy as np
 from pprint import pprint
 
-xmlFile = "sample/bigSamples/Sample1/SampleDoc1.xml"
-xmlFile2 = "sample/bigSamples/Sample1/SampleDoc2.xml"
-xmlFile3 = "sample/onlyTag/sampleC.xml"
+xmlFile = "sample/onlyTag/Sample1/SampleDoc1.xml"
+xmlFile2 = "sample/onlyTag/Sample1/SampleDoc2.xml"
 
 
 treeA = ET.parse(xmlFile)  # xml to tree
 rootA = treeA.getroot()
 treeB = ET.parse(xmlFile2)  # xml to tree
 rootB = treeB.getroot()
-treeC = ET.parse(xmlFile3)  # xml to tree
-rootC = treeC.getroot()
 
 dict = {}
 NJ1 = NJ(rootA, rootB, "A", "B", dict)
@@ -36,7 +31,7 @@ print(NJ2)
 
 EStoXML(ES)
 
-xml= 'ES.xml'
+xml = "ES.xml"
 
 print(XMLtoES(xml))
 

@@ -74,7 +74,6 @@
           <authors>
             <author />
             <author />
-            <author />
           </authors>
           <availableSources>
             <toAvailableSource>
@@ -82,21 +81,6 @@
             </toAvailableSource>
           </availableSources>
         </article>
-
-        <article>
-          <title />
-          <authors>
-            <author />
-            <author />
-            <author />
-          </authors>
-          <availableSources>
-            <toAvailableSource>
-              <format />
-            </toAvailableSource>
-          </availableSources>
-        </article>
-
         <article>
           <title />
           <authors>
@@ -129,6 +113,14 @@
           <authors>
             <author />
             <author />
+            <author />
+            <author />
+            <author />
+            <author />
+            <author />
+            <author />
+            <author />
+
           </authors>
           <availableSources>
             <toAvailableSource>
@@ -136,6 +128,7 @@
             </toAvailableSource>
           </availableSources>
         </article>
+
 
         <article>
           <title />
@@ -150,66 +143,6 @@
           </availableSources>
         </article>
 
-        <article>
-          <title />
-          <authors>
-            <author />
-            <author />
-            <author />
-          </authors>
-          <availableSources>
-            <toAvailableSource>
-              <format />
-            </toAvailableSource>
-          </availableSources>
-        </article>
-
-        <article>
-          <title />
-          <authors>
-            <author />
-            <author />
-            <author />
-          </authors>
-          <availableSources>
-            <toAvailableSource>
-              <format />
-            </toAvailableSource>
-          </availableSources>
-        </article>
-
-        <article>
-          <title />
-          <authors>
-            <author />
-            <author />
-            <author />
-            <author />
-            <author />
-            <author />
-            <author />
-            <author />
-            <author />
-          </authors>
-          <availableSources>
-            <toAvailableSource>
-              <format />
-            </toAvailableSource>
-          </availableSources>
-        </article>
-
-        <article>
-          <title />
-          <authors>
-            <author />
-            <author />
-          </authors>
-          <availableSources>
-            <toAvailableSource>
-              <format />
-            </toAvailableSource>
-          </availableSources>
-        </article>
 
       </articles>
     </section>
@@ -228,31 +161,6 @@
             </toAvailableSource>
           </availableSources>
         </article>
-
-        <article>
-          <title />
-          <authors>
-            <author />
-          </authors>
-          <availableSources>
-            <toAvailableSource>
-              <format />
-            </toAvailableSource>
-          </availableSources>
-        </article>
-
-        <article>
-          <title />
-          <authors>
-            <author />
-          </authors>
-          <availableSources>
-            <toAvailableSource>
-              <format />
-            </toAvailableSource>
-          </availableSources>
-        </article>
-
       </articles>
     </section>
 
@@ -305,9 +213,7 @@
             <author />
           </authors>
           <availableSources>
-            <toAvailableSource>
-              <format />
-            </toAvailableSource>
+            <toAvailableSource />
           </availableSources>
         </article>
 
@@ -319,10 +225,7 @@
       <articles>
         <article>
           <title />
-          <authors>
-            <author />
-            <author />
-          </authors>
+
           <availableSources>
             <toAvailableSource>
               <format />
@@ -334,7 +237,7 @@
           <title />
           <authors>
             <author />
-            <author />
+
             <author />
           </authors>
           <availableSources>
@@ -346,7 +249,6 @@
 
       </articles>
     </section>
-
     <section>
       <sectionName />
       <articles>
@@ -354,30 +256,13 @@
           <title />
           <authors>
             <author />
-          </authors>
-          <availableSources>
-            <toAvailableSource>
-              <format />
-            </toAvailableSource>
-          </availableSources>
-        </article>
-
-      </articles>
-    </section>
-
-    <section>
-      <sectionName />
-      <articles>
-        <article>
-          <title />
-          <authors>
             <author />
           </authors>
-          <availableSources>
+          <potentialSources>
             <toAvailableSource>
               <format />
             </toAvailableSource>
-          </availableSources>
+          </potentialSources>
         </article>
 
       </articles>
