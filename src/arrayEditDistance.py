@@ -92,10 +92,49 @@ def getEditScriptWF(matrix, A, B):
         row = row - 1
 
     while col > 0:
-        editScript.append(("InsWord", tokenB[col - 1],col-1))
+        editScript.append(("InsWord", tokenB[col - 1],row-1))
         col = col - 1
 
     return editScript
 
 
 # print(reverseArray(getEditScriptWF(WF(A, B), A, B)))
+def patchArray(strA,ES):
+    arrA=strA.split()
+    i = 0
+    while i < len(ES):
+        op = ES[i]
+        if op[0] == 'UpdWord':
+            arrA[op[3]] = op[2]
+        if op[0] == 'DelWord':
+            arrA.remove(op[2])
+            updateArray(i,ES)   
+        if op[0] == 'InsWord':
+            arrA.insert(op[2],op[1])
+            updateArray(i,ES) 
+        i+=1
+    return " ".join(arrA)
+
+def updateArray(index, ES):
+    
+    i = index+1
+    op = ES[index]
+    if op[0] == "DelWord":
+        while i< len(ES):
+            temp = ES[i]
+            if temp[0] == "InsWord" or temp[0] == "Delword":
+                ES[i][2] -= 1
+            if temp[0] == "UpdWord":
+                ES[i][3] -= 1
+    if op[0] == "InsWord":
+        while i< len(ES):
+            temp = ES[i]
+            if temp[0] == "InsWord" or temp[0] == "Delword":
+                ES[i][3] += 1              
+            if temp[0] == "UpdWord":
+                ES[i][3] += 1     
+                
+                  
+ES = [('UpdWord', 'a', 'b', 0, 0),('DelWord','k',1),('UpdWord', 'l', 'g', 2, 2) ]
+A = "a k l m"
+print(patchArray(A,ES))
