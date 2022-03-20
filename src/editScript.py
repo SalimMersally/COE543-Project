@@ -1,6 +1,6 @@
-from distutils.errors import DistutilsClassError
 from src.costCalc import *
-from src.arrayEditDistance import getEditScriptWF
+from src.arrayEditDistance import getEditScriptArray
+from src.dictEditDistance import getEditScriptDict
 
 
 def reverseArray(array):
@@ -188,74 +188,67 @@ def getTreeEditScript(matricesDic, A, B, nameA, nameB):
     if rootA.tag != rootB.tag:
         editScript.append(("UpdTag", nameA, nameB))
 
-    dicKey = nameA + "/" + nameB + "/text"
-    if dicKey in matricesDic:
-        textA = rootA.text.split()
-        textB = rootB.text.split()
-        textMatrix = matricesDic[dicKey]
-        if textMatrix[len(textA)][len(textB)] != 0:
-            ESText = getEditScriptWF(textMatrix, rootA.text, rootB.text)
+    textKey = nameA + "/" + nameB + "/text"
+    if textKey in matricesDic:
+        textA = rootA.text
+        textB = rootB.text
+        if textA is None:
+            textA = ""
+        if textB is None:
+            textB = ""
+        textMatrix = matricesDic[textKey]
+        if textMatrix[len(textA.split())][len(textB.split())] != 0:
+            ESText = getEditScriptArray(textMatrix, textA, textB)
             editScript.append(("UpdText", nameA, nameB, reverseArray(ESText)))
 
-    dicKey2 = nameA + "/" + nameB + "/attribute"
-    if dicKey2 in matricesDic:
-        keysA = list(rootA.attrib.keys())
-        keysB = list(rootB.attrib.keys())
-        textMatrix = matricesDic[dicKey2]
-        if textMatrix[len(keysA)][len(keysB)] != 0:
-            ESAttr = getEditScriptWF(textMatrix, " ".join(keysA), " ".join(keysB))
-            editScript.append(("UpdAttribute", nameA, nameB, reverseArray(ESAttr)))
-
-    dicKey3 = nameA + "/" + nameB + "/value"
-    if dicKey2 in matricesDic:
-        valuesA = list(rootA.attrib.values())
-        valuesB = list(rootB.attrib.values())
-        textMatrix = matricesDic[dicKey3]
-        if textMatrix[len(valuesA)][len(valuesB)] != 0:
-            ESValue = getEditScriptWF(textMatrix, " ".join(valuesA), " ".join(valuesB))
-            editScript.append(("UpdValue", nameA, nameB, reverseArray(ESValue)))
+    attKey = nameA + "/" + nameB + "/attribute"
+    if attKey in matricesDic:
+        attMatrix = matricesDic[attKey]
+        if attMatrix[len(attMatrix) - 1][len(attMatrix[0]) - 1] != 0:
+            ESatt = getEditScriptDict(attMatrix, rootA.attrib, rootB.attrib)
+            editScript.append(("UpdAttribute", nameA, nameB, reverseArray(ESatt)))
 
     return editScript
 
 
-# def EStoXML(ES):
-#     top = Element("EditScript")
-#     for ele in ES:
-#         tag = SubElement(top, ele[0])
-#         if ele[0] == "Upd":
-#             tag.set("nameA", ele[1])
-#             tag.set("nameB", ele[2])
-#         if ele[0] == "Ins":
-#             tag.set("nameA", ele[1])
-#             tag.set("subTreeBName", ele[2])
-#             tag.set("col-1", str(ele[3]))
-#         if ele[0] == "Del":
-#             tag.set("subTreeAName", ele[1])
+# # def EStoXML(ES):
+# #     top = Element("EditScript")
+# #     for ele in ES:
+# #         tag = SubElement(top, ele[0])
+# #         if ele[0] == "Upd":
+# #             tag.set("nameA", ele[1])
+# #             tag.set("nameB", ele[2])
+# #         if ele[0] == "Ins":
+# #             tag.set("nameA", ele[1])
+# #             tag.set("subTreeBName", ele[2])
+# #             tag.set("col-1", str(ele[3]))
+# #         if ele[0] == "Del":
+# #             tag.set("subTreeAName", ele[1])
 
-#     tree = ElementTree(top)
-#     tree.write("ES.xml")
-#     return "XMl file created"
+# #     tree = ElementTree(top)
+# #     tree.write("ES.xml")
+# #     return "XMl file created"
 
 
-# def XMLtoES(xmlFile):
-#     tree = ET.parse(xmlFile)
-#     root = tree.getroot()
+# # def XMLtoES(xmlFile):
+# #     tree = ET.parse(xmlFile)
+# #     root = tree.getroot()
 
-#     ES = []
-#     for child in root:
-#         tuple = ()
-#         tuple += (child.tag,)
-#         if child.tag == "Upd":
-#             tuple += (child.get("nameA"),)
-#             tuple += (child.get("nameB"),)
-#         if child.tag == "Del":
-#             tuple += (child.get("subTreeAName"),)
-#         if child.tag == "Ins":
-#             tuple += (child.get("nameA"),)
-#             tuple += (child.get("subTreeBName"),)
-#             tuple += (int(child.get("col-1")),)
+# #     ES = []
+# #     for child in root:
+# #         tuple = ()
+# #         tuple += (child.tag,)
+# #         if child.tag == "Upd":
+# #             tuple += (child.get("nameA"),)
+# #             tuple += (child.get("nameB"),)
+# #         if child.tag == "Del":
+# #             tuple += (child.get("subTreeAName"),)
+# #         if child.tag == "Ins":
+# #             tuple += (child.get("nameA"),)
+# #             tuple += (child.get("subTreeBName"),)
+# #             tuple += (int(child.get("col-1")),)
 
-#         ES.append(tuple)
+# #         ES.append(tuple)
 
-#     print(ES)
-#     return ES
+# #     print(ES)
+# #     return ES

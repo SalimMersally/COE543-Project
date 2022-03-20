@@ -1,4 +1,5 @@
 import xml.etree.ElementTree as ET
+from src.dictEditDistance import patchDict
 from src.arrayEditDistance import patchArray
 from copy import deepcopy
 
@@ -96,3 +97,30 @@ def treePatch_TagAndText(A, B, editScript, dictChanges):
             insertSubTree(A, B, op[1], op[2], op[3], dictChanges)
         if op[0] == "UpdText":
             updateText(A, op[1], op[3], dictChanges)
+
+
+# the following methods are used to patch a tree into another one
+# using the edit script taking into considartion all tags, att and text
+# note that a dictionary should be given as argument to the patch funtion so
+# values of change are stored in recursive calls
+
+
+def updateAttribute(A, subTreeAName, attES, dictChanges):
+    subTreeA = findSubTreeChange(A, subTreeAName, dictChanges)
+    subTreeAAtt = subTreeA.attrib
+    subTreeAUpdatedAtt = patchDict(subTreeAAtt, attES)
+    subTreeA.attrib = subTreeAUpdatedAtt
+
+
+def treePatch(A, B, editScript, dictChanges):
+    for op in editScript:
+        if op[0] == "Del":
+            deleteSubTree(A, op[1], dictChanges)
+        if op[0] == "UpdTag":
+            updateNode(A, B, op[1], op[2], dictChanges)
+        if op[0] == "Ins":
+            insertSubTree(A, B, op[1], op[2], op[3], dictChanges)
+        if op[0] == "UpdText":
+            updateText(A, op[1], op[3], dictChanges)
+        if op[0] == "UpdAttribute":
+            updateAttribute(A, op[1], op[3], dictChanges)

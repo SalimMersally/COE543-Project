@@ -1,4 +1,5 @@
 # import xml.etree.ElementTree as ET
+from src.dictEditDistance import WF_Dict
 from src.arrayEditDistance import *
 
 
@@ -181,9 +182,9 @@ def costUpd_TagAndText(rootA, rootB, nameA, nameB, matricesDic):
 # The following method are used to calculate the cost of operation on trees
 # these method will take into consideration all Tags, attributes, and text
 # the cost model for it is:
-#   - DelTree = 1 if subtree available in B, else sum of nodes + words
-#   - InsTree = 1 if subtree available in A, else sum of nodes + words
-#   - UpdTag = 1 if tags are diffent, 0 if same + cost of upd text
+#   - DelTree = 1 if subtree available in B, else sum of nodes + words + att
+#   - InsTree = 1 if subtree available in A, else sum of nodes + words + att
+#   - UpdTag = 1 if tags are diffent, 0 if same + cost of upd text + cost of upd att
 
 
 def isTreeIdentical(root1, root2):
@@ -222,8 +223,6 @@ def isSubTree(root1, root2):
     return False
 
 
-##needs to be changed to account for cost input: an approach can include
-##adding inputs to the functions (cost for root, tag, attribute) --> those can change depending on methods
 def nodeCounter(root):
     counter = 0
 
@@ -232,8 +231,10 @@ def nodeCounter(root):
 
     if root.text is not None:
         counter += 1 + len(root.text.split())
-    if root.attrib is not None:
+
+    if root.attrib != {}:
         counter += 1 + len(root.attrib.keys()) + len(root.attrib.values())
+
     for child in root:
         counter += nodeCounter(child)
 
@@ -260,26 +261,20 @@ def costUpd(rootA, rootB, nameA, nameB, matricesDic):
     if rootA.tag != rootB.tag:
         cost += 1
 
-    if (rootA.text is not None) and (rootB.text is not None):
-        textA = rootA.text.strip()
-        textB = rootB.text.strip()
+    if (rootA.text is not None) or (rootB.text is not None):
+        textA = rootA.text
+        textB = rootB.text
+        if textA is None:
+            textA = ""
+        if textB is None:
+            textB = ""
         distanceOfText = WF(textA, textB)
         matricesDic[nameA + "/" + nameB + "/text"] = distanceOfText
         cost += distanceOfText[len(textA.split())][len(textB.split())]
 
-    if (rootA.attrib is not None) and (rootB.attrib is not None):
-        keysA = " ".join(list(rootA.attrib.keys()))
-        keysB = " ".join(list(rootB.attrib.keys()))
-        valuesA = " ".join(list(rootA.attrib.values()))
-        valuesB = " ".join(list(rootB.attrib.values()))
-
-        distKeys = WF(keysA, keysB)
-        distValues = WF(valuesA, valuesB)
-        matricesDic[nameA + "/" + nameB + "/attribute"] = distKeys
-        matricesDic[nameA + "/" + nameB + "/value"] = distValues
-        cost += (
-            distKeys[len(keysA.split())][len(keysB.split())]
-            + distValues[len(valuesA.split())][len(valuesB.split())]
-        )
+    if (rootA.attrib != {}) or (rootB.attrib != {}):
+        distanceOfAtt = WF_Dict(rootA.attrib, rootB.attrib)
+        matricesDic[nameA + "/" + nameB + "/attribute"] = distanceOfAtt
+        cost += distanceOfAtt[len(distanceOfAtt) - 1][len(distanceOfAtt[0]) - 1]
 
     return cost

@@ -97,12 +97,14 @@ def NJ_TagAndText(A, B, nameA, nameB, matricesDic):
     matricesDic[nameA + "/" + nameB] = Distance
     return Distance[M][N]
 
+
 # the following method will calculate the Edit Distance Matrices
 # to transform treeA into treeB following Nermin and Jagadish algorithm
-# this method take into considiration only tag attributes and text
+# this method take into considiration all tags, text and attributes
+
 
 def NJ(A, B, nameA, nameB, matricesDic):
-    
+
     subTreeA = findSubTree(A, nameA)
     subTreeB = findSubTree(B, nameB)
 

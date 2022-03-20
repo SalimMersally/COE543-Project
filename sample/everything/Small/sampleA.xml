@@ -1,0 +1,13 @@
+<a>
+    <t att1="val1">Title of Tree A</t>
+    <aus>
+        <au att2="val2">John Doe</au>
+        <au>John Doe</au>
+        <au>John Doe</au>
+    </aus>
+    <S>
+        <to att4="val4">
+            <f>1 2 3 4 5 6</f>
+        </to>
+    </S>
+</a>

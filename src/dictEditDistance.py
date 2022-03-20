@@ -1,22 +1,12 @@
 from pprint import pprint
 
-dict1 = {
-    "at1": "val1",
-    "at2": "val2",
-    "at3": "val3",
-    "at4": "val4",
-    "at5": "val5",
-    "at6": "val6",
-}
-
-dict2 = {
-    "at2": "val2",
-    "at3": "val3",
-    "at4": "val4",
-    "at5": "val4",
-    "at6": "val6",
-    "at7": "val7",
-}
+# the following method are used to get the edit distance, edit script, and
+# patch a dictionary (to be used for attribute and value of trees)
+# the algorithm follow wagnar and fisher approach but with tuples of 2 words
+# instead of one. the cost model is as follow:
+#   - InsAtt = 2
+#   - DelAtt = 2
+#   - UpdAtt = 0 if same, 1 if same but diff value, 2 if att and val diff
 
 
 def WF_Dict(dictA, dictB):
@@ -63,10 +53,6 @@ def costDelAtt():
     return 2
 
 
-distance = WF_Dict(dict1, dict2)
-pprint(distance)
-
-
 def getEditScriptDict(matrix, dictA, dictB):
 
     listA = list(dictA.items())
@@ -111,15 +97,10 @@ def reverseArray(array):
     return result
 
 
-ES = getEditScriptDict(distance, dict1, dict2)
-pprint(reverseArray(ES))
-
-
 def patchDict(dictA, ES):
     listA = list(dictA.items())
     changes = 0
     for op in ES:
-        print(listA)
         if op[0] == "UpdAtt":
             listA[op[1] + changes] = op[2]
         if op[0] == "DelAtt":
@@ -129,6 +110,3 @@ def patchDict(dictA, ES):
             listA.insert(op[1] + changes, op[2])
             changes += 1
     return dict(listA)
-
-
-pprint(patchDict(dict1, reverseArray(ES)))
