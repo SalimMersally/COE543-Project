@@ -164,9 +164,13 @@ def costUpd_TagAndText(rootA, rootB, nameA, nameB, matricesDic):
     if rootA.tag != rootB.tag:
         cost += 1
 
-    if (rootA.text is not None) and (rootB.text is not None):
-        textA = rootA.text.strip()
-        textB = rootB.text.strip()
+    if (rootA.text is not None) or (rootB.text is not None):
+        textA = rootA.text
+        textB = rootB.text
+        if textA is None:
+            textA = ""
+        if textB is None:
+            textB = ""
         distanceOfText = WF(textA, textB)
         matricesDic[nameA + "/" + nameB + "/text"] = distanceOfText
         cost += distanceOfText[len(textA.split())][len(textB.split())]
@@ -179,7 +183,8 @@ def costUpd_TagAndText(rootA, rootB, nameA, nameB, matricesDic):
 # the cost model for it is:
 #   - DelTree = 1 if subtree available in B, else sum of nodes + words
 #   - InsTree = 1 if subtree available in A, else sum of nodes + words
-#   - UpdTag = 1 if tags are diffent, 0 if same + cost of upd text    
+#   - UpdTag = 1 if tags are diffent, 0 if same + cost of upd text
+
 
 def isTreeIdentical(root1, root2):
     if root1 == None and root2 == None:
@@ -216,7 +221,8 @@ def isSubTree(root1, root2):
 
     return False
 
-##needs to be changed to account for cost input: an approach can include 
+
+##needs to be changed to account for cost input: an approach can include
 ##adding inputs to the functions (cost for root, tag, attribute) --> those can change depending on methods
 def nodeCounter(root):
     counter = 0
@@ -260,18 +266,20 @@ def costUpd(rootA, rootB, nameA, nameB, matricesDic):
         distanceOfText = WF(textA, textB)
         matricesDic[nameA + "/" + nameB + "/text"] = distanceOfText
         cost += distanceOfText[len(textA.split())][len(textB.split())]
-        
+
     if (rootA.attrib is not None) and (rootB.attrib is not None):
         keysA = " ".join(list(rootA.attrib.keys()))
         keysB = " ".join(list(rootB.attrib.keys()))
         valuesA = " ".join(list(rootA.attrib.values()))
         valuesB = " ".join(list(rootB.attrib.values()))
-        
-        distKeys = WF(keysA,keysB)
-        distValues = WF(valuesA,valuesB)
+
+        distKeys = WF(keysA, keysB)
+        distValues = WF(valuesA, valuesB)
         matricesDic[nameA + "/" + nameB + "/attribute"] = distKeys
         matricesDic[nameA + "/" + nameB + "/value"] = distValues
-        cost+= distKeys[len(keysA.split())][len(keysB.split())] + distValues[len(valuesA.split())][len(valuesB.split())]
-        
+        cost += (
+            distKeys[len(keysA.split())][len(keysB.split())]
+            + distValues[len(valuesA.split())][len(valuesB.split())]
+        )
 
     return cost

@@ -1,14 +1,11 @@
-from textwrap import indent
 import xml.etree.ElementTree as ET
+from src.arrayEditDistance import patchArray
 from copy import deepcopy
 
-# the following methods are used to patch a tree into another one
-# using the edit script taking into considartion only tags
-# note that a dictionary should be given as argument to the patch funtion so
-# values of change are stored in recursive calls
+# the following method are used as helper to all the patch methods
 
 
-def findSubTreeChange_Tag(root, subTreeName, dictChanges):
+def findSubTreeChange(root, subTreeName, dictChanges):
     subTreeRoot = root
     parentsName = subTreeName[0]
 
@@ -25,9 +22,9 @@ def findSubTreeChange_Tag(root, subTreeName, dictChanges):
     return subTreeRoot
 
 
-def insertSubTree_Tag(A, B, rootAName, subTreeBName, position, dictChanges):
-    root = findSubTreeChange_Tag(A, rootAName, dictChanges)
-    subTree = findSubTreeChange_Tag(B, subTreeBName, dictChanges)
+def insertSubTree(A, B, rootAName, subTreeBName, position, dictChanges):
+    root = findSubTreeChange(A, rootAName, dictChanges)
+    subTree = findSubTreeChange(B, subTreeBName, dictChanges)
     copySubTree = deepcopy(subTree)
 
     if not rootAName in dictChanges:
@@ -38,11 +35,11 @@ def insertSubTree_Tag(A, B, rootAName, subTreeBName, position, dictChanges):
         dictChanges[rootAName] += 1
 
 
-def deleteSubTree_Tag(A, subTreeAName, dictChanges):
+def deleteSubTree(A, subTreeAName, dictChanges):
     array = subTreeAName.split("-")
     parentName = "-".join(array[0 : len(array) - 1])
-    parent = findSubTreeChange_Tag(A, parentName, dictChanges)
-    subTreeA = findSubTreeChange_Tag(A, subTreeAName, dictChanges)
+    parent = findSubTreeChange(A, parentName, dictChanges)
+    subTreeA = findSubTreeChange(A, subTreeAName, dictChanges)
 
     parent.remove(subTreeA)
 
@@ -52,17 +49,50 @@ def deleteSubTree_Tag(A, subTreeAName, dictChanges):
         dictChanges[parentName] -= 1
 
 
-def updateNode_Tag(A, B, subTreeAName, subTreeBName, dictChanges):
-    subTreeA = findSubTreeChange_Tag(A, subTreeAName, dictChanges)
-    subTreeB = findSubTreeChange_Tag(B, subTreeBName, dictChanges)
+def updateNode(A, B, subTreeAName, subTreeBName, dictChanges):
+    subTreeA = findSubTreeChange(A, subTreeAName, dictChanges)
+    subTreeB = findSubTreeChange(B, subTreeBName, dictChanges)
     subTreeA.tag = subTreeB.tag
+
+
+# the following method is used to patch a tree into another one
+# using the edit script taking into considartion only tags
+# note that a dictionary should be given as argument to the patch funtion so
+# values of change are stored in recursive calls
 
 
 def treePatch_Tag(A, B, editScript, dictChanges):
     for op in editScript:
         if op[0] == "Del":
-            deleteSubTree_Tag(A, op[1], dictChanges)
+            deleteSubTree(A, op[1], dictChanges)
         if op[0] == "UpdTag":
-            updateNode_Tag(A, B, op[1], op[2], dictChanges)
+            updateNode(A, B, op[1], op[2], dictChanges)
         if op[0] == "Ins":
-            insertSubTree_Tag(A, B, op[1], op[2], op[3], dictChanges)
+            insertSubTree(A, B, op[1], op[2], op[3], dictChanges)
+
+
+# the following methods are used to patch a tree into another one
+# using the edit script taking into considartion only tags and text
+# note that a dictionary should be given as argument to the patch funtion so
+# values of change are stored in recursive calls
+
+
+def updateText(A, subTreeAName, textES, dictChanges):
+    subTreeA = findSubTreeChange(A, subTreeAName, dictChanges)
+    subTreeAText = subTreeA.text
+    if subTreeAText is None:
+        subTreeAText = ""
+    subTreeAUpdatedText = patchArray(subTreeAText, textES)
+    subTreeA.text = subTreeAUpdatedText
+
+
+def treePatch_TagAndText(A, B, editScript, dictChanges):
+    for op in editScript:
+        if op[0] == "Del":
+            deleteSubTree(A, op[1], dictChanges)
+        if op[0] == "UpdTag":
+            updateNode(A, B, op[1], op[2], dictChanges)
+        if op[0] == "Ins":
+            insertSubTree(A, B, op[1], op[2], op[3], dictChanges)
+        if op[0] == "UpdText":
+            updateText(A, op[1], op[3], dictChanges)

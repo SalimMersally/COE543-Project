@@ -122,15 +122,18 @@ def getTreeEditScript_TagAndText(matricesDic, A, B, nameA, nameB):
 
     dicKey = nameA + "/" + nameB + "/text"
     if dicKey in matricesDic:
-        textA = rootA.text.split()
-        textB = rootB.text.split()
+        textA = rootA.text
+        textB = rootB.text
+        if textA is None:
+            textA = ""
+        if textB is None:
+            textB = ""
         textMatrix = matricesDic[dicKey]
-        if textMatrix[len(textA)][len(textB)] != 0:
-            ESText = getEditScriptWF(textMatrix, rootA.text, rootB.text)
+        if textMatrix[len(textA.split())][len(textB.split())] != 0:
+            ESText = getEditScriptWF(textMatrix, textA, textB)
             editScript.append(("UpdText", nameA, nameB, reverseArray(ESText)))
 
     return editScript
-
 
 
 # After getting the edit matrices using NJ algorithm, the matrices
@@ -156,14 +159,10 @@ def getTreeEditScript(matricesDic, A, B, nameA, nameB):
         subTreeA = findSubTree(A, subTreeAName)
         subTreeB = findSubTree(B, subTreeBName)
 
-        if matrix[row][col] == (
-            matrix[row - 1][col] + costDelete(subTreeA, B)
-        ):
+        if matrix[row][col] == (matrix[row - 1][col] + costDelete(subTreeA, B)):
             editScript.append(("Del", subTreeAName))
             row = row - 1
-        elif matrix[row][col] == matrix[row][col - 1] + costInsert(
-            subTreeB, A
-        ):
+        elif matrix[row][col] == matrix[row][col - 1] + costInsert(subTreeB, A):
             editScript.append(("Ins", nameA, subTreeBName, col - 1))
             col = col - 1
         else:
@@ -197,7 +196,7 @@ def getTreeEditScript(matricesDic, A, B, nameA, nameB):
         if textMatrix[len(textA)][len(textB)] != 0:
             ESText = getEditScriptWF(textMatrix, rootA.text, rootB.text)
             editScript.append(("UpdText", nameA, nameB, reverseArray(ESText)))
-            
+
     dicKey2 = nameA + "/" + nameB + "/attribute"
     if dicKey2 in matricesDic:
         keysA = list(rootA.attrib.keys())
@@ -206,16 +205,15 @@ def getTreeEditScript(matricesDic, A, B, nameA, nameB):
         if textMatrix[len(keysA)][len(keysB)] != 0:
             ESAttr = getEditScriptWF(textMatrix, " ".join(keysA), " ".join(keysB))
             editScript.append(("UpdAttribute", nameA, nameB, reverseArray(ESAttr)))
-    
+
     dicKey3 = nameA + "/" + nameB + "/value"
-    if dicKey2 in matricesDic:          
+    if dicKey2 in matricesDic:
         valuesA = list(rootA.attrib.values())
         valuesB = list(rootB.attrib.values())
         textMatrix = matricesDic[dicKey3]
         if textMatrix[len(valuesA)][len(valuesB)] != 0:
             ESValue = getEditScriptWF(textMatrix, " ".join(valuesA), " ".join(valuesB))
             editScript.append(("UpdValue", nameA, nameB, reverseArray(ESValue)))
-        
 
     return editScript
 

@@ -1,3 +1,6 @@
+from pprint import pp, pprint
+
+
 def reverseArray(array):
     result = []
     i = len(array) - 1
@@ -57,12 +60,6 @@ def costDelWord():
     return 1
 
 
-A = "hello there are you hungry dude"
-B = "Hello here are you not very hungry"
-
-# print(WF(A, B))
-
-
 def getEditScriptWF(matrix, A, B):
 
     tokenA = A.split()
@@ -74,13 +71,13 @@ def getEditScriptWF(matrix, A, B):
 
     while row > 0 and col > 0:
         if matrix[row][col] == (matrix[row - 1][col] + costDelWord()):
-            editScript.append(("DelWord", tokenA[row - 1],row-1))
+            editScript.append(("DelWord", row - 1))
             row = row - 1
         elif matrix[row][col] == matrix[row][col - 1] + costInsWord():
-            editScript.append(("InsWord", tokenB[col - 1],col-1))
+            editScript.append(("InsWord", row, tokenB[col - 1]))
             col = col - 1
         elif costUpdWord(tokenA[row - 1], tokenB[col - 1]) != 0:
-            editScript.append(("UpdWord", tokenA[row - 1], tokenB[col - 1],row-1,col-1))
+            editScript.append(("UpdWord", row - 1, tokenB[col - 1]))
             row = row - 1
             col = col - 1
         else:
@@ -88,53 +85,26 @@ def getEditScriptWF(matrix, A, B):
             col = col - 1
 
     while row > 0:
-        editScript.append(("DelWord", tokenA[row - 1],row-1))
+        editScript.append(("DelWord", row - 1))
         row = row - 1
 
     while col > 0:
-        editScript.append(("InsWord", tokenB[col - 1],row-1))
+        editScript.append(("InsWord", row, tokenB[col - 1]))
         col = col - 1
 
     return editScript
 
 
-# print(reverseArray(getEditScriptWF(WF(A, B), A, B)))
-def patchArray(strA,ES):
-    arrA=strA.split()
-    i = 0
-    while i < len(ES):
-        op = ES[i]
-        if op[0] == 'UpdWord':
-            arrA[op[3]] = op[2]
-        if op[0] == 'DelWord':
-            arrA.remove(op[2])
-            updateArray(i,ES)   
-        if op[0] == 'InsWord':
-            arrA.insert(op[2],op[1])
-            updateArray(i,ES) 
-        i+=1
+def patchArray(strA, ES):
+    arrA = strA.split()
+    changes = 0
+    for op in ES:
+        if op[0] == "UpdWord":
+            arrA[op[1] + changes] = op[2]
+        if op[0] == "DelWord":
+            arrA.pop(op[1] + changes)
+            changes -= 1
+        if op[0] == "InsWord":
+            arrA.insert(op[1] + changes, op[2])
+            changes += 1
     return " ".join(arrA)
-
-def updateArray(index, ES):
-    
-    i = index+1
-    op = ES[index]
-    if op[0] == "DelWord":
-        while i< len(ES):
-            temp = ES[i]
-            if temp[0] == "InsWord" or temp[0] == "Delword":
-                ES[i][2] -= 1
-            if temp[0] == "UpdWord":
-                ES[i][3] -= 1
-    if op[0] == "InsWord":
-        while i< len(ES):
-            temp = ES[i]
-            if temp[0] == "InsWord" or temp[0] == "Delword":
-                ES[i][3] += 1              
-            if temp[0] == "UpdWord":
-                ES[i][3] += 1     
-                
-                  
-ES = [('UpdWord', 'a', 'b', 0, 0),('DelWord','k',1),('UpdWord', 'l', 'g', 2, 2) ]
-A = "a k l m"
-print(patchArray(A,ES))
