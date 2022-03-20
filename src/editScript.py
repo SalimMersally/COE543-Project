@@ -1,6 +1,7 @@
 from src.costCalc import *
 from src.arrayEditDistance import getEditScriptArray
 from src.dictEditDistance import getEditScriptDict
+import xml.etree.ElementTree as ET
 
 
 def reverseArray(array):
@@ -211,44 +212,121 @@ def getTreeEditScript(matricesDic, A, B, nameA, nameB):
     return editScript
 
 
-# # def EStoXML(ES):
-# #     top = Element("EditScript")
-# #     for ele in ES:
-# #         tag = SubElement(top, ele[0])
-# #         if ele[0] == "Upd":
-# #             tag.set("nameA", ele[1])
-# #             tag.set("nameB", ele[2])
-# #         if ele[0] == "Ins":
-# #             tag.set("nameA", ele[1])
-# #             tag.set("subTreeBName", ele[2])
-# #             tag.set("col-1", str(ele[3]))
-# #         if ele[0] == "Del":
-# #             tag.set("subTreeAName", ele[1])
-
-# #     tree = ElementTree(top)
-# #     tree.write("ES.xml")
-# #     return "XMl file created"
+# The following method save the ES array into an XML
 
 
-# # def XMLtoES(xmlFile):
-# #     tree = ET.parse(xmlFile)
-# #     root = tree.getroot()
+def EStoXML(ES):
+    top = ET.Element("EditScript")
+    for op in ES:
+        opNode = ET.SubElement(top, op[0])
 
-# #     ES = []
-# #     for child in root:
-# #         tuple = ()
-# #         tuple += (child.tag,)
-# #         if child.tag == "Upd":
-# #             tuple += (child.get("nameA"),)
-# #             tuple += (child.get("nameB"),)
-# #         if child.tag == "Del":
-# #             tuple += (child.get("subTreeAName"),)
-# #         if child.tag == "Ins":
-# #             tuple += (child.get("nameA"),)
-# #             tuple += (child.get("subTreeBName"),)
-# #             tuple += (int(child.get("col-1")),)
+        if op[0] == "UpdTag":
+            opNode.set("nameA", op[1])
+            opNode.set("nameB", op[2])
 
-# #         ES.append(tuple)
+        if op[0] == "Ins":
+            opNode.set("nameA", op[1])
+            opNode.set("subTreeBName", op[2])
+            opNode.set("index", str(op[3]))
 
-# #     print(ES)
-# #     return ES
+        if op[0] == "Del":
+            opNode.set("subTreeAName", op[1])
+
+        if op[0] == "UpdText":
+            opNode.set("nameA", op[1])
+            opNode.set("nameB", op[2])
+            for opText in op[3]:
+                opTextNode = ET.SubElement(opNode, opText[0])
+                if opText[0] == "UpdWord":
+                    opTextNode.set("index", str(opText[1]))
+                    opTextNode.set("to", opText[2])
+                if opText[0] == "DelWord":
+                    opTextNode.set("index", str(opText[1]))
+                if opText[0] == "InsWord":
+                    opTextNode.set("index", str(opText[1]))
+                    opTextNode.set("word", opText[2])
+
+        if op[0] == "UpdAttribute":
+            opNode.set("nameA", op[1])
+            opNode.set("nameB", op[2])
+            for opAtt in op[3]:
+                opAttNode = ET.SubElement(opNode, opAtt[0])
+                if opAtt[0] == "UpdAtt":
+                    opAttNode.set("index", str(opAtt[1]))
+                    opAttNode.set("Key", opAtt[2][0])
+                    opAttNode.set("Value", opAtt[2][1])
+                if opAtt[0] == "DelAtt":
+                    opAttNode.set("index", str(opAtt[1]))
+                if opAtt[0] == "InsAtt":
+                    opAttNode.set("index", str(opAtt[1]))
+                    opAttNode.set("Key", opAtt[2][0])
+                    opAttNode.set("Value", opAtt[2][1])
+
+    return top
+
+
+def XMLtoES(root):
+
+    ES = []
+    for child in root:
+        tuple = ()
+        if child.tag == "UpdTag":
+            tuple = ("UpdTag", child.get("nameA"), child.get("nameB"))
+
+        if child.tag == "Del":
+            tuple = ("Del", child.get("subTreeAName"))
+
+        if child.tag == "Ins":
+            tuple = (
+                "Ins",
+                child.get("nameA"),
+                child.get("subTreeBName"),
+                int(child.get("index")),
+            )
+
+        if child.tag == "UpdText":
+            textES = []
+            for textChild in child:
+                textTuple = ()
+                if textChild.tag == "UpdWord":
+                    textTuple = (
+                        "UpdWord",
+                        int(textChild.get("index")),
+                        textChild.get("to"),
+                    )
+                if textChild.tag == "DelWord":
+                    textTuple = ("DelWord", int(textChild.get("index")))
+                if textChild.tag == "InsWord":
+                    textTuple = (
+                        "InsWord",
+                        int(textChild.get("index")),
+                        textChild.get("word"),
+                    )
+                textES.append(textTuple)
+                # print(textChild.tag, textES)
+            tuple = ("UpdText", child.get("nameA"), child.get("nameB"), textES)
+
+        if child.tag == "UpdAttribute":
+            attES = []
+            for attChild in child:
+                attTuple = ()
+                if attChild.tag == "UpdAtt":
+                    attTuple = (
+                        "UpdAtt",
+                        int(attChild.get("index")),
+                        (attChild.get("Key"), attChild.get("Value")),
+                    )
+                if attChild.tag == "DelAtt":
+                    attTuple = ("DelAtt", attChild.get("index"))
+                if attChild.tag == "InsAtt":
+                    attTuple = (
+                        "InsAtt",
+                        int(attChild.get("index")),
+                        (attChild.get("Key"), attChild.get("Value")),
+                    )
+                attES.append(attTuple)
+            tuple = ("UpdAttribute", child.get("nameA"), child.get("nameB"), attES)
+
+        ES.append(tuple)
+
+    return ES

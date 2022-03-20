@@ -55,11 +55,27 @@ dict = {}
 NJ1 = NJ(rootA, rootB, "A", "B", dict)
 pprint(dict)
 print(NJ1)
+
 ES = getTreeEditScript(dict, rootA, rootB, "A", "B")
-pprint(reverseArray(ES))
+ES = reverseArray(ES)
+ESRoot = EStoXML(ES)
+ET.ElementTree(ESRoot).write("ES.xml")
+
+ESRoot = ET.parse("ES.xml").getroot()
+ES1 = XMLtoES(ESRoot)
+pprint(ES1)
+
 dictChanges = {}
-treePatch(rootA, rootB, reverseArray(ES), dictChanges)
+treePatch(rootA, rootB, ES1, dictChanges)
 ET.ElementTree(rootA).write("a.xml")
+
 dict = {}
 NJ2 = NJ_TagAndText(rootA, rootB, "A", "B", dict)
 print(NJ2)
+
+# print(len(ES), len(ES1))
+# for i in range(0, len(ES)):
+#     print(ES[i], ES1[i])
+#     if ES[i] != ES1[i]:
+#         print("break")
+#         break

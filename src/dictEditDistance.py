@@ -1,5 +1,3 @@
-from pprint import pprint
-
 # the following method are used to get the edit distance, edit script, and
 # patch a dictionary (to be used for attribute and value of trees)
 # the algorithm follow wagnar and fisher approach but with tuples of 2 words
@@ -86,15 +84,6 @@ def getEditScriptDict(matrix, dictA, dictB):
         col = col - 1
 
     return editScript
-
-
-def reverseArray(array):
-    result = []
-    i = len(array) - 1
-    while i >= 0:
-        result.append(array[i])
-        i -= 1
-    return result
 
 
 def patchDict(dictA, ES):
