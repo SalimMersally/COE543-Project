@@ -1,15 +1,6 @@
 from pprint import pp, pprint
 
 
-def reverseArray(array):
-    result = []
-    i = len(array) - 1
-    while i >= 0:
-        result.append(array[i])
-        i -= 1
-    return result
-
-
 # the following method will compare two array of words following the
 # Wagnar and Fisher algorithm (assuming the element to comapre are words and not
 # character). the cost model is as follow:
@@ -60,7 +51,7 @@ def costDelWord():
     return 1
 
 
-def getEditScriptWF(matrix, A, B):
+def getEditScriptArray(matrix, A, B):
 
     tokenA = A.split()
     tokenB = B.split()

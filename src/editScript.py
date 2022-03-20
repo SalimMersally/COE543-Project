@@ -130,7 +130,7 @@ def getTreeEditScript_TagAndText(matricesDic, A, B, nameA, nameB):
             textB = ""
         textMatrix = matricesDic[dicKey]
         if textMatrix[len(textA.split())][len(textB.split())] != 0:
-            ESText = getEditScriptWF(textMatrix, textA, textB)
+            ESText = getEditScriptArray(textMatrix, textA, textB)
             editScript.append(("UpdText", nameA, nameB, reverseArray(ESText)))
 
     return editScript
