@@ -74,13 +74,13 @@ def getEditScriptWF(matrix, A, B):
 
     while row > 0 and col > 0:
         if matrix[row][col] == (matrix[row - 1][col] + costDelWord()):
-            editScript.append(("DelWord", tokenA[row - 1]))
+            editScript.append(("DelWord", tokenA[row - 1],row-1))
             row = row - 1
         elif matrix[row][col] == matrix[row][col - 1] + costInsWord():
-            editScript.append(("InsWord", tokenB[col - 1]))
+            editScript.append(("InsWord", tokenB[col - 1],col-1))
             col = col - 1
         elif costUpdWord(tokenA[row - 1], tokenB[col - 1]) != 0:
-            editScript.append(("UpdWord", tokenA[row - 1], tokenB[col - 1]))
+            editScript.append(("UpdWord", tokenA[row - 1], tokenB[col - 1],row-1,col-1))
             row = row - 1
             col = col - 1
         else:
@@ -88,11 +88,11 @@ def getEditScriptWF(matrix, A, B):
             col = col - 1
 
     while row > 0:
-        editScript.append(("DelWord", tokenA[row - 1]))
+        editScript.append(("DelWord", tokenA[row - 1],row-1))
         row = row - 1
 
     while col > 0:
-        editScript.append(("InsWord", tokenB[col - 1]))
+        editScript.append(("InsWord", tokenB[col - 1],col-1))
         col = col - 1
 
     return editScript

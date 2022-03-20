@@ -269,9 +269,9 @@ def costUpd(rootA, rootB, nameA, nameB, matricesDic):
         
         distKeys = WF(keysA,keysB)
         distValues = WF(valuesA,valuesB)
-        distanceOfAttributes = distKeys[len(keysA.split())][len(keysB.split())] + distValues[len(valuesA.split())][len(valuesB.split())]
-        matricesDic[nameA + "/" + nameB + "/attribute"] = distanceOfText
-        cost+= distanceOfAttributes
+        matricesDic[nameA + "/" + nameB + "/attribute"] = distKeys
+        matricesDic[nameA + "/" + nameB + "/value"] = distValues
+        cost+= distKeys[len(keysA.split())][len(keysB.split())] + distValues[len(valuesA.split())][len(valuesB.split())]
         
 
     return cost

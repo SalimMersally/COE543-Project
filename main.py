@@ -7,8 +7,8 @@ import xml.etree.ElementTree as ET
 
 # xmlFile1 = "sample/onlyTag/Sample1/SampleDoc1.xml"
 # xmlFile2 = "sample/onlyTag/Sample1/SampleDoc2.xml"
-#xmlFile1 = "sample/tagAndText/small/sampleA.xml"
-#xmlFile2 = "sample/tagAndText/small/sampleB.xml"
+# xmlFile1 = "sample/tagAndText/small/sampleA.xml"
+# xmlFile2 = "sample/tagAndText/small/sampleB.xml"
 # xmlFile1 = "sample/onlyTag/Huge/employee1.xml"
 # xmlFile2 = "sample/onlyTag/Huge/employee2.xml"
 xmlFile1 = "sample/everything/Sample4/SampleDoc1.xml"
@@ -18,6 +18,7 @@ treeA = ET.parse(xmlFile1)  # xml to tree
 rootA = treeA.getroot()
 treeB = ET.parse(xmlFile2)  # xml to tree
 rootB = treeB.getroot()
+
 
 # Test only tags
 
@@ -38,7 +39,7 @@ rootB = treeB.getroot()
 
 # dict = {}
 # NJ1 = NJ_TagAndText(rootA, rootB, "A", "B", dict)
-# pprint(dict)
+# print(dict)
 # print(NJ1)
 # ES = getTreeEditScript_TagAndText(dict, rootA, rootB, "A", "B")
 # pprint(reverseArray(ES))
@@ -49,8 +50,12 @@ rootB = treeB.getroot()
 # NJ2 = NJ_Tag(rootA, rootB, "A", "B", dict)
 # print(NJ2)
 
+#test all
+
 
 dict = {}
 NJ1 = NJ(rootA, rootB, "A", "B", dict)
-pprint(dict)
+print(dict)
 print(NJ1)
+ES = getTreeEditScript(dict, rootA, rootB, "A", "B")
+pprint(reverseArray(ES))
