@@ -1,4 +1,5 @@
 from fileinput import filename
+from traceback import format_tb
 from src.costCalc import *
 from src.treeEditDistance import *
 from src.treePatch import *
@@ -14,7 +15,7 @@ from tkinter import *
 from turtle import color 
 from tkinter import filedialog
 from tkinter import ttk
-
+from tkinter import scrolledtext
 
 # Define window
 root = tkinter.Tk()
@@ -49,13 +50,13 @@ def choose_file(arg) :
         locA.delete(0, "end")
         fileA = askopenfilename(filetypes = [('XML files', '*.xml'),('All files','*')])
         locA.insert(0,fileA)
-        print("You have selected : %s" % fileA)
+        #print("You have selected : %s" % fileA)
         #filepathA = filedialog.asksaveasfilename()
     if arg == 2 :
         locB.delete(0, "end")
         fileB = askopenfilename(filetypes = [('XML files', '*.xml'),('All files','*')])
         locB.insert(0,fileB)
-        print("You have selected : %s" % fileB)
+        #print("You have selected : %s" % fileB)
         #filepathB = filedialog.asksaveasfilename()
 #get distance method
 def getTED() :
@@ -83,8 +84,41 @@ def getTED() :
         sim = 1/(1+NJ1)
         sim_text.insert(0,'Similarity  between A and B: ' + str(sim) + ''  )
     elif Combo.get() == "Tags, Text, and Elements": 
-        dis_text.insert(0,'Distance between A and B: NOT DONE YET'  )
-        sim_text.insert(0,'Similarity  between A and B: NOT DONE YET'  )
+        NJ1 = NJ(rootA, rootB, "A", "B", dict)
+        dis_text.insert(0,'Distance between A and B: ' +str(NJ1) + ''  )
+        sim = 1/(1+NJ1)
+        sim_text.insert(0,'Similarity  between A and B: ' + str(sim) + ''  )
+# Edit Script Method 
+def getES():
+    es_entry.delete(0, "end")
+    scroll.delete(1.0,END)
+    xmlFile1 = locA.get()
+    xmlFile2 = locB.get()
+    xmlFile1 = xmlFile1[60:]
+    xmlFile2 = xmlFile2[60:]
+    
+    dict = {}
+    treeA = ET.parse(xmlFile1)  # xml to tree
+    rootA = treeA.getroot()
+    treeB = ET.parse(xmlFile2)  # xml to tree
+    rootB = treeB.getroot()
+    
+    if Combo.get() == "Only Tags" :
+        NJ1 = NJ_Tag(rootA, rootB, "A", "B", dict)
+        ES = getTreeEditScript_Tag(dict, rootA, rootB, "A", "B")
+        scroll.insert(END,reverseArray(ES) )
+        es_entry.insert(0,"DONE !!! Check the XML file :)")
+    elif Combo.get() == "Tags and Text" :
+        NJ1 = NJ_TagAndText(rootA, rootB, "A", "B", dict)
+        ES = getTreeEditScript_TagAndText(dict, rootA, rootB, "A", "B")
+        scroll.insert(END,reverseArray(ES))
+        es_entry.insert(0,"DONE !!! Check the XML file :)")
+    elif Combo.get() == "Tags, Text, and Elements": 
+        NJ1 = NJ(rootA, rootB, "A", "B", dict)
+        ES = getTreeEditScript(dict, rootA, rootB, "A", "B")
+        scroll.insert(END,reverseArray(ES))
+        es_entry.insert(0,"DONE !!! Check the XML file :)")
+        
 #define label
 label = tkinter.Label(frame, text="Choose your XML files", font="Arial" )
 label.grid(row=0, column=1, padx=100)
@@ -108,10 +142,25 @@ Combo.grid(row=0,column=2, padx=170)
 
 # TED Frame             \\ ted_frame
 ted_bt = tkinter.Button(ted_frame, text="Get TED", bg="#00ffff", activebackground="#ff000f", borderwidth=5, command= getTED)
-ted_bt.grid(row=0,column=0, pady=10)
+ted_bt.grid(row=0,column=0, pady=10, padx=30)
 dis_text = Entry(ted_frame, width=50)
 dis_text.grid(row=0, column=1, padx=20)
 sim_text = Entry(ted_frame, width=50)
 sim_text.grid(row=0, column=2, padx=20)
+
+# ES Frame 
+es_bt = tkinter.Button(es_frame, text="Get ES", bg="#00ffff", activebackground="#ff000f", borderwidth=5, command=getES)
+es_bt.grid(row=0,column=0, pady=10, padx=30)
+scroll = scrolledtext.ScrolledText(es_frame,width=100,height=2 , font= ("Arial",8))
+scroll.grid(column=1, row=0, padx=20)
+scroll.config(background="light grey", foreground="black",
+                 font='times 12 bold', wrap='word')
+es_entry = Entry(es_frame, width=50, borderwidth=4)
+es_entry.grid(row=1, column=1, padx=20)
+
+# Patching Frame 
+patch_btn = tkinter.Button(patch_frame,text="Patching", bg="#00ffff", activebackground="#ff000f", borderwidth=5)
+
+
 # last line of my code
 root.mainloop()
