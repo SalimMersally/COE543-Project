@@ -7,10 +7,12 @@ import xml.etree.ElementTree as ET
 
 # xmlFile1 = "sample/onlyTag/Sample1/SampleDoc1.xml"
 # xmlFile2 = "sample/onlyTag/Sample1/SampleDoc2.xml"
-xmlFile1 = "sample/tagAndText/small/sampleA.xml"
-xmlFile2 = "sample/tagAndText/small/sampleB.xml"
+#xmlFile1 = "sample/tagAndText/small/sampleA.xml"
+#xmlFile2 = "sample/tagAndText/small/sampleB.xml"
 # xmlFile1 = "sample/onlyTag/Huge/employee1.xml"
 # xmlFile2 = "sample/onlyTag/Huge/employee2.xml"
+xmlFile1 = "sample/everything/Sample4/SampleDoc1.xml"
+xmlFile2 = "sample/everything/Sample4/SampleDoc2.xml"
 
 treeA = ET.parse(xmlFile1)  # xml to tree
 rootA = treeA.getroot()
@@ -34,15 +36,21 @@ rootB = treeB.getroot()
 
 # test tags and text
 
-dict = {}
-NJ1 = NJ_TagAndText(rootA, rootB, "A", "B", dict)
-pprint(dict)
-print(NJ1)
-ES = getTreeEditScript_TagAndText(dict, rootA, rootB, "A", "B")
-pprint(reverseArray(ES))
+# dict = {}
+# NJ1 = NJ_TagAndText(rootA, rootB, "A", "B", dict)
+# pprint(dict)
+# print(NJ1)
+# ES = getTreeEditScript_TagAndText(dict, rootA, rootB, "A", "B")
+# pprint(reverseArray(ES))
 # dictChanges = {}
 # treePatch_Tag(rootA, rootB, reverseArray(ES), dictChanges)
 # ET.ElementTree(rootA).write("a.xml")
 # dict = {}
 # NJ2 = NJ_Tag(rootA, rootB, "A", "B", dict)
 # print(NJ2)
+
+
+dict = {}
+NJ1 = NJ(rootA, rootB, "A", "B", dict)
+pprint(dict)
+print(NJ1)

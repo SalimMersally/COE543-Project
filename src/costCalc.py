@@ -262,10 +262,10 @@ def costUpd(rootA, rootB, nameA, nameB, matricesDic):
         cost += distanceOfText[len(textA.split())][len(textB.split())]
         
     if (rootA.attrib is not None) and (rootB.attrib is not None):
-        keysA = rootA.attrib.keys().join(" ")
-        keysB = rootB.attrib.keys().join(" ")
-        valuesA = rootA.attrib.values().join(" ")
-        valuesB = rootB.attrib.values().join(" ")
+        keysA = " ".join(list(rootA.attrib.keys()))
+        keysB = " ".join(list(rootB.attrib.keys()))
+        valuesA = " ".join(list(rootA.attrib.values()))
+        valuesB = " ".join(list(rootB.attrib.values()))
         
         distKeys = WF(keysA,keysB)
         distValues = WF(valuesA,valuesB)
