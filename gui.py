@@ -65,8 +65,7 @@ def getTED() :
     sim_text.delete(0, "end")
     xmlFile1 = locA.get()
     xmlFile2 = locB.get()
-    xmlFile1 = xmlFile1[60:]
-    xmlFile2 = xmlFile2[60:]
+
     
     dict = {}
     treeA = ET.parse(xmlFile1)  # xml to tree
@@ -97,8 +96,7 @@ def getES():
     scroll.delete(1.0,END)
     xmlFile1 = locA.get()
     xmlFile2 = locB.get()
-    xmlFile1 = xmlFile1[60:]
-    xmlFile2 = xmlFile2[60:]
+
     
     dict = {}
     treeA = ET.parse(xmlFile1)  # xml to tree
@@ -135,8 +133,7 @@ def patch():
     p_entry.delete(0, "end")
     xmlFile1 = locA.get()
     xmlFile2 = locB.get()
-    xmlFile1 = xmlFile1[60:]
-    xmlFile2 = xmlFile2[60:]
+
     
     dict = {}
     treeA = ET.parse(xmlFile1)  # xml to tree
