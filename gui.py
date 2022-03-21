@@ -25,7 +25,7 @@ root.title("Similarity Machine")
 root.iconbitmap('tree.ico')
 #width and height
 root.geometry("1000x500+300+150")
-#wno resize (in x and y direction)
+# resize (in x and y direction)
 root.resizable(1,1)
 root.config(bg = "grey")
 #Frame
@@ -118,10 +118,54 @@ def getES():
         ES = getTreeEditScript(dict, rootA, rootB, "A", "B")
         scroll.insert(END,reverseArray(ES))
         es_entry.insert(0,"DONE !!! Check the XML file :)")
-        
+
+def patch():
+    p_entry.delete(0, "end")
+    xmlFile1 = locA.get()
+    xmlFile2 = locB.get()
+    xmlFile1 = xmlFile1[60:]
+    xmlFile2 = xmlFile2[60:]
+    
+    dict = {}
+    treeA = ET.parse(xmlFile1)  # xml to tree
+    rootA = treeA.getroot()
+    treeB = ET.parse(xmlFile2)  # xml to tree
+    rootB = treeB.getroot() 
+    
+    if Combo.get() == "Only Tags" :
+        dict = {}
+        NJ1 = NJ_Tag(rootA, rootB, "A", "B", dict)
+        ES = getTreeEditScript_Tag(dict, rootA, rootB, "A", "B")
+        dictChanges = {}
+        treePatch_Tag(rootA, rootB, reverseArray(ES), dictChanges)
+        ET.ElementTree(rootA).write("a.xml")
+        p_entry.insert(0,"DONE !!! Check the XML file :)")
+    elif Combo.get() == "Tags and Text" :
+        dict = {}
+        NJ1 = NJ_TagAndText(rootA, rootB, "A", "B", dict)
+        ES = getTreeEditScript_TagAndText(dict, rootA, rootB, "A", "B")
+        dictChanges = {}
+        treePatch_TagAndText(rootA, rootB, reverseArray(ES), dictChanges)
+        ET.ElementTree(rootA).write("a.xml")
+        p_entry.insert(0,"DONE !!! Check the XML file :)")
+    
+    elif Combo.get() == "Tags, Text, and Elements": 
+        dict = {}
+        NJ1 = NJ(rootA, rootB, "A", "B", dict)
+        ES = getTreeEditScript(dict, rootA, rootB, "A", "B")
+        ES = reverseArray(ES)
+        ESRoot = EStoXML(ES)
+        ET.ElementTree(ESRoot).write("ES.xml")
+        ESRoot = ET.parse("ES.xml").getroot()
+        ES1 = XMLtoES(ESRoot)
+        dictChanges = {}
+        treePatch(rootA, rootB, ES1, dictChanges)
+        ET.ElementTree(rootA).write("a.xml")
+        p_entry.insert(0,"DONE !!! Check the XML file :)")
+
 #define label
-label = tkinter.Label(frame, text="Choose your XML files", font="Arial" )
-label.grid(row=0, column=1, padx=100)
+label = tkinter.Label(frame, text="Choose your XML files", font=("Arial",18) )
+label.grid(row=0, column=1, padx=365)
 # button frame 
 #define layout
 chooseA_bt = tkinter.Button(but_frame, text="Choose File A", bg="#00ffff", activebackground="#ff000f", borderwidth=5, command= lambda: choose_file(1))
@@ -159,8 +203,9 @@ es_entry = Entry(es_frame, width=50, borderwidth=4)
 es_entry.grid(row=1, column=1, padx=20)
 
 # Patching Frame 
-patch_btn = tkinter.Button(patch_frame,text="Patching", bg="#00ffff", activebackground="#ff000f", borderwidth=5)
-
-
+patch_bt = tkinter.Button(patch_frame,text="Patching", bg="#00ffff", activebackground="#ff000f", borderwidth=5, command=patch)
+patch_bt.grid(row=0,column=0, pady=10, padx=30)
+p_entry = Entry(patch_frame, width=50, borderwidth=4)
+p_entry.grid(row=0, column=1, padx=20)
 # last line of my code
 root.mainloop()
