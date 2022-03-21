@@ -29,15 +29,15 @@ root.geometry("1000x500+300+150")
 root.resizable(1,1)
 root.config(bg = "grey")
 #Frame
-frame = Frame(width=700, height=50, bg="white", colormap="new")
+frame = Frame(width=700, height=50, bg="brown", colormap="new")
 frame.pack(fill =BOTH,expand=True)
-but_frame = Frame(width=700, height=100, bg="red", colormap="new")
+but_frame = Frame(width=700, height=100, bg="white", colormap="new")
 but_frame.pack(fill =BOTH,expand=True)
-ted_frame = Frame(width=700, height=100, bg="blue", colormap="new")
+ted_frame = Frame(width=700, height=100, bg="white", colormap="new")
 ted_frame.pack(fill =BOTH,expand=True)
-es_frame = Frame(width=700, height=100, bg="yellow", colormap="new")
+es_frame = Frame(width=700, height=100, bg="brown", colormap="new")
 es_frame.pack(fill =BOTH,expand=True)
-patch_frame = Frame(width=700, height=100, bg="green", colormap="new")
+patch_frame = Frame(width=700, height=100, bg="white", colormap="new")
 patch_frame.pack(fill =BOTH,expand=True)
 
 
@@ -77,16 +77,19 @@ def getTED() :
         NJ1 = NJ_Tag(rootA, rootB, "A", "B", dict)
         dis_text.insert(0,'Distance between A and B: ' +str(NJ1) + ''  )
         sim = 1/(1+NJ1)
+        sim = round(sim,3)
         sim_text.insert(0,'Similarity  between A and B: ' + str(sim) + ''  )
     elif Combo.get() == "Tags and Text" :
         NJ1 = NJ_TagAndText(rootA, rootB, "A", "B", dict)
         dis_text.insert(0,'Distance between A and B: ' +str(NJ1) + ''  )
         sim = 1/(1+NJ1)
+        sim = round(sim,3)
         sim_text.insert(0,'Similarity  between A and B: ' + str(sim) + ''  )
     elif Combo.get() == "Tags, Text, and Elements": 
         NJ1 = NJ(rootA, rootB, "A", "B", dict)
         dis_text.insert(0,'Distance between A and B: ' +str(NJ1) + ''  )
         sim = 1/(1+NJ1)
+        sim = round(sim,3)
         sim_text.insert(0,'Similarity  between A and B: ' + str(sim) + ''  )
 # Edit Script Method 
 def getES():
@@ -106,18 +109,27 @@ def getES():
     if Combo.get() == "Only Tags" :
         NJ1 = NJ_Tag(rootA, rootB, "A", "B", dict)
         ES = getTreeEditScript_Tag(dict, rootA, rootB, "A", "B")
-        scroll.insert(END,reverseArray(ES) )
-        es_entry.insert(0,"DONE !!! Check the XML file :)")
+        ES = reverseArray(ES)
+        ESRoot = EStoXML(ES)
+        ET.ElementTree(ESRoot).write("ES.xml")
+        scroll.insert(END,ES) 
+        es_entry.insert(0,"DONE !!! Check the \"ES\" XML file :)")
     elif Combo.get() == "Tags and Text" :
         NJ1 = NJ_TagAndText(rootA, rootB, "A", "B", dict)
         ES = getTreeEditScript_TagAndText(dict, rootA, rootB, "A", "B")
-        scroll.insert(END,reverseArray(ES))
-        es_entry.insert(0,"DONE !!! Check the XML file :)")
+        ES = reverseArray(ES)
+        ESRoot = EStoXML(ES)
+        ET.ElementTree(ESRoot).write("ES.xml")
+        scroll.insert(END,ES)
+        es_entry.insert(0,"DONE !!! Check the \"ES\" XML file :)")
     elif Combo.get() == "Tags, Text, and Elements": 
         NJ1 = NJ(rootA, rootB, "A", "B", dict)
         ES = getTreeEditScript(dict, rootA, rootB, "A", "B")
-        scroll.insert(END,reverseArray(ES))
-        es_entry.insert(0,"DONE !!! Check the XML file :)")
+        ES = reverseArray(ES)
+        ESRoot = EStoXML(ES)
+        ET.ElementTree(ESRoot).write("ES.xml")
+        scroll.insert(END,ES)
+        es_entry.insert(0,"DONE !!! Check the \"ES\" XML file :)")
 
 def patch():
     p_entry.delete(0, "end")
@@ -139,7 +151,7 @@ def patch():
         dictChanges = {}
         treePatch_Tag(rootA, rootB, reverseArray(ES), dictChanges)
         ET.ElementTree(rootA).write("a.xml")
-        p_entry.insert(0,"DONE !!! Check the XML file :)")
+        p_entry.insert(0,"DONE !!! Check the \"a\" XML file :)")
     elif Combo.get() == "Tags and Text" :
         dict = {}
         NJ1 = NJ_TagAndText(rootA, rootB, "A", "B", dict)
@@ -147,7 +159,7 @@ def patch():
         dictChanges = {}
         treePatch_TagAndText(rootA, rootB, reverseArray(ES), dictChanges)
         ET.ElementTree(rootA).write("a.xml")
-        p_entry.insert(0,"DONE !!! Check the XML file :)")
+        p_entry.insert(0,"DONE !!! Check the \"a\" XML file :)")
     
     elif Combo.get() == "Tags, Text, and Elements": 
         dict = {}
@@ -161,39 +173,39 @@ def patch():
         dictChanges = {}
         treePatch(rootA, rootB, ES1, dictChanges)
         ET.ElementTree(rootA).write("a.xml")
-        p_entry.insert(0,"DONE !!! Check the XML file :)")
+        p_entry.insert(0,"DONE !!! Check the \"a\" XML file :)")
 
 #define label
 label = tkinter.Label(frame, text="Choose your XML files", font=("Arial",18) )
-label.grid(row=0, column=1, padx=365)
+label.grid(row=0, column=1, padx=365, pady=15)
 # button frame 
 #define layout
-chooseA_bt = tkinter.Button(but_frame, text="Choose File A", bg="#00ffff", activebackground="#ff000f", borderwidth=5, command= lambda: choose_file(1))
+chooseA_bt = tkinter.Button(but_frame, text="Choose File A", bg="grey", activebackground="#00ffff", borderwidth=5, command= lambda: choose_file(1))
 chooseA_bt.grid(row=0,column=0, pady=10)
-locA = Entry(but_frame, width=40)
+locA = Entry(but_frame, width=40, borderwidth=5)
 locA.grid(row=1, column=0, padx=50)
 
-chooseB_bt = tkinter.Button(but_frame, text="Choose File B", bg="black",fg="white", activebackground="#455005", borderwidth=5, command= lambda: choose_file(2))
+chooseB_bt = tkinter.Button(but_frame, text="Choose File B", bg="grey", activebackground="#00ffff", borderwidth=5, command= lambda: choose_file(2))
 chooseB_bt.grid(row=0,column=1)
-locB = Entry(but_frame, width=40)
+locB = Entry(but_frame, width=40, borderwidth=5)
 locB.grid(row=1, column=1, padx=20)
 # Combo box
 vlist = ["Only Tags", "Tags and Text", "Tags, Text, and Elements"]
  
-Combo = ttk.Combobox(but_frame, values = vlist)
+Combo = ttk.Combobox(but_frame, values = vlist, state="readonly")
 Combo.set("Pick an Option")
 Combo.grid(row=0,column=2, padx=170)
 
 # TED Frame             \\ ted_frame
-ted_bt = tkinter.Button(ted_frame, text="Get TED", bg="#00ffff", activebackground="#ff000f", borderwidth=5, command= getTED)
+ted_bt = tkinter.Button(ted_frame, text="Get TED", bg="grey", activebackground="#00ffff", borderwidth=5, command= getTED)
 ted_bt.grid(row=0,column=0, pady=10, padx=30)
-dis_text = Entry(ted_frame, width=50)
+dis_text = Entry(ted_frame, width=50, borderwidth=5)
 dis_text.grid(row=0, column=1, padx=20)
-sim_text = Entry(ted_frame, width=50)
+sim_text = Entry(ted_frame, width=50, borderwidth=5)
 sim_text.grid(row=0, column=2, padx=20)
 
 # ES Frame 
-es_bt = tkinter.Button(es_frame, text="Get ES", bg="#00ffff", activebackground="#ff000f", borderwidth=5, command=getES)
+es_bt = tkinter.Button(es_frame, text="Get ES", bg="grey", activebackground="#00ffff", borderwidth=5, command=getES)
 es_bt.grid(row=0,column=0, pady=10, padx=30)
 scroll = scrolledtext.ScrolledText(es_frame,width=100,height=2 , font= ("Arial",8))
 scroll.grid(column=1, row=0, padx=20)
@@ -203,9 +215,13 @@ es_entry = Entry(es_frame, width=50, borderwidth=4)
 es_entry.grid(row=1, column=1, padx=20)
 
 # Patching Frame 
-patch_bt = tkinter.Button(patch_frame,text="Patching", bg="#00ffff", activebackground="#ff000f", borderwidth=5, command=patch)
+patch_bt = tkinter.Button(patch_frame,text="Patching A to B", bg="grey", activebackground="#00ffff", borderwidth=5, command=patch)
 patch_bt.grid(row=0,column=0, pady=10, padx=30)
 p_entry = Entry(patch_frame, width=50, borderwidth=4)
 p_entry.grid(row=0, column=1, padx=20)
+patchB_bt = tkinter.Button(patch_frame,text="Patching B to A", bg="grey", activebackground="#00ffff", borderwidth=5)
+patchB_bt.grid(row=1,column=0, pady=10, padx=30)
+p_entryB = Entry(patch_frame, width=50, borderwidth=4)
+p_entryB.grid(row=1, column=1, padx=20)
 # last line of my code
 root.mainloop()
