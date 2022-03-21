@@ -37,7 +37,7 @@ def getTreeEditScript_Tag(matricesDic, A, B, nameA, nameB):
         subTreeB = findSubTree(B, subTreeBName)
 
         if matrix[row][col] == (matrix[row - 1][col] + costDelete_Tag(subTreeA, B)):
-            editScript.append(("Del", subTreeAName))
+            editScript.append(("Del", subTreeAName , nameB, row -1))
             row = row - 1
         elif matrix[row][col] == matrix[row][col - 1] + costInsert_Tag(subTreeB, A):
             editScript.append(("Ins", nameA, subTreeBName, col - 1))
@@ -51,7 +51,7 @@ def getTreeEditScript_Tag(matricesDic, A, B, nameA, nameB):
 
     while row > 0:
         subTreeAName = nameA + "-" + str(row - 1)
-        editScript.append(("Del", subTreeAName))
+        editScript.append(("Del", subTreeAName , nameB, row -1))
         row = row - 1
 
     while col > 0:
@@ -91,7 +91,7 @@ def getTreeEditScript_TagAndText(matricesDic, A, B, nameA, nameB):
         if matrix[row][col] == (
             matrix[row - 1][col] + costDelete_TagAndText(subTreeA, B)
         ):
-            editScript.append(("Del", subTreeAName))
+            editScript.append(("Del", subTreeAName, nameB, row -1))
             row = row - 1
         elif matrix[row][col] == matrix[row][col - 1] + costInsert_TagAndText(
             subTreeB, A
@@ -107,7 +107,7 @@ def getTreeEditScript_TagAndText(matricesDic, A, B, nameA, nameB):
 
     while row > 0:
         subTreeAName = nameA + "-" + str(row - 1)
-        editScript.append(("Del", subTreeAName))
+        editScript.append(("Del", subTreeAName, nameB, row -1))
         row = row - 1
 
     while col > 0:
@@ -161,7 +161,7 @@ def getTreeEditScript(matricesDic, A, B, nameA, nameB):
         subTreeB = findSubTree(B, subTreeBName)
 
         if matrix[row][col] == (matrix[row - 1][col] + costDelete(subTreeA, B)):
-            editScript.append(("Del", subTreeAName))
+            editScript.append(("Del", subTreeAName , nameB, row -1))
             row = row - 1
         elif matrix[row][col] == matrix[row][col - 1] + costInsert(subTreeB, A):
             editScript.append(("Ins", nameA, subTreeBName, col - 1))
@@ -175,7 +175,7 @@ def getTreeEditScript(matricesDic, A, B, nameA, nameB):
 
     while row > 0:
         subTreeAName = nameA + "-" + str(row - 1)
-        editScript.append(("Del", subTreeAName))
+        editScript.append(("Del", subTreeAName , nameB, row -1))
         row = row - 1
 
     while col > 0:
@@ -231,7 +231,9 @@ def EStoXML(ES):
 
         if op[0] == "Del":
             opNode.set("subTreeAName", op[1])
-
+            opNode.set("nameB", op[2])
+            opNode.set("index", str(op[3]))
+######################## NEED TO MODIFY DELETE HERE ##################################
         if op[0] == "UpdText":
             opNode.set("nameA", op[1])
             opNode.set("nameB", op[2])
