@@ -65,7 +65,6 @@ def getTED() :
     sim_text.delete(0, "end")
     xmlFile1 = locA.get()
     xmlFile2 = locB.get()
-
     
     dict = {}
     treeA = ET.parse(xmlFile1)  # xml to tree
@@ -136,9 +135,9 @@ def patch():
 
     
     dict = {}
-    treeA = ET.parse(xmlFile1)  # xml to tree
+    treeA = ET.parse(xmlFile1)  # xml to Tree
     rootA = treeA.getroot()
-    treeB = ET.parse(xmlFile2)  # xml to tree
+    treeB = ET.parse(xmlFile2)  # xml to Tree
     rootB = treeB.getroot() 
     
     if Combo.get() == "Only Tags" :
@@ -173,7 +172,7 @@ def patch():
         p_entry.insert(0,"DONE !!! Check the \"a\" XML file :)")
 
 #define label
-label = tkinter.Label(frame, text="Choose your XML files", font=("Arial",18) )
+label = tkinter.Label(frame, text="Choose your XML files", font=("Arial",18), bg="brown", fg="white" )
 label.grid(row=0, column=1, padx=365, pady=15)
 # button frame 
 #define layout

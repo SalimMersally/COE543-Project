@@ -6,8 +6,8 @@ from src.dictEditDistance import *
 from pprint import pprint
 import xml.etree.ElementTree as ET
 
-xmlFile1 = "sample/everything/Sample3/SampleDoc1.xml"
-xmlFile2 = "sample/everything/Sample3/SampleDoc2.xml"
+xmlFile1 = "C:/Users/ahmad/OneDrive/Desktop/IDPA Project/COE543-Project/sample/everything/Sample3/SampleDoc1.xml"
+xmlFile2 = "C:/Users/ahmad/OneDrive/Desktop/IDPA Project/COE543-Project/sample/everything/Sample3/SampleDoc2.xml"
 # xmlFile1 = "sample/everything/small/sampleA.xml"
 # xmlFile2 = "sample/everything/small/sampleB.xml"
 # xmlFile1 = "sample/tagAndText/Huge/employee1.xml"
@@ -53,8 +53,8 @@ rootB = treeB.getroot()
 
 dict = {}
 NJ1 = NJ(rootA, rootB, "A", "B", dict)
-pprint(dict)
-print(NJ1)
+#pprint(dict)
+#print(NJ1)
 
 ES = getTreeEditScript(dict, rootA, rootB, "A", "B")
 ES = reverseArray(ES)
