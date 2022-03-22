@@ -10,7 +10,7 @@ from pprint import pp, pprint
 # note that we assumed the comparision is case sensitive
 
 
-def WF(A, B):
+def WF(A, B, costDict):
 
     tokenA = A.split()
     tokenB = B.split()
@@ -22,36 +22,37 @@ def WF(A, B):
     Distance[0][0] = 0
 
     for i in range(1, M + 1):
-        Distance[i][0] = Distance[i - 1][0] + costDelWord()
+        Distance[i][0] = Distance[i - 1][0] + costDelWord(costDict)
     for j in range(1, N + 1):
-        Distance[0][j] = Distance[0][j - 1] + costInsWord()
+        Distance[0][j] = Distance[0][j - 1] + costInsWord(costDict)
 
     for i in range(1, M + 1):
         for j in range(1, N + 1):
             Distance[i][j] = min(
-                Distance[i - 1][j - 1] + costUpdWord(tokenA[i - 1], tokenB[j - 1]),
-                Distance[i - 1][j] + costDelWord(),
-                Distance[i][j - 1] + costInsWord(),
+                Distance[i - 1][j - 1]
+                + costUpdWord(tokenA[i - 1], tokenB[j - 1], costDict),
+                Distance[i - 1][j] + costDelWord(costDict),
+                Distance[i][j - 1] + costInsWord(costDict),
             )
 
     return Distance
 
 
-def costUpdWord(A, B):
+def costUpdWord(A, B, costDict):
     if A == B:
         return 0
-    return 1
+    return costDict["CostUpd_Text"]
 
 
-def costInsWord():
-    return 1
+def costInsWord(costDict):
+    return costDict["CostIns_Text"]
 
 
-def costDelWord():
-    return 1
+def costDelWord(costDict):
+    return costDict["CostDel_Text"]
 
 
-def getEditScriptArray(matrix, A, B):
+def getEditScriptArray(matrix, A, B, costDict):
 
     tokenA = A.split()
     tokenB = B.split()
@@ -61,13 +62,13 @@ def getEditScriptArray(matrix, A, B):
     editScript = []
 
     while row > 0 and col > 0:
-        if matrix[row][col] == (matrix[row - 1][col] + costDelWord()):
+        if matrix[row][col] == (matrix[row - 1][col] + costDelWord(costDict)):
             editScript.append(("DelWord", row - 1, tokenA[row - 1]), col)
             row = row - 1
-        elif matrix[row][col] == matrix[row][col - 1] + costInsWord():
+        elif matrix[row][col] == matrix[row][col - 1] + costInsWord(costDict):
             editScript.append(("InsWord", row, tokenB[col - 1], col - 1))
             col = col - 1
-        elif costUpdWord(tokenA[row - 1], tokenB[col - 1]) != 0:
+        elif costUpdWord(tokenA[row - 1], tokenB[col - 1], costDict) != 0:
             editScript.append(
                 ("UpdWord", row - 1, tokenA[row - 1], col - 1, tokenB[col - 1])
             )

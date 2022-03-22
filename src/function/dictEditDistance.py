@@ -7,7 +7,7 @@
 #   - UpdAtt = 0 if same, 1 if same but diff value, 2 if att and val diff
 
 
-def WF_Dict(dictA, dictB):
+def WF_Dict(dictA, dictB, costDict):
 
     listA = list(dictA.items())
     listB = list(dictB.items())
@@ -19,39 +19,40 @@ def WF_Dict(dictA, dictB):
     Distance[0][0] = 0
 
     for i in range(1, M + 1):
-        Distance[i][0] = Distance[i - 1][0] + costDelAtt()
+        Distance[i][0] = Distance[i - 1][0] + costDelAtt(costDict)
     for j in range(1, N + 1):
-        Distance[0][j] = Distance[0][j - 1] + costInsAtt()
+        Distance[0][j] = Distance[0][j - 1] + costInsAtt(costDict)
 
     for i in range(1, M + 1):
         for j in range(1, N + 1):
             Distance[i][j] = min(
-                Distance[i - 1][j - 1] + costUpdAtt(listA[i - 1], listB[j - 1]),
-                Distance[i - 1][j] + costDelAtt(),
-                Distance[i][j - 1] + costInsAtt(),
+                Distance[i - 1][j - 1]
+                + costUpdAtt(listA[i - 1], listB[j - 1], costDict),
+                Distance[i - 1][j] + costDelAtt(costDict),
+                Distance[i][j - 1] + costInsAtt(costDict),
             )
 
     return Distance
 
 
-def costUpdAtt(A, B):
+def costUpdAtt(A, B, costDict):
     if A[0] == B[0] and A[1] == B[1]:
         return 0
     elif A[0] == B[0]:
-        return 1
+        return costDict["CostUpd_attrib"]
     else:
-        return 2
+        return 2 * costDict["CostUpd_attrib"]
 
 
-def costInsAtt():
-    return 2
+def costInsAtt(costDict):
+    return 2 * costDict["CostIns_attrib"]
 
 
-def costDelAtt():
-    return 2
+def costDelAtt(costDict):
+    return 2 * costDict["CostDel_attrib"]
 
 
-def getEditScriptDict(matrix, dictA, dictB):
+def getEditScriptDict(matrix, dictA, dictB, costDict):
 
     listA = list(dictA.items())
     listB = list(dictB.items())
@@ -61,13 +62,13 @@ def getEditScriptDict(matrix, dictA, dictB):
     editScript = []
 
     while row > 0 and col > 0:
-        if matrix[row][col] == (matrix[row - 1][col] + costDelAtt()):
+        if matrix[row][col] == (matrix[row - 1][col] + costDelAtt(costDict)):
             editScript.append(("DelAtt", row - 1, listA[row - 1], col))
             row = row - 1
-        elif matrix[row][col] == matrix[row][col - 1] + costInsAtt():
+        elif matrix[row][col] == matrix[row][col - 1] + costInsAtt(costDict):
             editScript.append(("InsAtt", row, listB[col - 1], col - 1))
             col = col - 1
-        elif costUpdAtt(listA[row - 1], listB[col - 1]) != 0:
+        elif costUpdAtt(listA[row - 1], listB[col - 1], costDict) != 0:
             editScript.append(
                 ("UpdAtt", row - 1, listA[row - 1], col - 1, listB[col - 1])
             )
