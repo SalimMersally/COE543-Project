@@ -1,4 +1,4 @@
-from costCalc import *
+from function.costCalc import *
 
 # the following method will calculate the Edit Distance Matrices
 # to transform treeA into treeB following Nermin and Jagadish algorithm

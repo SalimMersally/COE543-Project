@@ -1,7 +1,7 @@
 from copy import deepcopy
-from costCalc import *
-from arrayEditDistance import *
-from dictEditDistance import *
+from function.costCalc import *
+from function.arrayEditDistance import *
+from function.dictEditDistance import *
 import xml.etree.ElementTree as ET
 
 

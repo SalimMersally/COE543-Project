@@ -17,7 +17,7 @@ def relative_to_assets(path: str) -> Path:
 
 
 window = Tk()
-
+window.title("Similarity Machine")
 window.geometry("763x528")
 window.configure(bg="#FFFFFF")
 

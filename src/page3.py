@@ -25,7 +25,7 @@ window = Tk()
 
 window.geometry("763x528")
 window.configure(bg = "#FFFFFF")
-
+window.title("Similarity Machine")
 
 canvas = Canvas(
     window,
