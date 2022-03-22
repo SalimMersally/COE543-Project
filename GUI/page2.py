@@ -55,6 +55,7 @@ canvas.create_rectangle(360.0, 105.0, 675.0, 450.0, fill="#AEC0FF", outline="")
 
 entry_image_1 = PhotoImage(file=relative_to_assets("entry_1.png"))
 entry_bg_1 = canvas.create_image(610.5, 134.0, image=entry_image_1)
+# input costInsNode
 entry_1 = Entry(bd=0, bg="#FFFFFF", highlightthickness=0)
 entry_1.place(x=561.0, y=122.0, width=99.0, height=22.0)
 
@@ -66,7 +67,7 @@ canvas.create_text(
     fill="#001B7C",
     font=("ArialMT", 14 * -1),
 )
-
+#Button Submit input answers and move to second file
 button_image_1 = PhotoImage(file=relative_to_assets("button_1.png"))
 button_1 = Button(
     image=button_image_1,
@@ -77,6 +78,7 @@ button_1 = Button(
 )
 button_1.place(x=526.0, y=465.0, width=125.0, height=46.0)
 
+#Button to upload file A
 button_image_2 = PhotoImage(file=relative_to_assets("button_2.png"))
 button_2 = Button(
     image=button_image_2,
@@ -87,6 +89,7 @@ button_2 = Button(
 )
 button_2.place(x=208.0, y=248.0, width=89.0, height=36.0)
 
+#Button to Upload file B
 button_image_3 = PhotoImage(file=relative_to_assets("button_3.png"))
 button_3 = Button(
     image=button_image_3,
@@ -97,6 +100,7 @@ button_3 = Button(
 )
 button_3.place(x=208.0, y=386.0, width=89.0, height=36.0)
 
+#input cost of Deleting a Node
 entry_image_2 = PhotoImage(file=relative_to_assets("entry_2.png"))
 entry_bg_2 = canvas.create_image(610.5, 170.0, image=entry_image_2)
 entry_2 = Entry(bd=0, bg="#FFFFFF", highlightthickness=0)
@@ -104,6 +108,7 @@ entry_2.place(x=561.0, y=158.0, width=99.0, height=22.0)
 
 canvas.create_rectangle(675.0, 105.0, 701.0, 450.0, fill="#174AFF", outline="")
 
+#input display path of A or inout path of A
 entry_image_3 = PhotoImage(file=relative_to_assets("entry_3.png"))
 entry_bg_3 = canvas.create_image(203.5, 218.0, image=entry_image_3)
 entry_3 = Entry(bd=0, bg="#FFFFFF", highlightthickness=0)
@@ -118,6 +123,7 @@ canvas.create_text(
     font=("Arial BoldMT", 16 * -1),
 )
 
+#input display path of B or input path of B
 entry_image_4 = PhotoImage(file=relative_to_assets("entry_4.png"))
 entry_bg_4 = canvas.create_image(203.5, 349.0, image=entry_image_4)
 entry_4 = Entry(bd=0, bg="#FFFFFF", highlightthickness=0)
@@ -132,6 +138,7 @@ canvas.create_text(
     font=("ArialMT", 14 * -1),
 )
 
+#input cost updating a node
 entry_image_5 = PhotoImage(file=relative_to_assets("entry_5.png"))
 entry_bg_5 = canvas.create_image(610.5, 206.0, image=entry_image_5)
 entry_5 = Entry(bd=0, bg="#FFFFFF", highlightthickness=0)
@@ -146,6 +153,7 @@ canvas.create_text(
     font=("ArialMT", 14 * -1),
 )
 
+#input cost of inserting an attribute
 entry_image_6 = PhotoImage(file=relative_to_assets("entry_6.png"))
 entry_bg_6 = canvas.create_image(610.5, 242.0, image=entry_image_6)
 entry_6 = Entry(bd=0, bg="#FFFFFF", highlightthickness=0)
@@ -160,6 +168,7 @@ canvas.create_text(
     font=("ArialMT", 14 * -1),
 )
 
+#input cost of deleting an attribute
 entry_image_7 = PhotoImage(file=relative_to_assets("entry_7.png"))
 entry_bg_7 = canvas.create_image(610.5, 278.0, image=entry_image_7)
 entry_7 = Entry(bd=0, bg="#FFFFFF", highlightthickness=0)
@@ -174,6 +183,7 @@ canvas.create_text(
     font=("ArialMT", 14 * -1),
 )
 
+#input cost of updating an attribute
 entry_image_8 = PhotoImage(file=relative_to_assets("entry_8.png"))
 entry_bg_8 = canvas.create_image(610.5, 314.0, image=entry_image_8)
 entry_8 = Entry(bd=0, bg="#FFFFFF", highlightthickness=0)
@@ -188,6 +198,7 @@ canvas.create_text(
     font=("ArialMT", 14 * -1),
 )
 
+#input cost of inserting a text
 entry_image_9 = PhotoImage(file=relative_to_assets("entry_9.png"))
 entry_bg_9 = canvas.create_image(610.5, 350.0, image=entry_image_9)
 entry_9 = Entry(bd=0, bg="#FFFFFF", highlightthickness=0)
@@ -202,6 +213,7 @@ canvas.create_text(
     font=("ArialMT", 14 * -1),
 )
 
+#input cost of deleting a text
 entry_image_10 = PhotoImage(file=relative_to_assets("entry_10.png"))
 entry_bg_10 = canvas.create_image(610.5, 386.0, image=entry_image_10)
 entry_10 = Entry(bd=0, bg="#FFFFFF", highlightthickness=0)
@@ -216,6 +228,7 @@ canvas.create_text(
     font=("ArialMT", 14 * -1),
 )
 
+#input cost of updating a text
 entry_image_11 = PhotoImage(file=relative_to_assets("entry_11.png"))
 entry_bg_11 = canvas.create_image(610.5, 422.0, image=entry_image_11)
 entry_11 = Entry(bd=0, bg="#FFFFFF", highlightthickness=0)
