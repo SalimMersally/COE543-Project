@@ -1,6 +1,6 @@
 import xml.etree.ElementTree as ET
-from src.function.dictEditDistance import patchDict
-from src.function.arrayEditDistance import patchArray
+from function.dictEditDistance import patchDict
+from function.arrayEditDistance import patchArray
 from copy import deepcopy
 
 # the following method are used as helper to all the patch methods
