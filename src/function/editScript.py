@@ -1,7 +1,7 @@
 from copy import deepcopy
-from function.costCalc import *
-from function.arrayEditDistance import getEditScriptArray
-from function.dictEditDistance import getEditScriptDict
+from costCalc import *
+from arrayEditDistance import getEditScriptArray
+from dictEditDistance import getEditScriptDict
 import xml.etree.ElementTree as ET
 
 
