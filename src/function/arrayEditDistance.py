@@ -78,7 +78,7 @@ def getEditScriptArray(matrix, A, B):
             col = col - 1
 
     while row > 0:
-        editScript.append(("DelWord", row - 1, tokenA[row - 1]), col)
+        editScript.append(("DelWord", row - 1, tokenA[row - 1], col))
         row = row - 1
 
     while col > 0:
@@ -101,3 +101,18 @@ def patchArray(strA, ES):
             arrA.insert(op[1] + changes, op[2])
             changes += 1
     return " ".join(arrA)
+
+
+# flip the ES so it can be used to patch B to A
+def flipArrayES(arrayES):
+    flipped = []
+    for op in arrayES:
+        tuple = ()
+        if op[0] == "UpdWord":
+            tuple = ("UpdWord", op[3], op[4], op[1], op[2])
+        if op[0] == "DelWord":
+            tuple = ("InsWord", op[3], op[2], op[1])
+        if op[0] == "InsWord":
+            tuple = ("DelWord", op[3], op[2], op[1])
+        flipped.append(tuple)
+    return flipped

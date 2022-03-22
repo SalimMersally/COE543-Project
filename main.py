@@ -44,50 +44,57 @@ rootB = treeB.getroot()
 
 # # test tags and text
 
-dict = {}
-NJ1 = NJ_TagAndText(rootA, rootB, "A", "B", dict)
-# pprint(dict)
-print(NJ1)
-
-ES = getTreeEditScript_TagAndText(dict, rootA, rootB, "A", "B")
-ES = reverseArray(ES)
-# pprint(ES)
-
-ESRoot = EStoXML(ES)
-ET.ElementTree(ESRoot).write("ES.xml")
-
-ESRoot = ET.parse("ES.xml").getroot()
-ES1 = XMLtoES(ESRoot)
-# pprint(ES1)
-
-dictChanges = {}
-treePatch_TagAndText(rootA, ES1, dictChanges)
-ET.ElementTree(rootA).write("a.xml")
-dict = {}
-NJ2 = NJ_TagAndText(rootA, rootB, "A", "B", dict)
-print(NJ2)
-
-# test all
-
 # dict = {}
-# NJ1 = NJ(rootA, rootB, "A", "B", dict)
-# pprint(dict)
+# NJ1 = NJ_TagAndText(rootA, rootB, "A", "B", dict)
+# # pprint(dict)
 # print(NJ1)
 
-# ES = getTreeEditScript(dict, rootA, rootB, "A", "B")
+# ES = getTreeEditScript_TagAndText(dict, rootA, rootB, "A", "B")
 # ES = reverseArray(ES)
-# pprint(ES)
+# # pprint(ES)
+
 # ESRoot = EStoXML(ES)
 # ET.ElementTree(ESRoot).write("ES.xml")
 
 # ESRoot = ET.parse("ES.xml").getroot()
 # ES1 = XMLtoES(ESRoot)
-# pprint(ES1)
+# # pprint(ES1)
 
 # dictChanges = {}
-# treePatch(rootA, ES1, dictChanges)
+# treePatch_TagAndText(rootA, ES1, dictChanges)
 # ET.ElementTree(rootA).write("a.xml")
-
 # dict = {}
 # NJ2 = NJ_TagAndText(rootA, rootB, "A", "B", dict)
 # print(NJ2)
+
+# test all
+
+dict = {}
+NJ1 = NJ(rootA, rootB, "A", "B", dict)
+pprint(dict)
+print(NJ1)
+
+ES = getTreeEditScript(dict, rootA, rootB, "A", "B")
+ES = reverseArray(ES)
+pprint(ES)
+ESRoot = EStoXML(ES)
+ET.ElementTree(ESRoot).write("ES.xml")
+
+ESRoot = ET.parse("ES.xml").getroot()
+ES1 = XMLtoES(ESRoot)
+pprint(ES1)
+
+ESflip = flipES(ES1)
+ESRoot = EStoXML(ESflip)
+ET.ElementTree(ESRoot).write("ESfliped.xml")
+
+ESRoot = ET.parse("ESfliped.xml").getroot()
+ES1 = XMLtoES(ESRoot)
+pprint(ES1)
+
+treePatch(rootB, ES1, dictChanges={})
+ET.ElementTree(rootB).write("b.xml")
+
+dict = {}
+NJ2 = NJ_TagAndText(rootA, rootB, "A", "B", dict)
+print(NJ2)

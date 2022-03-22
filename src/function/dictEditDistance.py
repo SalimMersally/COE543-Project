@@ -101,3 +101,18 @@ def patchDict(dictA, ES):
             listA.insert(op[1] + changes, op[2])
             changes += 1
     return dict(listA)
+
+
+# flip the ES so it can be used to patch B to A
+def flipDictES(arrayES):
+    flipped = []
+    for op in arrayES:
+        tuple = ()
+        if op[0] == "UpdAtt":
+            tuple = ("UpdAtt", op[3], op[4], op[1], op[2])
+        if op[0] == "DelAtt":
+            tuple = ("InsAtt", op[3], op[2], op[1])
+        if op[0] == "InsAtt":
+            tuple = ("DelAtt", op[3], op[2], op[1])
+        flipped.append(tuple)
+    return flipped

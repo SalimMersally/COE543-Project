@@ -1,7 +1,7 @@
 from copy import deepcopy
 from costCalc import *
-from arrayEditDistance import getEditScriptArray
-from dictEditDistance import getEditScriptDict
+from arrayEditDistance import *
+from dictEditDistance import *
 import xml.etree.ElementTree as ET
 
 
@@ -12,6 +12,31 @@ def reverseArray(array):
         result.append(array[i])
         i -= 1
     return result
+
+
+# The following method is used to flip an ES to be used to patch B to A
+def flipES(ES):
+    flipped = []
+    for op in ES:
+        tuple = ()
+
+        if op[0] == "UpdTag":
+            tuple = ("UpdTag", op[2], op[1], op[4], op[3])
+
+        if op[0] == "Ins":
+            tuple = ("Del", op[2], op[3], op[1], op[4])
+
+        if op[0] == "Del":
+            tuple = ("Ins", op[3], op[1], op[2], op[4])
+
+        if op[0] == "UpdText":
+            tuple = ("UpdText", op[2], op[1], flipArrayES(op[3]))
+
+        if op[0] == "UpdAttribute":
+            tuple = ("UpdAttribute", op[2], op[1], flipDictES(op[3]))
+
+        flipped.append(tuple)
+    return flipped
 
 
 # After getting the edit matrices using NJ algorithm, the matrices
@@ -183,13 +208,13 @@ def getTreeEditScript(matricesDic, A, B, nameA, nameB):
 
     while row > 0:
         subTreeAName = nameA + "-" + str(row - 1)
-        subTreeA = findSubTree(subTreeAName)
+        subTreeA = findSubTree(A, subTreeAName)
         editScript.append(("Del", subTreeAName, deepcopy(subTreeA), nameB, row - 1))
         row = row - 1
 
     while col > 0:
         subTreeBName = nameB + "-" + str(col - 1)
-        subTreeB = findSubTree(subTreeBName)
+        subTreeB = findSubTree(B, subTreeBName)
         editScript.append(("Ins", nameA, subTreeBName, deepcopy(subTreeB), col - 1))
         col = col - 1
 

@@ -26,6 +26,7 @@ def nextPage():
     window.destroy()
     import page2
 
+
 canvas = Canvas(
     window,
     bg="#FFFFFF",
