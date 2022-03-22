@@ -17,6 +17,9 @@ ASSETS_PATH = OUTPUT_PATH / Path("./assets3")
 def relative_to_assets(path: str) -> Path:
     return ASSETS_PATH / Path(path)
 
+def previousPage():
+    window.destroy()
+    import page2
 
 window = Tk()
 
@@ -388,7 +391,7 @@ button_6 = Button(
     image=button_image_6,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_6 clicked"),
+    command=previousPage,
     relief="flat"
 )
 button_6.place(
