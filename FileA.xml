@@ -1,0 +1,390 @@
+<OrdinaryIssuePage>
+
+  <volume>31</volume>
+  <number>4</number>
+  <month>December</month>
+  <year>2002</year>
+  <notes>
+    <note>
+      <toNote>
+        <title>Chair's Message</title>
+      </toNote>
+      <otherSources>
+        <toSource>
+          <format>PDF</format>
+        </toSource>
+      </otherSources>
+    </note>
+
+    <note>
+      <toNote>
+        <title>Editor's Notes</title>
+      </toNote>
+      <otherSources>
+        <toSource>
+          <format>PDF</format>
+        </toSource>
+        <toSource>
+          <format>Postscript</format>
+        </toSource>
+      </otherSources>
+    </note>
+
+    <note>
+      <toNote>
+        <title>Rights of TODS Readers, Authors and Reviewers</title>
+      </toNote>
+      <otherSources>
+        <toSource>
+          <format>PDF</format>
+        </toSource>
+      </otherSources>
+    </note>
+
+    <note>
+      <toNote>
+        <title>SIGMOD Officers, Committees and </title>
+      </toNote>
+      <otherSources>
+        <toSource>
+          <format>PDF</format>
+        </toSource>
+      </otherSources>
+    </note>
+
+  </notes>
+  <sections>
+    <section>
+      <sectionName>Special Section on Semantic Web and Data Management</sectionName>
+      <articles>
+        <article>
+          <title>Guest Editor's Introduction</title>
+          <authors>
+            <author>R. Meersman</author>
+            <author>A. Sheth</author>
+          </authors>
+          <availableSources>
+            <toAvailableSource>
+              <format>PDF</format>
+            </toAvailableSource>
+          </availableSources>
+        </article>
+
+        <article>
+          <title />
+          <authors>
+            <author>P. Spyns</author>
+            <author>R. Meersman</author>
+            <author>M. Jarrar</author>
+          </authors>
+          <availableSources>
+            <toAvailableSource>
+              <dataRep>PDF</dataRep>
+            </toAvailableSource>
+          </availableSources>
+        </article>
+
+        <article>
+          <title>Methodology for Development and Employment of Ontology Based Knowledge Management Applications</title>
+          <authors>
+            <author>T. Sure</author>
+            <author>R. Studer</author>
+          </authors>
+          <availableSources>
+            <toAvailableSource>
+              <format>PDF</format>
+            </toAvailableSource>
+          </availableSources>
+        </article>
+
+        <article>
+          <title>A Conceptual Architecture for Semantic Web Enabled Web Services</title>
+          <authors>
+            <author>C. Bussler</author>
+            <author>D. Fensel</author>
+            <author>A. Maedche</author>
+          </authors>
+          <Sources>
+            <toAvailableSource>
+              <format>PDF</format>
+            </toAvailableSource>
+          </Sources>
+        </article>
+
+        <article>
+          <title>Agents, Turst, and Information Access on the Semantic Web</title>
+          <authors>
+            <author>T. Finin</author>
+            <author>A. Joshi</author>
+          </authors>
+          <availableSources>
+            <toAvailableSource>
+              <format>PDF</format>
+            </toAvailableSource>
+          </availableSources>
+        </article>
+
+        <article>
+          <title>Conceptual Model of Web Service Reputation</title>
+          <authors>
+            <author>E.M. Maximilien</author>
+            <author>M. Singh</author>
+          </authors>
+          <availableSources>
+            <toAvailableSource>
+              <format>PDF</format>
+            </toAvailableSource>
+          </availableSources>
+        </article>
+
+        <article>
+          <title>The p Operator: Discovering and Ranking Associations on the Semantic Web</title>
+          <authors>
+            <author>K. Anyanwu</author>
+            <author>A. Sheth</author>
+          </authors>
+          <availableSources>
+            <toAvailableSource>
+              <format>PDF</format>
+            </toAvailableSource>
+          </availableSources>
+        </article>
+
+        <article>
+          <title>A Framework for Semantic Gossiping</title>
+          <authors>
+            <author>K. Aberer</author>
+            <author>P. Cudre-Mauroux</author>
+            <author>M. Hauswirth</author>
+          </authors>
+          <availableSources>
+            <toAvailableSource>
+              <format>PDF</format>
+            </toAvailableSource>
+          </availableSources>
+        </article>
+
+        <article>
+          <title>Emergent Semantics and the Multimedia Semantic Web</title>
+          <authors>
+            <author>W.I. Grosky</author>
+            <author>D.V. Sreenath</author>
+            <author>F. Fotouhi</author>
+          </authors>
+          <availableSources>
+            <toAvailableSource>
+              <format>PDF</format>
+            </toAvailableSource>
+          </availableSources>
+        </article>
+
+        <article>
+          <title>Querying Multiple Bioinformatics Data Sources: Can Semantic Web Research Help?</title>
+          <authors>
+            <author>David Buttler</author>
+            <author>Matthew Coleman1</author>
+            <author>Terence Critchlow1</author>
+            <author>Renato Fileto</author>
+            <author>Wei Han</author>
+            <author>Ling Liu</author>
+            <author>Calton Pu</author>
+            <author>Daniel Rocco</author>
+            <author>Li Xiong</author>
+          </authors>
+          <availableSources>
+            <toAvailableSource>
+              <format>PDF</format>
+            </toAvailableSource>
+          </availableSources>
+        </article>
+
+        <article>
+          <title>The Grid: An Application of the Semantic Web</title>
+          <authors>
+            <author>C. Goble</author>
+            <author>D. De Rouce</author>
+          </authors>
+          <availableSources>
+            <toAvailableSource>
+              <format>PDF</format>
+            </toAvailableSource>
+          </availableSources>
+        </article>
+
+      </articles>
+    </section>
+
+    <section>
+      <sectionName>Book Reviews</sectionName>
+      <articles>
+        <article>
+          <title>Introduction</title>
+          <authors>
+            <author>Karl Aberer</author>
+          </authors>
+          <availableSources>
+            <toAvailableSource>
+              <format>PDF</format>
+            </toAvailableSource>
+          </availableSources>
+        </article>
+
+        <article>
+          <title>Ontologies: A Silver Bullet for Knowledge Management and Electronic Commerce - by Dieter Fensel</title>
+          <authors>
+            <author>Reviewer: Antonio Badia</author>
+          </authors>
+          <availableSources>
+            <toAvailableSource>
+              <format>PDF</format>
+            </toAvailableSource>
+          </availableSources>
+        </article>
+
+        <article>
+          <title>Small Worlds: the Dynamics of Networks between Order and Randomness - by Duncan J. Watts</title>
+          <authors>
+            <author>Reviewer: Jie Wu</author>
+          </authors>
+          <availableSources>
+            <toAvailableSource>
+              <format>PDF</format>
+            </toAvailableSource>
+          </availableSources>
+        </article>
+
+      </articles>
+    </section>
+
+    <section>
+      <sectionName>Distinguished Database Profiles</sectionName>
+      <articles>
+        <article>
+          <title>Interview with David Maier</title>
+          <authors>
+            <author>Marianne Winslett</author>
+          </authors>
+          <availableSources>
+            <toAvailableSource>
+              <format>PDF</format>
+            </toAvailableSource>
+          </availableSources>
+        </article>
+
+      </articles>
+    </section>
+
+    <section>
+      <sectionName>Database Principles</sectionName>
+      <articles>
+        <article>
+          <title>Parameterized Complexity for the Database Theorist</title>
+          <authors>
+            <author>Martin Grohe</author>
+          </authors>
+          <availableSources>
+            <toAvailableSource>
+              <format>PDF</format>
+            </toAvailableSource>
+            <toAvailableSource>
+              <format>Postscript</format>
+            </toAvailableSource>
+          </availableSources>
+        </article>
+
+      </articles>
+    </section>
+
+    <section>
+      <sectionName>Influential Papers</sectionName>
+      <articles>
+        <article>
+          <title>Reminiscences on Influential Papers</title>
+          <authors>
+            <author>A. Aho</author>
+            <author>A. Ailamaki</author>
+          </authors>
+          <availableSources>
+            <toAvailableSource>
+              <format>PDF</format>
+              <format>JSON</format>
+            </toAvailableSource>
+          </availableSources>
+        </article>
+
+      </articles>
+    </section>
+
+    <section>
+      <sectionName>Reports</sectionName>
+      <articles>
+        <article>
+          <title>Amicalola Report: Database and Information System Research Challenges and Opportunities in Semantic Web and Enterprises</title>
+          <authors>
+            <author>A. Sheth</author>
+            <author>R. Meersman</author>
+          </authors>
+          <availableSources>
+            <toAvailableSource>
+              <format />
+              <format>PDF</format>
+            </toAvailableSource>
+          </availableSources>
+        </article>
+
+        <article>
+          <title>Report on the EDBT'02 Panel on Scientific Data Integration</title>
+          <authors>
+            <author>O. Boucelma</author>
+            <author>S. Castano</author>
+            <author>C. Goble</author>
+            <author>J. Connor</author>
+          </authors>
+          <availableSources>
+            <toAvailableSource>
+              <format>PDF</format>
+            </toAvailableSource>
+          </availableSources>
+        </article>
+
+      </articles>
+    </section>
+
+    <section>
+      <sectionName>Standards</sectionName>
+      <articles>
+        <article>
+          <title>An Early Look at XQuery</title>
+          <authors>
+            <author>Jim Melton and Andrew Eisenberg</author>
+          </authors>
+          <availableSources>
+            <toAvailableSource>
+              <format>PDF</format>
+            </toAvailableSource>
+          </availableSources>
+        </article>
+
+      </articles>
+    </section>
+
+    <section>
+      <sectionName>Research Centers</sectionName>
+      <articles>
+        <article>
+          <title>Research in Information Managment at Dublin City University</title>
+          <authors>
+            <author>Mark Roantree and Alan F. Smeaton</author>
+          </authors>
+          <availableSources>
+            <toAvailableSource>
+              <format>PDF</format>
+            </toAvailableSource>
+          </availableSources>
+        </article>
+
+      </articles>
+    </section>
+
+  </sections>
+</OrdinaryIssuePage>

@@ -1,3 +1,6 @@
+import json
+
+
 from fileinput import filename
 from traceback import format_tb
 from function.costCalc import *
@@ -30,10 +33,14 @@ ASSETS_PATH = OUTPUT_PATH / Path("./assets2")
 
 def relative_to_assets(path: str) -> Path:
     return ASSETS_PATH / Path(path)
+
 def nextPage():
+    getInputs()
+    copyFiles()
+    print(dictInputs)
     window.destroy()
     import page3
-
+    
 window = Tk()
 window.title("Similarity Machine")
 window.geometry("763x528")
@@ -41,7 +48,7 @@ window.configure(bg = "#FFFFFF")
 
 fileA = ""
 fileB = ""
-
+dictInputs = {}
 def choose_file(arg) :
     
     if arg == 1 :
@@ -55,6 +62,31 @@ def choose_file(arg) :
         fileB = askopenfilename(filetypes = [('XML files', '*.xml'),('All files','*')])
         entry_4.insert(0,fileB)
         
+def copyFiles():
+    
+    xmlFile1 = entry_3.get()
+    xmlFile2 = entry_4.get()
+    treeA = ET.parse(xmlFile1)  # xml to Tree
+    rootA = treeA.getroot()
+    treeB = ET.parse(xmlFile2)  # xml to Tree
+    rootB = treeB.getroot() 
+    
+    ET.ElementTree(rootA).write("FileA.xml")
+    ET.ElementTree(rootB).write("FileB.xml")
+
+    
+def getInputs():
+    dictInputs.update({'CostIns_Tag':entry_1.get(),
+                       'CostDel_Tag':entry_2.get(),
+                       'CostUpd_Tag':entry_5.get(),
+                       'CostIns_attrib': entry_6.get(),
+                       'CostDel_attrib': entry_7.get(),
+                       'CostUpd_attrib': entry_8.get(),
+                       'CostIns_Text':entry_9.get(),
+                       'CostDel_Text':entry_10.get(),
+                       'CostUpd_Text':entry_11.get()})
+    with open('InputCosts.txt', 'w') as f:
+        f.write(json.dumps(dictInputs))      
 canvas = Canvas(
     window,
     bg = "#FFFFFF",
