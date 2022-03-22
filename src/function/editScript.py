@@ -46,7 +46,7 @@ def flipES(ES):
 # this method take into considaration only tags
 
 
-def getTreeEditScript_Tag(matricesDic, A, B, nameA, nameB):
+def getTreeEditScript_Tag(matricesDic, A, B, nameA, nameB, costDict):
 
     keyDic = nameA + "/" + nameB
     editScript = []
@@ -62,15 +62,19 @@ def getTreeEditScript_Tag(matricesDic, A, B, nameA, nameB):
         subTreeA = findSubTree(A, subTreeAName)
         subTreeB = findSubTree(B, subTreeBName)
 
-        if matrix[row][col] == (matrix[row - 1][col] + costDelete_Tag(subTreeA, B)):
+        if matrix[row][col] == (
+            matrix[row - 1][col] + costDelete_Tag(subTreeA, B, costDict)
+        ):
             editScript.append(("Del", subTreeAName, deepcopy(subTreeA), nameB, row - 1))
             row = row - 1
-        elif matrix[row][col] == matrix[row][col - 1] + costInsert_Tag(subTreeB, A):
+        elif matrix[row][col] == matrix[row][col - 1] + costInsert_Tag(
+            subTreeB, A, costDict
+        ):
             editScript.append(("Ins", nameA, subTreeBName, deepcopy(subTreeB), col - 1))
             col = col - 1
         else:
             editScript += getTreeEditScript_Tag(
-                matricesDic, A, B, subTreeAName, subTreeBName
+                matricesDic, A, B, subTreeAName, subTreeBName, costDict
             )
             row = row - 1
             col = col - 1
@@ -103,7 +107,7 @@ def getTreeEditScript_Tag(matricesDic, A, B, nameA, nameB):
 # this method take into considaration only tags
 
 
-def getTreeEditScript_TagAndText(matricesDic, A, B, nameA, nameB):
+def getTreeEditScript_TagAndText(matricesDic, A, B, nameA, nameB, costDict):
 
     keyDic = nameA + "/" + nameB
     editScript = []
@@ -120,18 +124,18 @@ def getTreeEditScript_TagAndText(matricesDic, A, B, nameA, nameB):
         subTreeB = findSubTree(B, subTreeBName)
 
         if matrix[row][col] == (
-            matrix[row - 1][col] + costDelete_TagAndText(subTreeA, B)
+            matrix[row - 1][col] + costDelete_TagAndText(subTreeA, B, costDict)
         ):
             editScript.append(("Del", subTreeAName, deepcopy(subTreeA), nameB, row - 1))
             row = row - 1
         elif matrix[row][col] == matrix[row][col - 1] + costInsert_TagAndText(
-            subTreeB, A
+            subTreeB, A, costDict
         ):
             editScript.append(("Ins", nameA, subTreeBName, deepcopy(subTreeB), col - 1))
             col = col - 1
         else:
             editScript += getTreeEditScript_TagAndText(
-                matricesDic, A, B, subTreeAName, subTreeBName
+                matricesDic, A, B, subTreeAName, subTreeBName, costDict
             )
             row = row - 1
             col = col - 1
@@ -164,7 +168,7 @@ def getTreeEditScript_TagAndText(matricesDic, A, B, nameA, nameB):
             textB = ""
         textMatrix = matricesDic[dicKey]
         if textMatrix[len(textA.split())][len(textB.split())] != 0:
-            ESText = getEditScriptArray(textMatrix, textA, textB)
+            ESText = getEditScriptArray(textMatrix, textA, textB, costDict)
             editScript.append(("UpdText", nameA, nameB, reverseArray(ESText)))
 
     return editScript
@@ -177,7 +181,7 @@ def getTreeEditScript_TagAndText(matricesDic, A, B, nameA, nameB):
 # this method take into considaration all tags,text and attributes
 
 
-def getTreeEditScript(matricesDic, A, B, nameA, nameB):
+def getTreeEditScript(matricesDic, A, B, nameA, nameB, costDict):
 
     keyDic = nameA + "/" + nameB
     editScript = []
@@ -193,15 +197,19 @@ def getTreeEditScript(matricesDic, A, B, nameA, nameB):
         subTreeA = findSubTree(A, subTreeAName)
         subTreeB = findSubTree(B, subTreeBName)
 
-        if matrix[row][col] == (matrix[row - 1][col] + costDelete(subTreeA, B)):
+        if matrix[row][col] == (
+            matrix[row - 1][col] + costDelete(subTreeA, B, costDict)
+        ):
             editScript.append(("Del", subTreeAName, deepcopy(subTreeA), nameB, row - 1))
             row = row - 1
-        elif matrix[row][col] == matrix[row][col - 1] + costInsert(subTreeB, A):
+        elif matrix[row][col] == matrix[row][col - 1] + costInsert(
+            subTreeB, A, costDict
+        ):
             editScript.append(("Ins", nameA, subTreeBName, deepcopy(subTreeB), col - 1))
             col = col - 1
         else:
             editScript += getTreeEditScript(
-                matricesDic, A, B, subTreeAName, subTreeBName
+                matricesDic, A, B, subTreeAName, subTreeBName, costDict
             )
             row = row - 1
             col = col - 1
@@ -234,14 +242,14 @@ def getTreeEditScript(matricesDic, A, B, nameA, nameB):
             textB = ""
         textMatrix = matricesDic[textKey]
         if textMatrix[len(textA.split())][len(textB.split())] != 0:
-            ESText = getEditScriptArray(textMatrix, textA, textB)
+            ESText = getEditScriptArray(textMatrix, textA, textB, costDict)
             editScript.append(("UpdText", nameA, nameB, reverseArray(ESText)))
 
     attKey = nameA + "/" + nameB + "/attribute"
     if attKey in matricesDic:
         attMatrix = matricesDic[attKey]
         if attMatrix[len(attMatrix) - 1][len(attMatrix[0]) - 1] != 0:
-            ESatt = getEditScriptDict(attMatrix, rootA.attrib, rootB.attrib)
+            ESatt = getEditScriptDict(attMatrix, rootA.attrib, rootB.attrib, costDict)
             editScript.append(("UpdAttribute", nameA, nameB, reverseArray(ESatt)))
 
     return editScript

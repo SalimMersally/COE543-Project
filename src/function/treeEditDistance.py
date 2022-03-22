@@ -5,7 +5,7 @@ from function.costCalc import *
 # this method take into considiration only tag
 
 
-def NJ_Tag(A, B, nameA, nameB, matricesDic):
+def NJ_Tag(A, B, nameA, nameB, matricesDic, costDict):
 
     subTreeA = findSubTree(A, nameA)
     subTreeB = findSubTree(B, nameB)
@@ -14,16 +14,16 @@ def NJ_Tag(A, B, nameA, nameB, matricesDic):
     N = len(subTreeB)  # number of first Level children in B
 
     Distance = [[None for i in range(N + 1)] for i in range(M + 1)]
-    Distance[0][0] = costUpd_Tag(subTreeA, subTreeB)
+    Distance[0][0] = costUpd_Tag(subTreeA, subTreeB, costDict)
 
     i = 1
     j = 1
     for childA in subTreeA:
-        Distance[i][0] = Distance[i - 1][0] + costDelete_Tag(childA, B)
+        Distance[i][0] = Distance[i - 1][0] + costDelete_Tag(childA, B, costDict)
         i += 1
 
     for childB in subTreeB:
-        Distance[0][j] = Distance[0][j - 1] + costInsert_Tag(childB, A)
+        Distance[0][j] = Distance[0][j - 1] + costInsert_Tag(childB, A, costDict)
         j += 1
 
     i = 1
@@ -37,10 +37,10 @@ def NJ_Tag(A, B, nameA, nameB, matricesDic):
             Distance[i][j] = min(
                 (
                     Distance[i - 1][j - 1]
-                    + NJ_Tag(A, B, childAName, childBName, matricesDic)
+                    + NJ_Tag(A, B, childAName, childBName, matricesDic, costDict)
                 ),
-                (Distance[i - 1][j] + costDelete_Tag(childA, B)),
-                (Distance[i][j - 1] + costInsert_Tag(childB, A)),
+                (Distance[i - 1][j] + costDelete_Tag(childA, B, costDict)),
+                (Distance[i][j - 1] + costInsert_Tag(childB, A, costDict)),
             )
             j += 1
         i += 1
@@ -54,7 +54,7 @@ def NJ_Tag(A, B, nameA, nameB, matricesDic):
 # this method take into considiration only tag and text
 
 
-def NJ_TagAndText(A, B, nameA, nameB, matricesDic):
+def NJ_TagAndText(A, B, nameA, nameB, matricesDic, costDict):
 
     subTreeA = findSubTree(A, nameA)
     subTreeB = findSubTree(B, nameB)
@@ -63,16 +63,18 @@ def NJ_TagAndText(A, B, nameA, nameB, matricesDic):
     N = len(subTreeB)  # number of first Level children in B
 
     Distance = [[None for i in range(N + 1)] for i in range(M + 1)]
-    Distance[0][0] = costUpd_TagAndText(subTreeA, subTreeB, nameA, nameB, matricesDic)
+    Distance[0][0] = costUpd_TagAndText(
+        subTreeA, subTreeB, nameA, nameB, matricesDic, costDict
+    )
 
     i = 1
     j = 1
     for childA in subTreeA:
-        Distance[i][0] = Distance[i - 1][0] + costDelete_TagAndText(childA, B)
+        Distance[i][0] = Distance[i - 1][0] + costDelete_TagAndText(childA, B, costDict)
         i += 1
 
     for childB in subTreeB:
-        Distance[0][j] = Distance[0][j - 1] + costInsert_TagAndText(childB, A)
+        Distance[0][j] = Distance[0][j - 1] + costInsert_TagAndText(childB, A, costDict)
         j += 1
 
     i = 1
@@ -86,10 +88,10 @@ def NJ_TagAndText(A, B, nameA, nameB, matricesDic):
             Distance[i][j] = min(
                 (
                     Distance[i - 1][j - 1]
-                    + NJ_TagAndText(A, B, childAName, childBName, matricesDic)
+                    + NJ_TagAndText(A, B, childAName, childBName, matricesDic, costDict)
                 ),
-                (Distance[i - 1][j] + costDelete_TagAndText(childA, B)),
-                (Distance[i][j - 1] + costInsert_TagAndText(childB, A)),
+                (Distance[i - 1][j] + costDelete_TagAndText(childA, B, costDict)),
+                (Distance[i][j - 1] + costInsert_TagAndText(childB, A, costDict)),
             )
             j += 1
         i += 1
@@ -103,7 +105,7 @@ def NJ_TagAndText(A, B, nameA, nameB, matricesDic):
 # this method take into considiration all tags, text and attributes
 
 
-def NJ(A, B, nameA, nameB, matricesDic):
+def NJ(A, B, nameA, nameB, matricesDic, costDict):
 
     subTreeA = findSubTree(A, nameA)
     subTreeB = findSubTree(B, nameB)
@@ -112,16 +114,16 @@ def NJ(A, B, nameA, nameB, matricesDic):
     N = len(subTreeB)  # number of first Level children in B
 
     Distance = [[None for i in range(N + 1)] for i in range(M + 1)]
-    Distance[0][0] = costUpd(subTreeA, subTreeB, nameA, nameB, matricesDic)
+    Distance[0][0] = costUpd(subTreeA, subTreeB, nameA, nameB, matricesDic, costDict)
 
     i = 1
     j = 1
     for childA in subTreeA:
-        Distance[i][0] = Distance[i - 1][0] + costDelete(childA, B)
+        Distance[i][0] = Distance[i - 1][0] + costDelete(childA, B, costDict)
         i += 1
 
     for childB in subTreeB:
-        Distance[0][j] = Distance[0][j - 1] + costInsert(childB, A)
+        Distance[0][j] = Distance[0][j - 1] + costInsert(childB, A, costDict)
         j += 1
 
     i = 1
@@ -135,10 +137,10 @@ def NJ(A, B, nameA, nameB, matricesDic):
             Distance[i][j] = min(
                 (
                     Distance[i - 1][j - 1]
-                    + NJ(A, B, childAName, childBName, matricesDic)
+                    + NJ(A, B, childAName, childBName, matricesDic, costDict)
                 ),
-                (Distance[i - 1][j] + costDelete(childA, B)),
-                (Distance[i][j - 1] + costInsert(childB, A)),
+                (Distance[i - 1][j] + costDelete(childA, B, costDict)),
+                (Distance[i][j - 1] + costInsert(childB, A, costDict)),
             )
             j += 1
         i += 1

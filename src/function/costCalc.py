@@ -1,4 +1,5 @@
 # import xml.etree.ElementTree as ET
+from cmath import cos
 from function.dictEditDistance import WF_Dict
 from function.arrayEditDistance import *
 
@@ -54,38 +55,38 @@ def isSubTree_Tag(root1, root2):
     return False
 
 
-def nodeCounter_Tag(root):
+def nodeCounter_Tag(root, cost):
     counter = 0
 
     if root is None:
         return counter
 
-    counter += 1
+    counter += cost
     for child in root:
-        counter += nodeCounter_Tag(child)
+        counter += nodeCounter_Tag(child, cost)
 
     return counter
 
 
-def costInsert_Tag(subTreeB, A):
+def costInsert_Tag(subTreeB, A, dictCost):
     if isSubTree_Tag(subTreeB, A):
         return 1
     else:
-        return nodeCounter_Tag(subTreeB)
+        return nodeCounter_Tag(subTreeB, dictCost["CostIns_Tag"])
 
 
-def costDelete_Tag(subTreeA, B):
+def costDelete_Tag(subTreeA, B, dictCost):
     if isSubTree_Tag(subTreeA, B):
         return 1
     else:
-        return nodeCounter_Tag(subTreeA)
+        return nodeCounter_Tag(subTreeA, dictCost["CostDel_Tag"])
 
 
-def costUpd_Tag(rootA, rootB):
+def costUpd_Tag(rootA, rootB, dictCost):
     if rootA.tag == rootB.tag:
         return 0
     else:
-        return 1
+        return dictCost["CostUpd_Tag"]
 
 
 # The following method are used to calculate the cost of operation on trees
@@ -130,40 +131,46 @@ def isSubTree_TagAndText(root1, root2):
     return False
 
 
-def nodeCounter_TagAndText(root):
+def nodeCounter_TagAndText(root, costTag, costText):
     counter = 0
 
     if root is None:
         return counter
 
+    counter += costTag
+
     if root.text is not None:
-        counter += 1 + len(root.text.split())
+        counter += costText * len(root.text.split())
 
     for child in root:
-        counter += nodeCounter_TagAndText(child)
+        counter += nodeCounter_TagAndText(child, costTag, costText)
 
     return counter
 
 
-def costInsert_TagAndText(subTreeB, A):
+def costInsert_TagAndText(subTreeB, A, costDict):
     if isSubTree_TagAndText(subTreeB, A):
         return 1
     else:
-        return nodeCounter_TagAndText(subTreeB)
+        return nodeCounter_TagAndText(
+            subTreeB, costDict["CostIns_Tag"], costDict["CostIns_Text"]
+        )
 
 
-def costDelete_TagAndText(subTreeA, B):
+def costDelete_TagAndText(subTreeA, B, costDict):
     if isSubTree_TagAndText(subTreeA, B):
         return 1
     else:
-        return nodeCounter_TagAndText(subTreeA)
+        return nodeCounter_TagAndText(
+            subTreeA, costDict["CostDel_Tag"], costDict["CostDel_Text"]
+        )
 
 
-def costUpd_TagAndText(rootA, rootB, nameA, nameB, matricesDic):
+def costUpd_TagAndText(rootA, rootB, nameA, nameB, matricesDic, costDict):
     cost = 0
 
     if rootA.tag != rootB.tag:
-        cost += 1
+        cost += costDict["CostUpd_Tag"]
 
     if (rootA.text is not None) or (rootB.text is not None):
         textA = rootA.text
@@ -172,7 +179,7 @@ def costUpd_TagAndText(rootA, rootB, nameA, nameB, matricesDic):
             textA = ""
         if textB is None:
             textB = ""
-        distanceOfText = WF(textA, textB)
+        distanceOfText = WF(textA, textB, costDict)
         matricesDic[nameA + "/" + nameB + "/text"] = distanceOfText
         cost += distanceOfText[len(textA.split())][len(textB.split())]
 
@@ -223,43 +230,55 @@ def isSubTree(root1, root2):
     return False
 
 
-def nodeCounter(root):
+def nodeCounter(root, costTag, costText, costAtt):
     counter = 0
 
     if root is None:
         return counter
 
+    counter += costTag
+
     if root.text is not None:
-        counter += 1 + len(root.text.split())
+        counter += costText * len(root.text.split())
 
     if root.attrib != {}:
-        counter += 1 + len(root.attrib.keys()) + len(root.attrib.values())
+        counter += costAtt * (len(root.attrib.keys()) + len(root.attrib.values()))
 
     for child in root:
-        counter += nodeCounter(child)
+        counter += nodeCounter(child, costTag, costText, costAtt)
 
     return counter
 
 
-def costInsert(subTreeB, A):
+def costInsert(subTreeB, A, costDict):
     if isSubTree(subTreeB, A):
         return 1
     else:
-        return nodeCounter(subTreeB)
+        return nodeCounter(
+            subTreeB,
+            costDict["CostIns_Tag"],
+            costDict["CostIns_Text"],
+            costDict["CostIns_attrib"],
+        )
 
 
-def costDelete(subTreeA, B):
+def costDelete(subTreeA, B, costDict):
     if isSubTree(subTreeA, B):
         return 1
     else:
-        return nodeCounter(subTreeA)
+        return nodeCounter(
+            subTreeA,
+            costDict["CostDel_Tag"],
+            costDict["CostDel_Text"],
+            costDict["CostDel_attrib"],
+        )
 
 
-def costUpd(rootA, rootB, nameA, nameB, matricesDic):
+def costUpd(rootA, rootB, nameA, nameB, matricesDic, costDict):
     cost = 0
 
     if rootA.tag != rootB.tag:
-        cost += 1
+        cost += costDict["CostUpd_Tag"]
 
     if (rootA.text is not None) or (rootB.text is not None):
         textA = rootA.text
@@ -268,12 +287,12 @@ def costUpd(rootA, rootB, nameA, nameB, matricesDic):
             textA = ""
         if textB is None:
             textB = ""
-        distanceOfText = WF(textA, textB)
+        distanceOfText = WF(textA, textB, costDict)
         matricesDic[nameA + "/" + nameB + "/text"] = distanceOfText
         cost += distanceOfText[len(textA.split())][len(textB.split())]
 
     if (rootA.attrib != {}) or (rootB.attrib != {}):
-        distanceOfAtt = WF_Dict(rootA.attrib, rootB.attrib)
+        distanceOfAtt = WF_Dict(rootA.attrib, rootB.attrib, costDict)
         matricesDic[nameA + "/" + nameB + "/attribute"] = distanceOfAtt
         cost += distanceOfAtt[len(distanceOfAtt) - 1][len(distanceOfAtt[0]) - 1]
 
