@@ -154,8 +154,8 @@ def patchA():
     
     if Combo.get() == "Only Tags" :
         
-        NJ1 = NJ_Tag(rootA, rootB, "A", "B", dict, costDict)
-        ES = getTreeEditScript_Tag(dict, rootA, rootB, "A", "B", costDict)
+        # NJ1 = NJ_Tag(rootA, rootB, "A", "B", dict, costDict)
+        # ES = getTreeEditScript_Tag(dict, rootA, rootB, "A", "B", costDict)
         # ES = reverseArray(ES)
         # ESRoot = EStoXML(ES)
         # ET.ElementTree(ESRoot).write("ES.xml")
@@ -168,8 +168,8 @@ def patchA():
         p_entry.insert(0,"DONE !!! Check the \"a\" XML file :)")
     elif Combo.get() == "Tags and Text" :
         
-        NJ1 = NJ_TagAndText(rootA, rootB, "A", "B", dict, costDict)
-        ES = getTreeEditScript_TagAndText(dict, rootA, rootB, "A", "B", costDict)
+        # NJ1 = NJ_TagAndText(rootA, rootB, "A", "B", dict, costDict)
+        # ES = getTreeEditScript_TagAndText(dict, rootA, rootB, "A", "B", costDict)
         # ES = reverseArray(ES)
         # ESRoot = EStoXML(ES)
         # ET.ElementTree(ESRoot).write("ES.xml")
@@ -183,8 +183,8 @@ def patchA():
     
     elif Combo.get() == "Tags, Text, and Elements": 
         
-        NJ1 = NJ(rootA, rootB, "A", "B", dict, costDict)
-        ES = getTreeEditScript(dict, rootA, rootB, "A", "B", costDict)
+        # NJ1 = NJ(rootA, rootB, "A", "B", dict, costDict)
+        # ES = getTreeEditScript(dict, rootA, rootB, "A", "B", costDict)
         # ES = reverseArray(ES)
         # ESRoot = EStoXML(ES)
         # ET.ElementTree(ESRoot).write("ES.xml")
@@ -210,8 +210,8 @@ def patchB():
     
     if Combo.get() == "Only Tags" :
         
-        NJ1 = NJ_Tag(rootA, rootB, "A", "B", dict, costDict)
-        ES = getTreeEditScript_Tag(dict, rootA, rootB, "A", "B", costDict)
+        # NJ1 = NJ_Tag(rootA, rootB, "A", "B", dict, costDict)
+        # ES = getTreeEditScript_Tag(dict, rootA, rootB, "A", "B", costDict)
         ESRoot = ET.parse("ES.xml").getroot()
         ES1 = XMLtoES(ESRoot)
         ESflip = flipES(ES1)
@@ -224,8 +224,8 @@ def patchB():
         p_entryB.insert(0,"DONE !!! Check the \"b\" XML file :)")
     elif Combo.get() == "Tags and Text" :
         
-        NJ1 = NJ_TagAndText(rootA, rootB, "A", "B", dict, costDict)
-        ES = getTreeEditScript_TagAndText(dict, rootA, rootB, "A", "B", costDict)
+        # NJ1 = NJ_TagAndText(rootA, rootB, "A", "B", dict, costDict)
+        # ES = getTreeEditScript_TagAndText(dict, rootA, rootB, "A", "B", costDict)
         ESRoot = ET.parse("ES.xml").getroot()
         ES1 = XMLtoES(ESRoot)
         ESflip = flipES(ES1)
@@ -239,8 +239,8 @@ def patchB():
     
     elif Combo.get() == "Tags, Text, and Elements": 
         
-        NJ1 = NJ(rootA, rootB, "A", "B", dict, costDict)
-        ES = getTreeEditScript(dict, rootA, rootB, "A", "B", costDict)
+        # NJ1 = NJ(rootA, rootB, "A", "B", dict, costDict)
+        # ES = getTreeEditScript(dict, rootA, rootB, "A", "B", costDict)
         ESRoot = ET.parse("ES.xml").getroot()
         ES1 = XMLtoES(ESRoot)
         ESflip = flipES(ES1)

@@ -1,0 +1,36 @@
+<EditScript><UpdText nameA="B-4-1-1-1-0" nameB="A-4-1-1-1-0"><UpdWord indexA="0" wordA="Postscript" indexB="0" wordB="Postsmaster" /></UpdText><Del subTreeAName="B-4-2-1-0-0" nameB="A-4-2-1-0" indexA="0"><format>PDF</format>
+        </Del><Del subTreeAName="B-4-3-1-0-0" nameB="A-4-3-1-0" indexA="0"><format>PDF</format>
+        </Del><Del subTreeAName="B-5-0-1-0-1-0" nameB="A-5-0-1-0-1" indexA="0"><author AuthorPosition="00">R. Meersman</author>
+            </Del><Ins nameA="B-5-0-1-1-1" subTreeBName="A-5-0-1-1-1-3" indexB="3"><author AuthorPosition="00">R. Meersman</author>   
+          </Ins><Del subTreeAName="B-5-0-1-2-1-0" nameB="A-5-0-1-2-1" indexA="0"><author AuthorPosition="00">T. Sure</author>
+            </Del><Del subTreeAName="B-5-0-1-2-1-1" nameB="A-5-0-1-2-1" indexA="1"><author AuthorPosition="01">S. Staab</author>
+            </Del><Del subTreeAName="B-5-0-1-2-1-2" nameB="A-5-0-1-2-1" indexA="2"><author AuthorPosition="02">R. Studer</author>
+          </Del><Ins nameA="B-5-0-1-3-1" subTreeBName="A-5-0-1-3-1-2" indexB="2"><author AuthorPosition="00">T. Sure</author>  
+ </Ins><Ins nameA="B-5-0-1-3-1" subTreeBName="A-5-0-1-3-1-3" indexB="3"><author AuthorPosition="02">R. Studer</author> 
+ </Ins><Del subTreeAName="B-5-0-1-7" nameB="A-5-0-1" indexA="7"><article>
+          <title articleCode="314049">A Framework for Semantic Gossiping</title>
+          <authors>
+            <author AuthorPosition="00">K. Aberer</author>
+            <author AuthorPosition="01">P. Cudre-Mauroux</author>
+            <author AuthorPosition="02">M. Hauswirth</author>
+          </authors>
+          <availableSources>
+            <toAvailableSource href="http://www.acm.org/sigmod/record/issues/0212/SPECIAL/8.Aberer1.pdf">
+              <format>PDF</format>
+            </toAvailableSource>
+          </availableSources>
+        </article>
+
+        </Del><Ins nameA="B-5-5-1" subTreeBName="A-5-5-1-1" indexB="1"><article>
+ <title articleCode="314117">Reminiscences on Influential Papers</title>
+          <authors>
+ <author AuthorPosition="00">A. Aho</author>
+ <author AuthorPosition="01">A. Ailamaki</author>
+          </authors>
+          <availableSources>
+                      <toAvailableSource href="http://www.acm.org/sigmod/record/issues/0212/KenRoss.pdf">
+                      	<format>PDF</format>
+                      </toAvailableSource>
+          </availableSources>
+     </article> 
+     </Ins><UpdText nameA="B-5-7-1-0-2-0-0" nameB="A-5-7-1-0-2-0-0"><UpdWord indexA="0" wordA="PDF" indexB="0" wordB="WSD" /></UpdText><UpdTag nameA="B-5-7-1-0-2-0-0" nameB="A-5-7-1-0-2-0-0" tagA="format" tagB="formatArticle" /></EditScript>
