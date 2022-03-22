@@ -62,13 +62,15 @@ def getEditScriptDict(matrix, dictA, dictB):
 
     while row > 0 and col > 0:
         if matrix[row][col] == (matrix[row - 1][col] + costDelAtt()):
-            editScript.append(("DelAtt", row - 1))
+            editScript.append(("DelAtt", row - 1, listA[row - 1], col))
             row = row - 1
         elif matrix[row][col] == matrix[row][col - 1] + costInsAtt():
-            editScript.append(("InsAtt", row, listB[col - 1]))
+            editScript.append(("InsAtt", row, listB[col - 1], col - 1))
             col = col - 1
         elif costUpdAtt(listA[row - 1], listB[col - 1]) != 0:
-            editScript.append(("UpdAtt", row - 1, listB[col - 1]))
+            editScript.append(
+                ("UpdAtt", row - 1, listA[row - 1], col - 1, listB[col - 1])
+            )
             row = row - 1
             col = col - 1
         else:
@@ -76,11 +78,11 @@ def getEditScriptDict(matrix, dictA, dictB):
             col = col - 1
 
     while row > 0:
-        editScript.append(("DelAtt", row - 1))
+        editScript.append(("DelAtt", row - 1, listA[row - 1], col))
         row = row - 1
 
     while col > 0:
-        editScript.append(("InsAtt", row, listB[col - 1]))
+        editScript.append(("InsAtt", row, listB[col - 1], col - 1))
         col = col - 1
 
     return editScript
@@ -91,7 +93,7 @@ def patchDict(dictA, ES):
     changes = 0
     for op in ES:
         if op[0] == "UpdAtt":
-            listA[op[1] + changes] = op[2]
+            listA[op[1] + changes] = op[4]
         if op[0] == "DelAtt":
             listA.pop(op[1] + changes)
             changes -= 1

@@ -1,6 +1,6 @@
 import xml.etree.ElementTree as ET
-from src.dictEditDistance import patchDict
-from src.arrayEditDistance import patchArray
+from src.function.dictEditDistance import patchDict
+from src.function.arrayEditDistance import patchArray
 from copy import deepcopy
 
 # the following method are used as helper to all the patch methods
@@ -23,16 +23,14 @@ def findSubTreeChange(root, subTreeName, dictChanges):
     return subTreeRoot
 
 
-def insertSubTree(A, B, rootAName, subTreeBName, position, dictChanges):
+def insertSubTree(A, rootAName, subTreeB, position, dictChanges):
     root = findSubTreeChange(A, rootAName, dictChanges)
-    subTree = findSubTreeChange(B, subTreeBName, dictChanges)
-    copySubTree = deepcopy(subTree)
 
     if not rootAName in dictChanges:
-        root.insert(position, copySubTree)
+        root.insert(position, subTreeB)
         dictChanges[rootAName] = 1
     else:
-        root.insert(position, copySubTree)
+        root.insert(position, subTreeB)
         dictChanges[rootAName] += 1
 
 
@@ -50,10 +48,9 @@ def deleteSubTree(A, subTreeAName, dictChanges):
         dictChanges[parentName] -= 1
 
 
-def updateNode(A, B, subTreeAName, subTreeBName, dictChanges):
+def updateNode(A, subTreeAName, tagB, dictChanges):
     subTreeA = findSubTreeChange(A, subTreeAName, dictChanges)
-    subTreeB = findSubTreeChange(B, subTreeBName, dictChanges)
-    subTreeA.tag = subTreeB.tag
+    subTreeA.tag = tagB
 
 
 # the following method is used to patch a tree into another one
@@ -62,14 +59,14 @@ def updateNode(A, B, subTreeAName, subTreeBName, dictChanges):
 # values of change are stored in recursive calls
 
 
-def treePatch_Tag(A, B, editScript, dictChanges):
+def treePatch_Tag(A, editScript, dictChanges):
     for op in editScript:
+        if op[0] == "UpdTag":
+            updateNode(A, op[1], op[4], dictChanges)
         if op[0] == "Del":
             deleteSubTree(A, op[1], dictChanges)
-        if op[0] == "UpdTag":
-            updateNode(A, B, op[1], op[2], dictChanges)
         if op[0] == "Ins":
-            insertSubTree(A, B, op[1], op[2], op[3], dictChanges)
+            insertSubTree(A, op[1], op[3], op[4], dictChanges)
 
 
 # the following methods are used to patch a tree into another one
@@ -87,14 +84,14 @@ def updateText(A, subTreeAName, textES, dictChanges):
     subTreeA.text = subTreeAUpdatedText
 
 
-def treePatch_TagAndText(A, B, editScript, dictChanges):
+def treePatch_TagAndText(A, editScript, dictChanges):
     for op in editScript:
+        if op[0] == "UpdTag":
+            updateNode(A, op[1], op[4], dictChanges)
         if op[0] == "Del":
             deleteSubTree(A, op[1], dictChanges)
-        if op[0] == "UpdTag":
-            updateNode(A, B, op[1], op[2], dictChanges)
         if op[0] == "Ins":
-            insertSubTree(A, B, op[1], op[2], op[3], dictChanges)
+            insertSubTree(A, op[1], op[3], op[4], dictChanges)
         if op[0] == "UpdText":
             updateText(A, op[1], op[3], dictChanges)
 
@@ -112,14 +109,14 @@ def updateAttribute(A, subTreeAName, attES, dictChanges):
     subTreeA.attrib = subTreeAUpdatedAtt
 
 
-def treePatch(A, B, editScript, dictChanges):
+def treePatch(A, editScript, dictChanges):
     for op in editScript:
+        if op[0] == "UpdTag":
+            updateNode(A, op[1], op[4], dictChanges)
         if op[0] == "Del":
             deleteSubTree(A, op[1], dictChanges)
-        if op[0] == "UpdTag":
-            updateNode(A, B, op[1], op[2], dictChanges)
         if op[0] == "Ins":
-            insertSubTree(A, B, op[1], op[2], op[3], dictChanges)
+            insertSubTree(A, op[1], op[3], op[4], dictChanges)
         if op[0] == "UpdText":
             updateText(A, op[1], op[3], dictChanges)
         if op[0] == "UpdAttribute":

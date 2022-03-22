@@ -1,6 +1,6 @@
 # import xml.etree.ElementTree as ET
-from src.dictEditDistance import WF_Dict
-from src.arrayEditDistance import *
+from src.function.dictEditDistance import WF_Dict
+from src.function.arrayEditDistance import *
 
 
 def findSubTree(root, subTreeName):

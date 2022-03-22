@@ -23,7 +23,7 @@ window = Tk()
 window.geometry("763x528")
 window.configure(bg = "#FFFFFF")
 
-#the window plane
+
 canvas = Canvas(
     window,
     bg = "#FFFFFF",
@@ -35,8 +35,6 @@ canvas = Canvas(
 )
 
 canvas.place(x = 0, y = 0)
-
-#window background
 image_image_1 = PhotoImage(
     file=relative_to_assets("image_1.png"))
 image_1 = canvas.create_image(
@@ -44,7 +42,7 @@ image_1 = canvas.create_image(
     264.0,
     image=image_image_1
 )
-#logo
+
 image_image_2 = PhotoImage(
     file=relative_to_assets("image_2.png"))
 image_2 = canvas.create_image(
@@ -53,7 +51,6 @@ image_2 = canvas.create_image(
     image=image_image_2
 )
 
-#rectangle background
 canvas.create_rectangle(
     116.0,
     145.0,
@@ -62,7 +59,6 @@ canvas.create_rectangle(
     fill="#B4D9FA",
     outline="")
 
-#scroll down choose your option
 entry_image_1 = PhotoImage(
     file=relative_to_assets("entry_1.png"))
 entry_bg_1 = canvas.create_image(
@@ -82,7 +78,6 @@ entry_1.place(
     height=18.0
 )
 
-#rectangle
 canvas.create_rectangle(
     116.0,
     245.0,
@@ -91,7 +86,6 @@ canvas.create_rectangle(
     fill="#A8B6FF",
     outline="")
 
-#Edit script displayed here
 entry_image_2 = PhotoImage(
     file=relative_to_assets("entry_2.png"))
 entry_bg_2 = canvas.create_image(
@@ -111,7 +105,6 @@ entry_2.place(
     height=85.0
 )
 
-#rectangle
 canvas.create_rectangle(
     116.0,
     392.0,
@@ -120,7 +113,6 @@ canvas.create_rectangle(
     fill="#869AFF",
     outline="")
 
-#button Patch A to B
 button_image_1 = PhotoImage(
     file=relative_to_assets("button_1.png"))
 button_1 = Button(
@@ -137,7 +129,6 @@ button_1.place(
     height=23.0
 )
 
-#Button get edit script
 button_image_2 = PhotoImage(
     file=relative_to_assets("button_2.png"))
 button_2 = Button(
@@ -154,7 +145,6 @@ button_2.place(
     height=23.0
 )
 
-#button Upload Edit Script
 button_image_3 = PhotoImage(
     file=relative_to_assets("button_3.png"))
 button_3 = Button(
@@ -171,7 +161,6 @@ button_3.place(
     height=23.0
 )
 
-# button TED and Similarity
 button_image_4 = PhotoImage(
     file=relative_to_assets("button_4.png"))
 button_4 = Button(
@@ -188,7 +177,6 @@ button_4.place(
     height=23.0
 )
 
-#button Patch A to B
 button_image_5 = PhotoImage(
     file=relative_to_assets("button_5.png"))
 button_5 = Button(
@@ -205,7 +193,6 @@ button_5.place(
     height=23.0
 )
 
-#rectangle
 canvas.create_rectangle(
     120.0,
     133.0,
@@ -254,7 +241,6 @@ canvas.create_rectangle(
     fill="#133FDB",
     outline="")
 
-#texts
 canvas.create_text(
     529.0,
     119.0,
@@ -282,7 +268,6 @@ canvas.create_text(
     font=("Arial BoldMT", 12 * -1)
 )
 
-#input TED
 entry_image_3 = PhotoImage(
     file=relative_to_assets("entry_3.png"))
 entry_bg_3 = canvas.create_image(
@@ -302,7 +287,6 @@ entry_3.place(
     height=18.0
 )
 
-#input Edit Script Done
 entry_image_4 = PhotoImage(
     file=relative_to_assets("entry_4.png"))
 entry_bg_4 = canvas.create_image(
@@ -322,7 +306,6 @@ entry_4.place(
     height=18.0
 )
 
-#input Path for uploaded edit script
 entry_image_5 = PhotoImage(
     file=relative_to_assets("entry_5.png"))
 entry_bg_5 = canvas.create_image(
@@ -342,7 +325,6 @@ entry_5.place(
     height=18.0
 )
 
-#input patch A to B done
 entry_image_6 = PhotoImage(
     file=relative_to_assets("entry_6.png"))
 entry_bg_6 = canvas.create_image(
@@ -362,7 +344,6 @@ entry_6.place(
     height=18.0
 )
 
-#input patch B to A done
 entry_image_7 = PhotoImage(
     file=relative_to_assets("entry_7.png"))
 entry_bg_7 = canvas.create_image(
@@ -382,7 +363,6 @@ entry_7.place(
     height=18.0
 )
 
-# input similarity
 entry_image_8 = PhotoImage(
     file=relative_to_assets("entry_8.png"))
 entry_bg_8 = canvas.create_image(
@@ -402,7 +382,6 @@ entry_8.place(
     height=16.0
 )
 
-# Button to go to previous page
 button_image_6 = PhotoImage(
     file=relative_to_assets("button_6.png"))
 button_6 = Button(

@@ -62,13 +62,15 @@ def getEditScriptArray(matrix, A, B):
 
     while row > 0 and col > 0:
         if matrix[row][col] == (matrix[row - 1][col] + costDelWord()):
-            editScript.append(("DelWord", row - 1))
+            editScript.append(("DelWord", row - 1, tokenA[row - 1]), col)
             row = row - 1
         elif matrix[row][col] == matrix[row][col - 1] + costInsWord():
-            editScript.append(("InsWord", row, tokenB[col - 1]))
+            editScript.append(("InsWord", row, tokenB[col - 1], col - 1))
             col = col - 1
         elif costUpdWord(tokenA[row - 1], tokenB[col - 1]) != 0:
-            editScript.append(("UpdWord", row - 1, tokenB[col - 1]))
+            editScript.append(
+                ("UpdWord", row - 1, tokenA[row - 1], col - 1, tokenB[col - 1])
+            )
             row = row - 1
             col = col - 1
         else:
@@ -76,11 +78,11 @@ def getEditScriptArray(matrix, A, B):
             col = col - 1
 
     while row > 0:
-        editScript.append(("DelWord", row - 1))
+        editScript.append(("DelWord", row - 1, tokenA[row - 1]), col)
         row = row - 1
 
     while col > 0:
-        editScript.append(("InsWord", row, tokenB[col - 1]))
+        editScript.append(("InsWord", row, tokenB[col - 1], col - 1))
         col = col - 1
 
     return editScript
@@ -91,7 +93,7 @@ def patchArray(strA, ES):
     changes = 0
     for op in ES:
         if op[0] == "UpdWord":
-            arrA[op[1] + changes] = op[2]
+            arrA[op[1] + changes] = op[4]
         if op[0] == "DelWord":
             arrA.pop(op[1] + changes)
             changes -= 1
