@@ -1,9 +1,9 @@
 from fileinput import filename
 from traceback import format_tb
-from src.function.costCalc import *
-from src.function.treeEditDistance import *
-from src.function.treePatch import *
-from src.function.editScript import *
+from function.costCalc import *
+from function.treeEditDistance import *
+from function.treePatch import *
+from function.editScript import *
 from pprint import pprint
 import xml.etree.ElementTree as ET
 

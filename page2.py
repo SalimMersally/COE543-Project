@@ -64,15 +64,15 @@ def choose_file(arg) :
         
 def copyFiles():
     
-    xmlFile1 = entry_3.get()
-    xmlFile2 = entry_4.get()
-    treeA = ET.parse(xmlFile1)  # xml to Tree
-    rootA = treeA.getroot()
-    treeB = ET.parse(xmlFile2)  # xml to Tree
-    rootB = treeB.getroot() 
+    #save location A
+    text_file = open("locA.txt", "w")
+    n = text_file.write(entry_3.get())
+    text_file.close()
     
-    ET.ElementTree(rootA).write("FileA.xml")
-    ET.ElementTree(rootB).write("FileB.xml")
+    #save location B
+    text_file = open("locB.txt", "w")
+    n = text_file.write(entry_4.get())
+    text_file.close()
 
     
 def getInputs():
@@ -157,7 +157,7 @@ entry_1.place(
     width=99.0,
     height=22.0
 )
-
+entry_1.config(justify="center")
 canvas.create_text(
     372.0,
     126.0,
@@ -233,6 +233,7 @@ entry_2.place(
     width=99.0,
     height=22.0
 )
+entry_2.config(justify="center")
 
 canvas.create_rectangle(
     675.0,
@@ -316,6 +317,7 @@ entry_5.place(
     width=99.0,
     height=22.0
 )
+entry_5.config(justify="center")
 
 canvas.create_text(
     372.0,
@@ -344,6 +346,7 @@ entry_6.place(
     width=99.0,
     height=22.0
 )
+entry_6.config(justify="center")
 
 canvas.create_text(
     372.0,
@@ -372,6 +375,7 @@ entry_7.place(
     width=99.0,
     height=22.0
 )
+entry_7.config(justify="center")
 
 canvas.create_text(
     372.0,
@@ -400,6 +404,7 @@ entry_8.place(
     width=99.0,
     height=22.0
 )
+entry_8.config(justify="center")
 
 canvas.create_text(
     372.0,
@@ -428,6 +433,7 @@ entry_9.place(
     width=99.0,
     height=22.0
 )
+entry_9.config(justify="center")
 
 canvas.create_text(
     372.0,
@@ -456,6 +462,7 @@ entry_10.place(
     width=99.0,
     height=22.0
 )
+entry_10.config(justify="center")
 
 canvas.create_text(
     372.0,
@@ -484,6 +491,7 @@ entry_11.place(
     width=99.0,
     height=22.0
 )
+entry_11.config(justify="center")
 
 canvas.create_text(
     372.0,

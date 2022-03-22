@@ -63,7 +63,7 @@ def getEditScriptArray(matrix, A, B, costDict):
 
     while row > 0 and col > 0:
         if matrix[row][col] == (matrix[row - 1][col] + costDelWord(costDict)):
-            editScript.append(("DelWord", row - 1, tokenA[row - 1]), col)
+            editScript.append(("DelWord", row - 1, tokenA[row - 1], col))
             row = row - 1
         elif matrix[row][col] == matrix[row][col - 1] + costInsWord(costDict):
             editScript.append(("InsWord", row, tokenB[col - 1], col - 1))

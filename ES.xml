@@ -1,0 +1,5 @@
+<EditScript><UpdTag nameA="A-5-0-1-1-2-0-0" nameB="B-5-0-1-1-2-0-0" tagA="dataRep" tagB="format" /><Ins nameA="A-5-0-1-2-1" subTreeBName="B-5-0-1-2-1-2" indexB="2"><author AuthorPosition="02">R. Studer</author>
+          </Ins><UpdTag nameA="A-5-0-1-3-2" nameB="B-5-0-1-3-2" tagA="Sources" tagB="availableSources" /><Del subTreeAName="A-5-4-1-0-2-0-1" nameB="B-5-4-1-0-2-0" indexA="1"><format>JSON</format>
+            </Del><Del subTreeAName="A-5-5-1-0-2-0-1" nameB="B-5-5-1-0-2-0" indexA="1"><format>PDF</format>
+            </Del><Del subTreeAName="A-5-5-1-1-1-3" nameB="B-5-5-1-1-1" indexA="3"><author AuthorPosition="03">J. Connor</author>
+          </Del></EditScript>
