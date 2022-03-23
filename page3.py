@@ -205,19 +205,19 @@ def patchA2B():
     if Combo.get() == "Only Tags":
         dictChanges = {}
         treePatch_Tag(rootA, ES, dictChanges)
-        ET.ElementTree(rootA).write("a.xml")
+        ET.ElementTree(rootA).write("Apacthed.xml")
         entry_6.insert(0, 'DONE !!! Check the "a" XML file :)')
 
     elif Combo.get() == "Tags and Text":
         dictChanges = {}
         treePatch_TagAndText(rootA, ES, dictChanges)
-        ET.ElementTree(rootA).write("a.xml")
+        ET.ElementTree(rootA).write("Apacthed.xml")
         entry_6.insert(0, 'DONE !!! Check the "a" XML file :)')
 
     elif Combo.get() == "Tags, Text, and Elements":
         dictChanges = {}
         treePatch(rootA, ES, dictChanges)
-        ET.ElementTree(rootA).write("a.xml")
+        ET.ElementTree(rootA).write("Apatched.xml")
         entry_6.insert(0, 'DONE !!! Check the "a" XML file :)')
 
 
@@ -232,25 +232,29 @@ def patchB2A():
 
     xmlFile1 = locB
 
-    treeA = ET.parse(xmlFile1)  # xml to Tree
-    rootA = treeA.getroot()
+    treeB = ET.parse(xmlFile1)  # xml to Tree
+    rootB = treeB.getroot()
+
+    ESFlipped = flipES(ES)
+    ESRoot = EStoXML(ESFlipped)
+    ET.ElementTree(ESRoot).write("ESflipped.xml")
 
     if Combo.get() == "Only Tags":
         dictChanges = {}
-        treePatch_Tag(rootA, flipES(ES), dictChanges)
-        ET.ElementTree(rootA).write("b.xml")
+        treePatch_Tag(rootB, ESFlipped, dictChanges)
+        ET.ElementTree(rootB).write("Bpacthed.xml")
         entry_7.insert(0, 'DONE !!! Check the "b" XML file :)')
 
     elif Combo.get() == "Tags and Text":
         dictChanges = {}
-        treePatch_TagAndText(rootA, flipES(ES), dictChanges)
-        ET.ElementTree(rootA).write("b.xml")
+        treePatch_TagAndText(rootB, ESFlipped, dictChanges)
+        ET.ElementTree(rootB).write("Bpacthed.xml")
         entry_7.insert(0, 'DONE !!! Check the "b" XML file :)')
 
     elif Combo.get() == "Tags, Text, and Elements":
         dictChanges = {}
-        treePatch(rootA, flipES(ES), dictChanges)
-        ET.ElementTree(rootA).write("b.xml")
+        treePatch(rootB, ESFlipped, dictChanges)
+        ET.ElementTree(rootB).write("Bpacthed.xml")
         entry_7.insert(0, 'DONE !!! Check the "b" XML file :)')
 
 
@@ -431,17 +435,6 @@ entry_bg_8 = canvas.create_image(338.5, 188.0, image=entry_image_8)
 entry_8 = Entry(bd=0, bg="#FFFFFF", highlightthickness=0)
 entry_8.place(x=250.0, y=179.0, width=177.0, height=16.0)
 entry_8.config(font="Arial 8")
-
-button_image_6 = PhotoImage(file=relative_to_assets("button_6.png"))
-button_6 = Button(
-    image=button_image_6,
-    borderwidth=0,
-    highlightthickness=0,
-    command=previousPage,
-    relief="flat",
-)
-button_6.place(x=328.0, y=484.0, width=78.0, height=26.0)
-
 
 window.resizable(False, False)
 window.mainloop()

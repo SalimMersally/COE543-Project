@@ -1,5 +1,29 @@
-<EditScript><UpdText nameA="A-4-3-0-0" nameB="B-4-3-0-0"><InsWord indexA="4" wordB="Awards" indexB="4" /></UpdText><UpdText nameA="A-5-0-1-1-0" nameB="B-5-0-1-1-0"><InsWord indexA="0" wordB="Data" indexB="0" /><InsWord indexA="0" wordB="Modelling" indexB="1" /><InsWord indexA="0" wordB="versus" indexB="2" /><InsWord indexA="0" wordB="Ontology" indexB="3" /><InsWord indexA="0" wordB="Engineering" indexB="4" /></UpdText><UpdTag nameA="A-5-0-1-1-2-0-0" nameB="B-5-0-1-1-2-0-0" tagA="dataRep" tagB="format" /><UpdAttribute nameA="A-5-0-1-2-1-1" nameB="B-5-0-1-2-1-1"><UpdAtt indexA="0" KeyA="AuthorPosition" ValueA="02" indexB="0" KeyB="AuthorPosition" ValueB="01" /></UpdAttribute><UpdText nameA="A-5-0-1-2-1-1" nameB="B-5-0-1-2-1-1"><UpdWord indexA="0" wordA="R." indexB="0" wordB="S." /><UpdWord indexA="1" wordA="Studer" indexB="1" wordB="Staab" /></UpdText><Ins nameA="A-5-0-1-2-1" subTreeBName="B-5-0-1-2-1-2" indexB="2"><author AuthorPosition="02">R. Studer</author>
-          </Ins><UpdTag nameA="A-5-0-1-3-2" nameB="B-5-0-1-3-2" tagA="Sources" tagB="availableSources" /><Del subTreeAName="A-5-4-1-0-2-0-1" nameB="B-5-4-1-0-2-0" indexA="1"><format>JSON</format>
-            </Del><Del subTreeAName="A-5-5-1-0-2-0-0" nameB="B-5-5-1-0-2-0" indexA="0"><format />
-              </Del><Del subTreeAName="A-5-5-1-1-1-2" nameB="B-5-5-1-1-1" indexA="2"><author AuthorPosition="02">C. Goble</author>
-            </Del><UpdAttribute nameA="A-5-5-1-1-1-3" nameB="B-5-5-1-1-1-2"><UpdAtt indexA="0" KeyA="AuthorPosition" ValueA="03" indexB="0" KeyB="AuthorPosition" ValueB="02" /></UpdAttribute><UpdText nameA="A-5-5-1-1-1-3" nameB="B-5-5-1-1-1-2"><UpdWord indexA="0" wordA="J." indexB="0" wordB="C." /><UpdWord indexA="1" wordA="Connor" indexB="1" wordB="Goble" /></UpdText></EditScript>
+<EditScript>
+	<Ins nameA="A" subTreeBName="B-0" indexB="0">
+		<m att1="v1">
+			<b>
+				<c>Intel Data Process and App</c>
+				<d>
+					<d />
+				</d>
+			</b>
+		</m>
+	</Ins>
+	<UpdAttribute nameA="A-0" nameB="B-1">
+		<UpdAtt indexA="0" KeyA="att2" ValueA="v1" indexB="0" KeyB="att2" ValueB="v2" />
+	</UpdAttribute>
+	<UpdAttribute nameA="A-0-0" nameB="B-1-0">
+		<InsAtt indexA="0" KeyB="att2" ValueB="v2" indexB="0" />
+	</UpdAttribute>
+	<UpdText nameA="A-0-0" nameB="B-1-0">
+		<UpdWord indexA="1" wordA="Dat" indexB="1" wordB="Data" />
+		<DelWord indexA="2" wordA="or" indexB="2" />
+		<InsWord indexA="5" wordB="App" indexB="4" />
+	</UpdText>
+	<UpdAttribute nameA="A-0-1" nameB="B-1-1">
+		<UpdAtt indexA="0" KeyA="att2" ValueA="v2" indexB="0" KeyB="att3" ValueB="v3" />
+	</UpdAttribute>
+	<Ins nameA="A-0-1" subTreeBName="B-1-1-0" indexB="0">
+		<d />
+	</Ins>
+</EditScript>

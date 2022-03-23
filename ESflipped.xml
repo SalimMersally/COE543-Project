@@ -1,0 +1,29 @@
+<EditScript>
+	<Del subTreeAName="B-0" nameB="A" indexA="0">
+		<m att1="v1">
+			<b>
+				<c>Intel Data Process and App</c>
+				<d>
+					<d />
+				</d>
+			</b>
+		</m>
+	</Del>
+	<UpdAttribute nameA="B-1" nameB="A-0">
+		<UpdAtt indexA="0" KeyA="att2" ValueA="v2" indexB="0" KeyB="att2" ValueB="v1" />
+	</UpdAttribute>
+	<UpdAttribute nameA="B-1-0" nameB="A-0-0">
+		<DelAtt indexA="0" KeyA="att2" ValueA="v2" indexB="0" />
+	</UpdAttribute>
+	<UpdText nameA="B-1-0" nameB="A-0-0">
+		<UpdWord indexA="1" wordA="Data" indexB="1" wordB="Dat" />
+		<InsWord indexA="2" wordB="or" indexB="2" />
+		<DelWord indexA="4" wordA="App" indexB="5" />
+	</UpdText>
+	<UpdAttribute nameA="B-1-1" nameB="A-0-1">
+		<UpdAtt indexA="0" KeyA="att3" ValueA="v3" indexB="0" KeyB="att2" ValueB="v2" />
+	</UpdAttribute>
+	<Del subTreeAName="B-1-1-0" nameB="A-0-1" indexA="0">
+		<d />
+	</Del>
+</EditScript>
