@@ -1,36 +1,5 @@
-<EditScript><UpdText nameA="A-4-1-1-1-0" nameB="B-4-1-1-1-0"><UpdWord indexA="0" wordA="Postsmaster" indexB="0" wordB="Postscript" /></UpdText><Ins nameA="A-4-2-1-0" subTreeBName="B-4-2-1-0-0" indexB="0"><format>PDF</format>
-        </Ins><Ins nameA="A-4-3-1-0" subTreeBName="B-4-3-1-0-0" indexB="0"><format>PDF</format>
-        </Ins><Ins nameA="A-5-0-1-0-1" subTreeBName="B-5-0-1-0-1-0" indexB="0"><author AuthorPosition="00">R. Meersman</author>
-            </Ins><Del subTreeAName="A-5-0-1-1-1-3" nameB="B-5-0-1-1-1" indexA="3"><author AuthorPosition="00">R. Meersman</author>   
-          </Del><Ins nameA="A-5-0-1-2-1" subTreeBName="B-5-0-1-2-1-0" indexB="0"><author AuthorPosition="00">T. Sure</author>
-            </Ins><Ins nameA="A-5-0-1-2-1" subTreeBName="B-5-0-1-2-1-1" indexB="1"><author AuthorPosition="01">S. Staab</author>
-            </Ins><Ins nameA="A-5-0-1-2-1" subTreeBName="B-5-0-1-2-1-2" indexB="2"><author AuthorPosition="02">R. Studer</author>
-          </Ins><Del subTreeAName="A-5-0-1-3-1-2" nameB="B-5-0-1-3-1" indexA="2"><author AuthorPosition="00">T. Sure</author>  
- </Del><Del subTreeAName="A-5-0-1-3-1-3" nameB="B-5-0-1-3-1" indexA="3"><author AuthorPosition="02">R. Studer</author> 
- </Del><Ins nameA="A-5-0-1" subTreeBName="B-5-0-1-7" indexB="7"><article>
-          <title articleCode="314049">A Framework for Semantic Gossiping</title>
-          <authors>
-            <author AuthorPosition="00">K. Aberer</author>
-            <author AuthorPosition="01">P. Cudre-Mauroux</author>
-            <author AuthorPosition="02">M. Hauswirth</author>
-          </authors>
-          <availableSources>
-            <toAvailableSource href="http://www.acm.org/sigmod/record/issues/0212/SPECIAL/8.Aberer1.pdf">
-              <format>PDF</format>
-            </toAvailableSource>
-          </availableSources>
-        </article>
-
-        </Ins><Del subTreeAName="A-5-5-1-1" nameB="B-5-5-1" indexA="1"><article>
- <title articleCode="314117">Reminiscences on Influential Papers</title>
-          <authors>
- <author AuthorPosition="00">A. Aho</author>
- <author AuthorPosition="01">A. Ailamaki</author>
-          </authors>
-          <availableSources>
-                      <toAvailableSource href="http://www.acm.org/sigmod/record/issues/0212/KenRoss.pdf">
-                      	<format>PDF</format>
-                      </toAvailableSource>
-          </availableSources>
-     </article> 
-     </Del><UpdText nameA="A-5-7-1-0-2-0-0" nameB="B-5-7-1-0-2-0-0"><UpdWord indexA="0" wordA="WSD" indexB="0" wordB="PDF" /></UpdText><UpdTag nameA="A-5-7-1-0-2-0-0" nameB="B-5-7-1-0-2-0-0" tagA="formatArticle" tagB="format" /></EditScript>
+<EditScript><UpdText nameA="A-4-3-0-0" nameB="B-4-3-0-0"><InsWord indexA="4" wordB="Awards" indexB="4" /></UpdText><UpdText nameA="A-5-0-1-1-0" nameB="B-5-0-1-1-0"><InsWord indexA="0" wordB="Data" indexB="0" /><InsWord indexA="0" wordB="Modelling" indexB="1" /><InsWord indexA="0" wordB="versus" indexB="2" /><InsWord indexA="0" wordB="Ontology" indexB="3" /><InsWord indexA="0" wordB="Engineering" indexB="4" /></UpdText><UpdTag nameA="A-5-0-1-1-2-0-0" nameB="B-5-0-1-1-2-0-0" tagA="dataRep" tagB="format" /><UpdAttribute nameA="A-5-0-1-2-1-1" nameB="B-5-0-1-2-1-1"><UpdAtt indexA="0" KeyA="AuthorPosition" ValueA="02" indexB="0" KeyB="AuthorPosition" ValueB="01" /></UpdAttribute><UpdText nameA="A-5-0-1-2-1-1" nameB="B-5-0-1-2-1-1"><UpdWord indexA="0" wordA="R." indexB="0" wordB="S." /><UpdWord indexA="1" wordA="Studer" indexB="1" wordB="Staab" /></UpdText><Ins nameA="A-5-0-1-2-1" subTreeBName="B-5-0-1-2-1-2" indexB="2"><author AuthorPosition="02">R. Studer</author>
+          </Ins><UpdTag nameA="A-5-0-1-3-2" nameB="B-5-0-1-3-2" tagA="Sources" tagB="availableSources" /><Del subTreeAName="A-5-4-1-0-2-0-1" nameB="B-5-4-1-0-2-0" indexA="1"><format>JSON</format>
+            </Del><Del subTreeAName="A-5-5-1-0-2-0-0" nameB="B-5-5-1-0-2-0" indexA="0"><format />
+              </Del><Del subTreeAName="A-5-5-1-1-1-2" nameB="B-5-5-1-1-1" indexA="2"><author AuthorPosition="02">C. Goble</author>
+            </Del><UpdAttribute nameA="A-5-5-1-1-1-3" nameB="B-5-5-1-1-1-2"><UpdAtt indexA="0" KeyA="AuthorPosition" ValueA="03" indexB="0" KeyB="AuthorPosition" ValueB="02" /></UpdAttribute><UpdText nameA="A-5-5-1-1-1-3" nameB="B-5-5-1-1-1-2"><UpdWord indexA="0" wordA="J." indexB="0" wordB="C." /><UpdWord indexA="1" wordA="Connor" indexB="1" wordB="Goble" /></UpdText></EditScript>
